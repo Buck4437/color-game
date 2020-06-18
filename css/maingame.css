@@ -1,0 +1,13 @@
+* {
+  font-family: arial;
+  font-size: 15px;
+  color:white;
+}
+body{
+  margin: 30px;
+}
+
+#moneyAmount{
+  color: white;
+  font-size: 35px;
+}
