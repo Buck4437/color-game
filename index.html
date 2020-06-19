@@ -7,19 +7,19 @@
     <title>Color game</title>
   </head>
   <body style="background-color:black">
-    <div id="topBar">
-      <h1 id="moneyAmount">How to use vue: {{money}}</h1>
+    <div id="top-bar">
       <button>Primary</button>
       <button>Settings</button>
     </div>
     <div id="tab1">
+      <p id="red-bar-old">Placeholder: {{red}}</p>
+      <div id="red-bar" class="colorBar">
+        <div id="red-bar-amount" class="colorBarAmount" :style="styleRedBarAmount"></div>
+      </div>
     </div>
   </body>
   <script type="text/javascript" src="js/libraries/jquery-3.4.1.js"></script>
-  <script type="text/javascript" src="js/libraries/break_infinity.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@antimatter-dimensions/notations"></script>
   <script src="js/libraries/vue.js"></script>
   <script src="js/main/main.js"></script>
-  <script src="js/main/playerSaveDecimalToString.js"></script>
-  <script src="js/main/UI.js"></script>
+  <script src="js/main/color-bars.js"></script>
 </html>

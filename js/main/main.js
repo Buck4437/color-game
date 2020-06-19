@@ -1,18 +1,12 @@
 const defaultSave = {
-  money: new Decimal(1),
-  primary:{
-  },
-  notations: 0
+  red: 0,
 };
-const defaultString = {
-  money: "1.0"
-}; //used for playerSaveDecimalToString.js
-const notationName = ['Scientific', 'Letters'];
-const notationList = [new ADNotations.ScientificNotation(), new ADNotations.LettersNotation()];
-var player = defaultSave;
-var playerFormatted = defaultString;
+// const notationName = ['Scientific', 'Letters'];
+// const notationList = [new ADNotations.ScientificNotation(), new ADNotations.LettersNotation()];
 
-var moneyDisplay = new Vue({
-  el:"#moneyAmount",
-  data: playerFormatted
+var player = defaultSave;
+
+var redBarOld = new Vue({
+  el:"#red-bar-old",
+  data: player
 });
