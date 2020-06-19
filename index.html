@@ -11,11 +11,12 @@
       <button>Primary</button>
       <button>Settings</button>
     </div>
+    <br>
     <div id="tab1">
-      <p id="red-bar-old">Placeholder: {{red}}</p>
       <div id="red-bar" class="colorBar">
-        <div id="red-bar-amount" class="colorBarAmount" :style="styleRedBarAmount"></div>
+        <div id="red-bar-amount" class="colorBarAmount" :style="styleRedBarAmount">Red:&nbsp{{player.red}}/255</div>
       </div>
+      <button id="red-bar-add" @click="add()">+1 Red</button>
     </div>
   </body>
   <script type="text/javascript" src="js/libraries/jquery-3.4.1.js"></script>
