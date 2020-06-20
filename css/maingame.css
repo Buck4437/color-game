@@ -7,7 +7,7 @@ body{
   margin: 30px;
 }
 
-.colorBar{
+/* .colorBar{
   width: 25%;
   background-color: black;
   border-radius: 8px;
@@ -26,4 +26,26 @@ body{
 
 #red-bar-amount{
   background-color: red;
+} */
+
+
+
+
+
+.color-bar{
+  width: 25%;
+  background-color: black;
+  border-radius: 8px;
+  border: 4px solid white;
+  display:inline-block;
+  margin-bottom: 20px;
+}
+
+.color-bar-amount{
+  width: 0%;
+  height: 30px;
+  border-radius: 4px;
+  text-align: left;
+  padding: 2%;
+  line-height: 30px;
 }

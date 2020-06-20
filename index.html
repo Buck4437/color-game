@@ -12,15 +12,42 @@
       <button>Settings</button>
     </div>
     <br>
-    <div id="tab1">
+    <!-- <div id="tab1">
       <div id="red-bar" class="colorBar">
         <div id="red-bar-amount" class="colorBarAmount" :style="styleRedBarAmount">Red:&nbsp{{player.red}}/255</div>
       </div>
       <button id="red-bar-add" @click="add()">+1 Red</button>
+      <button id="red-bar-auto" @click="toggle()">Auto: {{enabled}}</button>
+    </div> -->
+
+    <!-- <div id="demo">
+      <color-bar></color-bar>
+    </div> -->
+  <div id="tab1">
+      <color-bar v-for="bar in bars" :bar="bar" :key="bar.money"></color-bar>
+  </div>
+  <script type="text/x-template" id="color-bar-template">
+    <div>
+      <div class="color-bar">
+        <color-bar-amount :money="bar.money" :max="bar.max" :barColor="bar.color"></color-bar-amount>
+      </div>
     </div>
+  </script>
+
+  <script type="text/x-template" id="color-bar-amount-template">
+    <div class="color-bar-amount" :style="style"><span v-html="text"></span></div>
+  </script>
+
   </body>
+
+
+
+
   <script type="text/javascript" src="js/libraries/jquery-3.4.1.js"></script>
   <script src="js/libraries/vue.js"></script>
+  <script src="js/libraries/custom-functions.js"></script>
   <script src="js/main/main.js"></script>
   <script src="js/main/color-bars.js"></script>
+  <script src="js/components/color-bar/color-bar-amount.js"></script>
+  <script src="js/components/color-bar/color-bar.js"></script>
 </html>

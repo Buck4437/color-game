@@ -1,5 +1,5 @@
 button:hover{
-  cursor: pointer !important;
+  cursor: pointer;
 }
 
 #top-bar button{
@@ -13,7 +13,7 @@ button:hover{
 }
 
 
-#red-bar-add{
+#tab1 button{
   width: 10%;
   height: 46px;
   background-color: black;
@@ -24,6 +24,6 @@ button:hover{
   margin-left: 10px;
 }
 
-#red-bar-add:hover, #top-bar button:hover{
+#tab1 button:hover, #top-bar button:hover{
   background-color: #666666;
 }
