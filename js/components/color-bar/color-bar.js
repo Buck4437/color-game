@@ -1,5 +1,57 @@
+/*
+ format:
+    <color-bar :bar="bar" :key="bar.money"></color-bar>
+    data:{
+      bar = {
+        money: "currencyName",
+        max: BarMaxValue,
+        color: "barColor",
+        seen: true/false
+      }
+    }
+*/
+
+
+let colorBarAmountComponent = {
+  template: "#color-bar-amount-template",
+  data: function (){
+    return {
+      player: player
+    }
+  },
+  props:{
+    money:{
+      type: String,
+      required: true
+    },
+    max:{
+      type: Number,
+      required: true
+    },
+    barColor:{
+      type: String,
+      required: false,
+      default: "grey"
+    }
+  },
+  computed:{
+    style: function(){
+      return {
+        backgroundColor: this.barColor,
+        width: player[this.money]/this.max*96 + "%"
+      }
+    },
+    text: function(){
+      return capatalizeFirstLetter(this.money) + ":&nbsp" + player[this.money] + "/" + this.max
+    }
+  }
+}
+
 Vue.component('color-bar', {
   template: "#color-bar-template",
+  components:{
+    'color-bar-amount': colorBarAmountComponent
+  },
   data: function (){
     return {
     }
@@ -8,31 +60,6 @@ Vue.component('color-bar', {
     bar:{
       type: Object,
       required: true
-    }
-  }
-})
-
-new Vue ({
-  el: "#tab1",
-  data: {
-    player: player,
-  },
-  computed:{
-    bars: function(){
-      return [
-        {money: "red", max: 255, color: "red",seen: true},
-        {money: "green", max: 255, color: "green", seen: this.player.unlocks.green},
-        {money: "blue", max: 255, color: "blue", seen: this.player.unlocks.blue}
-      ]
-    },
-    seenBars: function(){
-      var array = []
-      for (i=0; i<this.bars.length; i++){
-        if (this.bars[i].seen){
-          array.push(this.bars[i])
-        }
-      }
-      return array
     }
   }
 })
