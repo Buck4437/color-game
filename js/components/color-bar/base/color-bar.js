@@ -3,10 +3,11 @@
     <color-bar :bar="bar" :key="bar.money"></color-bar>
     data:{
       bar = {
-        money: "currencyName",
+        counter: "variable name/ object property, must be global"/ number (cannot be changed)
+        name: "Displayed Name",
         max: BarMaxValue,
         color: "barColor",
-        seen: true/false
+        seen: true/false/ var name (default: true)
       }
     }
 */
@@ -21,9 +22,17 @@ let colorBarAmountComponent = {
   },
   props:{
     bar:{
-      money:{
+      id:{
+        type: Number
+      },
+      name:{
         type: String,
-        required: true
+        required: false
+      },
+      counter:{
+        type: [String, Number],
+        required: false,
+        default: false
       },
       max:{
         type: Number,
@@ -33,23 +42,32 @@ let colorBarAmountComponent = {
         type: String,
         required: false,
         default: "grey"
-      },
-      counter:{
-        type: [String, Boolean],
-        required: false,
-        default: false
       }
     },
   },
   computed:{
+    count: function(){
+        if(Number.isFinite(this.bar.counter)){
+          return this.bar.counter
+        }
+        let array = this.bar.counter.split('.')
+        let target = window[array[0]]
+        for (let i=1;i<array.length;i++){
+          target = target[array[i]]
+        }
+        return target
+    },
     style: function(){
       return {
         backgroundColor: this.bar.color,
-        width: player[this.bar.money]/this.bar.max*96 + "%"
+        width: this.count/this.bar.max*96 + "%"
       }
     },
     text: function(){
-      return capatalizeFirstLetter(this.bar.money) + ":&nbsp" + player[this.bar.money] + "/" + this.bar.max
+      if(this.bar.name === undefined){
+        return this.count + "/" + this.bar.max
+      }
+      return this.bar.name + ":&nbsp" + this.count + "/" + this.bar.max
     }
   }
 }

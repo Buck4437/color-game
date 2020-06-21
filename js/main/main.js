@@ -1,5 +1,5 @@
 const defaultSave = {
-  red: 0,
+  red: 10,
   redAuto: false,
   green: 0,
   blue: 0,
@@ -8,8 +8,6 @@ const defaultSave = {
    blue: false
   }
 };
-// const notationName = ['Scientific', 'Letters'];
-// const notationList = [new ADNotations.ScientificNotation(), new ADNotations.LettersNotation()];
 
 var player = defaultSave;
 
@@ -21,15 +19,15 @@ new Vue ({
   computed:{
     bars: function(){
       return [
-        {counter: false, money: "red", max: 255, color: "red", seen: true},
-        {counter: false, money: "green", max: 255, color: "green", seen: this.player.unlocks.green},
-        {counter: false, money: "blue", max: 255, color: "blue", seen: this.player.unlocks.blue}
+        {id: 0, name: "Red", counter: "player.red", max: 255, color: "red"},
+        {id: 1, name: "Green", counter: "player.green", max: 255, color: "green", seen: this.player.unlocks.green},
+        {id: 2, name: "Blue", counter:"player.blue", max: 255, color: "blue", seen: this.player.unlocks.blue}
       ]
     },
     seenBars: function(){
       var array = []
       for (i=0; i<this.bars.length; i++){
-        if (this.bars[i].seen){
+        if (this.bars[i].seen === undefined||this.bars[i].seen){
           array.push(this.bars[i])
         }
       }
