@@ -15,11 +15,24 @@ Vue.component('color-bar', {
 new Vue ({
   el: "#tab1",
   data: {
-    plaer: player,
-    bars: [
-      {money: "red", max: 255, color: "red"},
-      {money: "green", max: 255, color: "green"},
-      {money: "blue", max: 255, color: "blue"}
-    ]
+    player: player,
+  },
+  computed:{
+    bars: function(){
+      return [
+        {money: "red", max: 255, color: "red",seen: true},
+        {money: "green", max: 255, color: "green", seen: this.player.unlocks.green},
+        {money: "blue", max: 255, color: "blue", seen: this.player.unlocks.blue}
+      ]
+    },
+    seenBars: function(){
+      var array = []
+      for (i=0; i<this.bars.length; i++){
+        if (this.bars[i].seen){
+          array.push(this.bars[i])
+        }
+      }
+      return array
+    }
   }
 })

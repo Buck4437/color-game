@@ -24,7 +24,7 @@
       <color-bar></color-bar>
     </div> -->
   <div id="tab1">
-      <color-bar v-for="bar in bars" :bar="bar" :key="bar.money"></color-bar>
+      <color-bar v-for="bar in seenBars" :bar="bar" :key="bar.money"></color-bar>
   </div>
   <script type="text/x-template" id="color-bar-template">
     <div>
