@@ -20,29 +20,36 @@ let colorBarAmountComponent = {
     }
   },
   props:{
-    money:{
-      type: String,
-      required: true
+    bar:{
+      money:{
+        type: String,
+        required: true
+      },
+      max:{
+        type: Number,
+        required: true
+      },
+      color:{
+        type: String,
+        required: false,
+        default: "grey"
+      },
+      counter:{
+        type: [String, Boolean],
+        required: false,
+        default: false
+      }
     },
-    max:{
-      type: Number,
-      required: true
-    },
-    barColor:{
-      type: String,
-      required: false,
-      default: "grey"
-    }
   },
   computed:{
     style: function(){
       return {
-        backgroundColor: this.barColor,
-        width: player[this.money]/this.max*96 + "%"
+        backgroundColor: this.bar.color,
+        width: player[this.bar.money]/this.bar.max*96 + "%"
       }
     },
     text: function(){
-      return capatalizeFirstLetter(this.money) + ":&nbsp" + player[this.money] + "/" + this.max
+      return capatalizeFirstLetter(this.bar.money) + ":&nbsp" + player[this.bar.money] + "/" + this.bar.max
     }
   }
 }

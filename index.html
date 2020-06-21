@@ -24,7 +24,6 @@
       <color-bar></color-bar>
     </div> -->
   <div id="tab1">
-      <!-- <color-bar v-for="bar in seenBars" :bar="bar" :key="bar.money"></color-bar> -->
       <player-main-currency-color-bar v-for="bar in seenBars" :bar="bar" :key="bar.money"></player-main-currency-color-bar>
   </div>
 
@@ -36,7 +35,7 @@
 
   <script type="text/x-template" id="color-bar-template">
     <div class="color-bar">
-      <color-bar-amount :money="bar.money" :max="bar.max" :barColor="bar.color"></color-bar-amount>
+      <color-bar-amount :bar="bar"></color-bar-amount>
     </div>
   </script>
 

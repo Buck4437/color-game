@@ -21,9 +21,9 @@ new Vue ({
   computed:{
     bars: function(){
       return [
-        {money: "red", max: 255, color: "red",seen: true},
-        {money: "green", max: 255, color: "green", seen: this.player.unlocks.green},
-        {money: "blue", max: 255, color: "blue", seen: this.player.unlocks.blue}
+        {counter: false, money: "red", max: 255, color: "red", seen: true},
+        {counter: false, money: "green", max: 255, color: "green", seen: this.player.unlocks.green},
+        {counter: false, money: "blue", max: 255, color: "blue", seen: this.player.unlocks.blue}
       ]
     },
     seenBars: function(){
