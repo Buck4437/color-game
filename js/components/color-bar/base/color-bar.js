@@ -7,7 +7,8 @@
         name: "Displayed Name",
         max: BarMaxValue,
         color: "barColor",
-        seen: true/false/ var name (default: true)
+        seen: true/false/ var name (default: true),
+        display: "fraction"/"percentage" (default: fraction)
       }
     }
 */
@@ -42,6 +43,11 @@ let colorBarAmountComponent = {
         type: String,
         required: false,
         default: "grey"
+      },
+      display:{
+        type: String,
+        required: false,
+        default: "fraction"
       }
     },
   },
@@ -65,7 +71,13 @@ let colorBarAmountComponent = {
     },
     text: function(){
       if(this.bar.name === undefined){
+        if(this.bar.display == "percentage"){
+          return Math.round(this.count/this.bar.max*10000)/100 + "%"
+        }
         return this.count + "/" + this.bar.max
+      }
+      if(this.bar.display == "percentage"){
+        return this.bar.name + ":&nbsp" + Math.round(this.count/this.bar.max*10000)/100 + "%"
       }
       return this.bar.name + ":&nbsp" + this.count + "/" + this.bar.max
     }
