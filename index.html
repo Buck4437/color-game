@@ -27,7 +27,7 @@
     </div> -->
 
   <div id="playerMain">
-    <player-rgb v-for="currency in currencys" :bar="currency.bar" :addsub="currency.addsub" :key="currency.id"></player-rgb>
+    <player-rgb v-for="currency in currencys" :bar="currency.bar" :addsub="currency.addsub" :auto="currency.auto" :key="currency.id"></player-rgb>
   </div>
 
 
@@ -49,11 +49,14 @@
   <script type="text/x-template" id="player-rgb-template">
     <div>
       <color-bar :bar="bar" v-if="bar.seen"></color-bar>
-      <button :addsub="addsub" @click="add()" v-if="addsub.seen">{{addsub.text}}</button>
+      <button-custom :name="auto"></button-custom>
+      <button-custom :name="addsub"></button-custom>
     </div>
   </script>
 
-
+<script type="text/x-template" id="button-custom-template">
+  <button @click="onclick()" v-if="name.seen">{{name.text}}</button>
+</script>
   </body>
 
 
@@ -63,6 +66,7 @@
   <script src="js/libraries/vue.js"></script>
   <script src="js/libraries/custom-functions.js"></script>
   <script src="js/main/color-bars.js"></script>
+  <script src="js/components/others/buttons/button-custom.js"></script>
   <script src="js/components/others/color-bar/color-bar.js"></script>
   <script src="js/components/main/tab1/player-rgb.js"></script>
   <script src="js/main/main.js"></script>

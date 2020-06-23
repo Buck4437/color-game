@@ -2,13 +2,17 @@ const defaultSave = {
   red: 0,
   redAuto: false,
   green: 0,
+  greenAuto: false,
   blue: 0,
+  blueAuto: false,
   unlocks: {
+   redAuto: true,
    green: true,
-   blue: true
+   greenAuto: true,
+   blue: true,
+   blueAuto: true
   }
 };
-
 var player = defaultSave;
 
 
@@ -37,6 +41,13 @@ new Vue ({
             color: "red",
             seen: true
           },
+          auto: {
+            text: "placeholder",
+            seen: player.unlocks.redAuto,
+            onclick: function(){
+              alert("fuck")
+            }
+          },
           addsub: {
             text: "+" + gainRate.red +" Red",
             seen: true,
@@ -56,6 +67,13 @@ new Vue ({
             max: 255,
             color: "green",
             seen: player.unlocks.green
+          },
+          auto: {
+            text: "placeholder",
+            seen: player.unlocks.greenAuto,
+            onclick: function(){
+              alert("fuck")
+            }
           },
           addsub: {
             text: "Reset Red, +" + gainRate.green + " Green (Needs 255 Red)",
@@ -79,6 +97,13 @@ new Vue ({
             max: 255,
             color: "blue",
             seen: player.unlocks.blue
+          },
+          auto: {
+            text: "placeholder",
+            seen: player.unlocks.blue,
+            onclick: function(){
+              alert("fuck")
+            }
           },
           addsub: {
             text: "Reset Red and Green, +" + gainRate.blue +" Blue (Needs 255 Green)",

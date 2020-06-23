@@ -6,23 +6,12 @@ Vue.component('player-rgb',{
       required: true
     },
     addsub:{
-      text:{
-        type: String,
-        required: false,
-        default: " "
-      },
-      seen: {
-        type: Boolean,
-        required: false,
-        default: true
-      },
-      onclick:{
-        type: Function,
-        required: false,
-        default: function(){
-          return
-        }
-      }
+      type: Object,
+      required: true
+    },
+    auto:{
+      type: Object,
+      required: true
     }
   },
   methods:{
