@@ -42,10 +42,10 @@ new Vue ({
             seen: true
           },
           auto: {
-            text: "placeholder",
+            text: "Auto: " + customTrueFalseText(player.redAuto,"On","Off"),
             seen: player.unlocks.redAuto,
             onclick: function(){
-              alert("fuck")
+              player.redAuto = !player.redAuto
             }
           },
           addsub: {
@@ -69,10 +69,10 @@ new Vue ({
             seen: player.unlocks.green
           },
           auto: {
-            text: "placeholder",
+            text: "Auto: " + customTrueFalseText(player.greenAuto,"On","Off"),
             seen: player.unlocks.greenAuto,
             onclick: function(){
-              alert("fuck")
+              player.greenAuto = !player.greenAuto
             }
           },
           addsub: {
@@ -99,10 +99,10 @@ new Vue ({
             seen: player.unlocks.blue
           },
           auto: {
-            text: "placeholder",
+            text: "Auto: " + customTrueFalseText(player.blueAuto,"On","Off"),
             seen: player.unlocks.blue,
             onclick: function(){
-              alert("fuck")
+              player.blueAuto = !player.blueAuto
             }
           },
           addsub: {

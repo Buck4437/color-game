@@ -2,7 +2,7 @@
 
 Custom functions list:
 locateVar("varName"): return the value of var inputted (support properties in dot notations, global only)
-
+customTrueFalseText(varName, trueText, falseText): return Text base on val of varName
 
 */
 
@@ -13,4 +13,11 @@ function locateVar(input){
     target = target[array[i]]
   }
   return target
+}
+
+function customTrueFalseText(input,trueText,falseText){
+  if(input){
+    return trueText
+  }
+  return falseText
 }
