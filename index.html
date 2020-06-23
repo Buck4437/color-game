@@ -18,6 +18,17 @@
 
   <div id="playerMain">
     <player-rgb v-for="currency in currencys" :bar="currency.bar" :addsub="currency.addsub" :auto="currency.auto" :key="currency.id"></player-rgb>
+    <br>
+    <br> 1. Make grey out button
+    <br> 1.5. Change last 2 automation to prestige when possible (?) Make it upgradable with currencies (?)
+    <br> 2. Change Placeholder button to custom button and make upgrades
+    <br> Price plan: Additive effect (+1 to production) price increase, 16 => 32 => 64 => 128 (cap) [NEED BALANCE AS NO ONE WILL BUY AT 128!!!!]
+    <br> No persist on reset green, persist after 10 green (?)
+    <br> Green and Blue needs more feature to keep less boring!!!
+    <br> We need upgrades that lets you keep 1 green on prestige (At blue layer)
+    <br> Or maybe upgrades that improve CPS of 1st autobuyer
+    <br> 3. Unlock features based on progression (autobuyers, upgrades, next bars)
+    <br> 4. Settings, localStorage (?), change the name of tabs
   </div>
 
 
@@ -40,6 +51,7 @@
     <div>
       <color-bar :bar="bar" v-if="bar.seen"></color-bar>
       <button-custom :name="auto"></button-custom>
+      <!-- <button>Placeholder</button> -->
       <button-custom :name="addsub"></button-custom>
     </div>
   </script>

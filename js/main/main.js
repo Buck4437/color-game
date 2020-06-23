@@ -115,7 +115,7 @@ new Vue ({
             intRounding: "floor"
           },
           auto: {
-            text: "Auto: " + customTrueFalseText(player.redAuto,"On","Off"),
+            text: "Auto (Avg. 1 CPS): " + customTrueFalseText(player.redAuto,"On","Off"),
             seen: player.unlocks.redAuto,
             onclick: function(){
               autobuyFunctions("red", 100)
@@ -140,10 +140,10 @@ new Vue ({
             intRounding: "floor"
           },
           auto: {
-            text: "Auto: " + customTrueFalseText(player.greenAuto,"On","Off"),
+            text: "Auto (Avg. 1 CPS): " + customTrueFalseText(player.greenAuto,"On","Off"),
             seen: player.unlocks.greenAuto,
             onclick: function(){
-              autobuyFunctions("green", 100)
+              autobuyFunctions("green", 1000)
             }
           },
           addsub: {
@@ -165,10 +165,10 @@ new Vue ({
             intRounding: "floor"
           },
           auto: {
-            text: "Auto: " + customTrueFalseText(player.blueAuto,"On","Off"),
+            text: "Auto (Avg. 1 CPS): " + customTrueFalseText(player.blueAuto,"On","Off"),
             seen: player.unlocks.blue,
             onclick: function(){
-              autobuyFunctions("blue", 100)
+              autobuyFunctions("blue", 1000)
             }
           },
           addsub: {
