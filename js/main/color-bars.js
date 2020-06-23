@@ -1,22 +1,4 @@
-function addRed(){
-  player.red ++
-  if (player.red > 255){
-    player.red = 255
-  }
-}
 
-// var redBarAdd = new Vue({
-//   el:"#red-bar-add",
-//   data: {
-//     player: player
-//   },
-//   methods: {
-//     add: function(){
-//       addRed()
-//     }
-//   }
-// })
-//
 // var redBarAuto = new Vue({
 //   el:"#red-bar-auto",
 //   data: {

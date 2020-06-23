@@ -13,8 +13,7 @@ button:hover{
 }
 
 
-#tab1 button{
-  width: 10%;
+#playerMain button{
   height: 46px;
   background-color: black;
   border-radius: 8px;
@@ -22,8 +21,9 @@ button:hover{
   display:inline-block;
   text-align: center;
   margin-left: 10px;
+  margin-bottom: 20px;
 }
 
-#tab1 button:hover, #top-bar button:hover{
+#playerMain button:hover, #top-bar button:hover{
   background-color: #666666;
 }

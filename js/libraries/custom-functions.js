@@ -1,11 +1,16 @@
 /*
 
 Custom functions list:
-capatalizeFirstLetter(string): Capitalize the first letter of the inputted String
+locateVar("varName"): return the value of var inputted (support properties in dot notations, global only)
 
 
 */
 
-// function capatalizeFirstLetter(string){
-//   return string.charAt(0).toUpperCase() + string.slice(1);
-// }
+function locateVar(input){
+  let array = input.split('.')
+  let target = window[array[0]]
+  for (let i=1;i<array.length;i++){
+    target = target[array[i]]
+  }
+  return target
+}

@@ -7,7 +7,6 @@
         name: "Displayed Name",
         max: BarMaxValue,
         color: "barColor",
-        seen: true/false/ var name (default: true),
         display: "fraction"/"percentage" (default: fraction)
       }
     }
@@ -56,17 +55,19 @@ let colorBarAmountComponent = {
         if(Number.isFinite(this.bar.counter)){
           return this.bar.counter
         }
-        let array = this.bar.counter.split('.')
-        let target = window[array[0]]
-        for (let i=1;i<array.length;i++){
-          target = target[array[i]]
-        }
-        return target
+        return locateVar(this.bar.counter)
     },
     style: function(){
+      let width = ""
+      if(this.count <= this.bar.max){
+        width = this.count/this.bar.max*96 + "%"
+      }
+      else {
+        width = "96%"
+      }
       return {
         backgroundColor: this.bar.color,
-        width: this.count/this.bar.max*96 + "%"
+        width: width
       }
     },
     text: function(){
