@@ -29,7 +29,38 @@ new Vue ({
         blue: 1
       }
     },
+    gainFunctions: function(){
+      let gainRate = this.gainRate
+      return {
+        red: function(){
+          player.red += gainRate.red
+          if(player.red > 255){
+            player.red = 255
+          }
+        },
+        green: function(){
+          if(player.red == 255 && player.green != 255){
+            player.red = 0
+            player.green += gainRate.green
+            if(player.green > 255){
+              player.green = 255
+            }
+          }
+        },
+        blue: function(){
+          if(player.green == 255 && player.blue != 255){
+            player.red = 0
+            player.green = 0
+            player.blue += gainRate.blue
+            if(player.blue > 255){
+              player.blue = 255
+            }
+          }
+        }
+      }
+    },
     currencys: function(){
+      let gainFunctions = this.gainFunctions
       let gainRate = this.gainRate
       return [
         {
@@ -52,10 +83,7 @@ new Vue ({
             text: "+" + gainRate.red +" Red",
             seen: true,
             onclick: function(){
-              player.red += gainRate.red
-              if(player.red > 255){
-                player.red = 255
-              }
+              gainFunctions.red()
             }
           }
         },
@@ -79,13 +107,7 @@ new Vue ({
             text: "Reset Red, +" + gainRate.green + " Green (Needs 255 Red)",
             seen: player.unlocks.green,
             onclick: function(){
-              if(player.red == 255 && player.green != 255){
-                player.red = 0
-                player.green += gainRate.green
-                if(player.green > 255){
-                  player.green = 255
-                }
-              }
+              gainFunctions.green()
             }
           }
         },
