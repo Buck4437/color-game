@@ -8,7 +8,8 @@
         max: BarMaxValue,
         color: "barColor",
         display: "fraction"/"percentage" (default: fraction)
-      }
+        intRounding: "ceiling"/"floor"/"round"/"none" (default: round, fraction only)
+       }
     }
 */
 
@@ -47,6 +48,14 @@ let colorBarAmountComponent = {
         type: String,
         required: false,
         default: "fraction"
+      },
+      intRounding:{
+        type: String,
+        required: false,
+        default: "round",
+        validator: function (value) {
+          return ['ceiling', 'floor', 'round','none'].indexOf(value) !== -1
+        }
       }
     },
   },
@@ -71,16 +80,30 @@ let colorBarAmountComponent = {
       }
     },
     text: function(){
-      if(this.bar.name === undefined){
-        if(this.bar.display == "percentage"){
+      if(this.bar.display == "percentage"){
+        if(this.bar.name === undefined){
           return Math.round(this.count/this.bar.max*10000)/100 + "%"
         }
-        return this.count + "/" + this.bar.max
-      }
-      if(this.bar.display == "percentage"){
         return this.bar.name + ":&nbsp" + Math.round(this.count/this.bar.max*10000)/100 + "%"
       }
-      return this.bar.name + ":&nbsp" + this.count + "/" + this.bar.max
+      let num = 0
+      switch(this.bar.intRounding){
+        case "ceiling":
+          num = Math.ceil(this.count)
+          break;
+        case "floor":
+          num = Math.floor(this.count)
+          break;
+        case "none":
+          num = this.count
+          break;
+        default:
+          num = Math.round(this.count)
+      }
+      if(this.bar.name === undefined){
+        return num + "/" + this.bar.max
+      }
+      return this.bar.name + ":&nbsp" + num + "/" + this.bar.max
     }
   }
 }
