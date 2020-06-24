@@ -103,6 +103,14 @@ new Vue ({
       let gainFunctions = this.gainFunctions
       let autobuyFunctions = this.autobuyFunctions
       let gainRate = this.gainRate
+      let buttonEnabledStyle = {
+        color: "white",
+        border: "4px solid white"
+      }
+      let buttonDisabledStyle = {
+        color: "grey",
+        border: "4px solid #888888"
+      }
       return [
         {
           id: 0,
@@ -115,7 +123,7 @@ new Vue ({
             intRounding: "floor"
           },
           auto: {
-            text: "Auto (Avg. 1 CPS): " + customTrueFalseText(player.redAuto,"On","Off"),
+            text: "Auto (Avg. 1 CPS): " + customTrueFalseOutput(player.redAuto,"On","Off"),
             seen: player.unlocks.redAuto,
             onclick: function(){
               autobuyFunctions("red", 100)
@@ -126,8 +134,9 @@ new Vue ({
             seen: true,
             onclick: function(){
               gainFunctions("red")
-            }
-          }
+            },
+            style: customTrueFalseOutput(player.red==255,buttonDisabledStyle,buttonEnabledStyle)
+          },
         },
         {
           id: 1,
@@ -140,18 +149,19 @@ new Vue ({
             intRounding: "floor"
           },
           auto: {
-            text: "Auto (Avg. 1 CPS): " + customTrueFalseText(player.greenAuto,"On","Off"),
+            text: "Auto (Avg. 1 CPS): " + customTrueFalseOutput(player.greenAuto,"On","Off"),
             seen: player.unlocks.greenAuto,
             onclick: function(){
               autobuyFunctions("green", 1000)
             }
           },
           addsub: {
-            text: "Reset Red, +" + gainRate.green + " Green (Needs 255 Red)",
+            text: "Reset to gain " + gainRate.green + " Green (Requires 255 Red)",
             seen: player.unlocks.green,
             onclick: function(){
               gainFunctions("green")
-            }
+            },
+            style: customTrueFalseOutput(player.green==255||player.red!=255,buttonDisabledStyle,buttonEnabledStyle)
           }
         },
         {
@@ -165,19 +175,20 @@ new Vue ({
             intRounding: "floor"
           },
           auto: {
-            text: "Auto (Avg. 1 CPS): " + customTrueFalseText(player.blueAuto,"On","Off"),
+            text: "Auto (Avg. 1 CPS): " + customTrueFalseOutput(player.blueAuto,"On","Off"),
             seen: player.unlocks.blue,
             onclick: function(){
               autobuyFunctions("blue", 1000)
             }
           },
           addsub: {
-            text: "Reset Red and Green, +" + gainRate.blue +" Blue (Needs 255 Green)",
+            text: "Reset to gain " + gainRate.blue +" Blue (Requires 255 Green)",
             seen: player.unlocks.blue,
             onclick: function(){
               gainFunctions("blue")
-            }
-          }
+            },
+            style: customTrueFalseOutput(player.blue==255||player.green!=255,buttonDisabledStyle,buttonEnabledStyle)
+          },
         }
       ]
     }

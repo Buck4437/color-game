@@ -18,6 +18,11 @@ Vue.component('button-custom',{
         default: function(){
           return
         }
+      },
+      style:{
+        type: Object,
+        required: false,
+        default: {}
       }
     }
   },

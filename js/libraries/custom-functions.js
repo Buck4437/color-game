@@ -15,7 +15,7 @@ function locateVar(input){
   return target
 }
 
-function customTrueFalseText(input,trueText,falseText){
+function customTrueFalseOutput(input,trueText,falseText){
   if(input){
     return trueText
   }
