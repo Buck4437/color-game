@@ -105,11 +105,13 @@ new Vue ({
       let gainRate = this.gainRate
       let buttonEnabledStyle = {
         color: "white",
-        border: "4px solid white"
+        border: "4px solid white",
+        cursor: "pointer"
       }
       let buttonDisabledStyle = {
         color: "grey",
-        border: "4px solid #888888"
+        border: "4px solid #888888",
+        cursor: "default"
       }
       return [
         {
@@ -135,7 +137,8 @@ new Vue ({
             onclick: function(){
               gainFunctions("red")
             },
-            style: customTrueFalseOutput(player.red==255,buttonDisabledStyle,buttonEnabledStyle)
+            style: customTrueFalseOutput(player.red==255,buttonDisabledStyle,buttonEnabledStyle),
+            disabled: player.red==255
           },
         },
         {
@@ -161,7 +164,8 @@ new Vue ({
             onclick: function(){
               gainFunctions("green")
             },
-            style: customTrueFalseOutput(player.green==255||player.red!=255,buttonDisabledStyle,buttonEnabledStyle)
+            style: customTrueFalseOutput(player.green==255||player.red!=255,buttonDisabledStyle,buttonEnabledStyle),
+            disabled: player.green==255||player.red!=255
           }
         },
         {
@@ -187,7 +191,8 @@ new Vue ({
             onclick: function(){
               gainFunctions("blue")
             },
-            style: customTrueFalseOutput(player.blue==255||player.green!=255,buttonDisabledStyle,buttonEnabledStyle)
+            style: customTrueFalseOutput(player.blue==255||player.green!=255,buttonDisabledStyle,buttonEnabledStyle),
+            disabled: player.blue==255||player.green!=255
           },
         }
       ]

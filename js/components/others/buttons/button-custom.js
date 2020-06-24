@@ -23,7 +23,8 @@ Vue.component('button-custom',{
         type: Object,
         required: false,
         default: {}
-      }
+      },
+      disabled: Boolean
     }
   },
   methods:{
