@@ -1,3 +1,6 @@
+var selectedTab = {
+  tab: "tab1"
+}
 const defaultSave = {
   red: 0,
   redAuto: false,
