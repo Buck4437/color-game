@@ -14,21 +14,23 @@
       <button>Settings</button>
     </div>
     <br>
-
-
-  <div id="playerMain">
-    <player-rgb v-for="currency in currencys" :bar="currency.bar" :addsub="currency.addsub" :auto="currency.auto" :key="currency.id"></player-rgb>
-    <br>
-    <br> <span style="text-decoration: line-through;">1. Make grey out button</span>
-    <br> 2. Settings, localStorage (?), change the name of tabs
-    <br> Tab selection: Grey out button of currently selected tab
-    <br>
-    <br> 3. Change Placeholder button to custom button and make upgrades
-    <br> Change last 2 automation to prestige when possible (when bought upgrades)
-    <br> 4. Unlock features based on progression (autobuyers, upgrades, next bars)
-    <br> 5. Hotkey
-  </div>
-
+    <div id="tab1">
+      <div id="playerMain">
+        <player-rgb v-for="currency in currencys" :bar="currency.bar" :addsub="currency.addsub" :auto="currency.auto" :key="currency.id"></player-rgb>
+      </div>
+      <br>
+      <br> <span style="text-decoration: line-through;">1. Make grey out button</span>
+      <br> 2. Settings, localStorage (?), change the name of tabs
+      <br> Tab selection: Grey out button of currently selected tab
+      <br>
+      <br> 3. Change Placeholder button to custom button and make upgrades
+      <br> Change last 2 automation to prestige when possible (when bought upgrades)
+      <br> 4. Unlock features based on progression (autobuyers, upgrades, next bars)
+      <br> 5. Hotkey
+    </div>
+    <div id="tab2">
+      Placeholder
+    </div>
 
 
 
@@ -64,9 +66,10 @@
   <script type="text/javascript" src="js/libraries/jquery-3.4.1.js"></script>
   <script src="js/libraries/vue.js"></script>
   <script src="js/libraries/custom-functions.js"></script>
-  <script src="js/main/color-bars.js"></script>
   <script src="js/components/others/buttons/button-custom.js"></script>
   <script src="js/components/others/color-bar/color-bar.js"></script>
   <script src="js/components/main/tab1/player-rgb.js"></script>
-  <script src="js/main/main.js"></script>
+  <script src="js/main/defineVariables.js"></script>
+  <script src="js/main/VueTab1PlayerData.js"></script>
+  <script src="js/main/VueTopBar.js"></script>
 </html>
