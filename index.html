@@ -18,47 +18,52 @@
         <div id="playerMain">
           <player-rgb v-for="currency in currencys" :bar="currency.bar" :addsub="currency.addsub" :auto="currency.auto" :key="currency.id"></player-rgb>
         </div>
+        <div id="placeholder">
+          Placeholder
+        </div>
         <br>
-        <br> <span style="text-decoration: line-through;">1. Make grey out button</span>
-        <br> 2. Settings, localStorage (?), change the name of tabs
-        <br> Tab selection: Grey out button of currently selected tab
-        <br>
-        <br> 3. Change Placeholder button to custom button and make upgrades
+        <br> 2. Save/load/hard reset
+        <br> 3. Change make upgrades on 2nd div
         <br> Change last 2 automation to prestige when possible (when bought upgrades)
         <br> 4. Unlock features based on progression (autobuyers, upgrades, next bars)
         <br> 5. Hotkey
+        <br> 6. Export, import
       </div>
       <div id="tab2">
         Placeholder
       </div>
+      <div id="tab3">
+        <button-custom :name="save"></button-custom>
+        <button-custom :name="load"></button-custom><br>
+      </div>
     </div>
 
 
 
 
 
-  <script type="text/x-template" id="color-bar-template">
-    <div class="color-bar">
-      <color-bar-amount :bar="bar"></color-bar-amount>
-    </div>
-  </script>
+      <script type="text/x-template" id="color-bar-template">
+        <div class="color-bar">
+          <color-bar-amount :bar="bar"></color-bar-amount>
+        </div>
+      </script>
 
-  <script type="text/x-template" id="color-bar-amount-template">
-    <div class="color-bar-amount" :style="style"><span v-html="text"></span></div>
-  </script>
+      <script type="text/x-template" id="color-bar-amount-template">
+        <div class="color-bar-amount" :style="style"><span v-html="text"></span></div>
+      </script>
 
 
-  <script type="text/x-template" id="player-rgb-template">
-    <div>
-      <color-bar :bar="bar" v-if="bar.seen"></color-bar>
-      <button-custom :name="auto"></button-custom>
-      <button-custom :name="addsub"></button-custom>
-    </div>
-  </script>
+      <script type="text/x-template" id="player-rgb-template">
+        <div>
+          <color-bar :bar="bar" v-if="bar.seen"></color-bar>
+          <button-custom :name="auto"></button-custom>
+          <button-custom :name="addsub"></button-custom>
+        </div>
+      </script>
 
-<script type="text/x-template" id="button-custom-template">
-  <button @click="onclick()" v-if="name.seen" :style="name.style" :disabled="name.disabled">{{name.text}}</button>
-</script>
+    <script type="text/x-template" id="button-custom-template">
+      <button @click="onclick()" v-if="name.seen" :style="name.style" :disabled="name.disabled">{{name.text}}</button>
+    </script>
   </body>
 
 
@@ -71,6 +76,8 @@
   <script src="js/components/others/color-bar/color-bar.js"></script>
   <script src="js/components/main/tab1/player-rgb.js"></script>
   <script src="js/main/init/defineVariables.js"></script>
+  <script src="js/main/init/loadsave.js"></script>
   <script src="js/main/top/VueTopBar.js"></script>
   <script src="js/main/tabs/tab1/VueTab1PlayerData.js"></script>
+  <script src="js/main/tabs/tab3/VueTab3Buttons.js"></script>
 </html>

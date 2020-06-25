@@ -6,7 +6,7 @@ new Vue ({
   methods:{
     select: function(tab){
       selectedTab.tab = tab
-      let tabs = ["tab1", "tab2"]
+      let tabs = ["tab1", "tab2","tab3"]
       for(let i=0;i<tabs.length;i++){
         document.getElementById(tabs[i]).style.display = "none"
       }
@@ -44,13 +44,25 @@ new Vue ({
         {
           id: 1,
           tab:{
-            text: "Settings",
+            text: "Upgrades",
             seen: true,
             onclick: function(){
               select("tab2")
             },
             style: customTrueFalseOutput(this.selectedTab.tab=="tab2",buttonSelectedStyle,buttonDeselectedStyle),
             disabled: this.selectedTab.tab=="tab2"
+          }
+        },
+        {
+          id: 2,
+          tab:{
+            text: "Settings",
+            seen: true,
+            onclick: function(){
+              select("tab3")
+            },
+            style: customTrueFalseOutput(this.selectedTab.tab=="tab3",buttonSelectedStyle,buttonDeselectedStyle),
+            disabled: this.selectedTab.tab=="tab3"
           }
         }
       ]

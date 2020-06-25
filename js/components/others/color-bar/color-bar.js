@@ -7,8 +7,8 @@
         name: "Displayed Name",
         max: BarMaxValue,
         color: "barColor",
-        display: "fraction"/"percentage" (default: fraction)
-        intRounding: "ceiling"/"floor"/"round"/"none" (default: round, fraction only)
+        display: "fraction"/"percentage"
+        intRounding: "ceiling"/"floor"/"round"/"none" (fraction only)
        }
     }
 */
@@ -23,36 +23,18 @@ let colorBarAmountComponent = {
   },
   props:{
     bar:{
-      id:{
-        type: Number
-      },
-      name:{
-        type: String,
-        required: false
-      },
-      counter:{
-        type: [String, Number],
-        required: false,
-        default: false
-      },
+      id: Number,
+      name: String,
+      counter: [String, Number],
       max:{
         type: Number,
         required: true
       },
-      color:{
-        type: String,
-        required: false,
-        default: "grey"
-      },
-      display:{
-        type: String,
-        required: false,
-        default: "fraction"
-      },
+      color: String,
+      display: String,
       intRounding:{
         type: String,
-        required: false,
-        default: "round",
+        required: true,
         validator: function (value) {
           return ['ceiling', 'floor', 'round','none'].indexOf(value) !== -1
         }
