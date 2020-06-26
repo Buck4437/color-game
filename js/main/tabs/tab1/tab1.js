@@ -4,14 +4,10 @@ new Vue ({
     player: player,
   },
   methods:{
-    gainFunctions: function(keyword, extraMultiplier){
-      let xMul = extraMultiplier
-      if (isNaN(xMul)){
-        xMul = 1
-      }
+    gainCurrency: function(keyword){
       switch(keyword){
         case "red":
-          player.red += xMul * this.gainRate.red
+          player.red += this.gainRate.red
           if(player.red > 255){
             player.red = 255
           }
@@ -38,7 +34,7 @@ new Vue ({
       }
     },
     autobuyFunctions: function(keyword, updateRate){
-      let gainFunctions = this.gainFunctions
+      let gainCurrency = this.gainCurrency
       if(isNaN(updateRate)){
         updateRate = 100
       }
@@ -47,24 +43,24 @@ new Vue ({
           player.redAuto = !player.redAuto
           clearInterval(autobuyersInterval.red)
           if(player.redAuto){
-            gainFunctions("red")
-            autobuyersInterval.red = setInterval(function(){gainFunctions("red", updateRate/1000)}, updateRate)
+            gainCurrency("red")
+            autobuyersInterval.red = setInterval(function(){gainCurrency("red")}, updateRate)
           }
           break;
         case "green":
           player.greenAuto = !player.greenAuto
           clearInterval(autobuyersInterval.green)
           if(player.greenAuto){
-            gainFunctions("green")
-            autobuyersInterval.green = setInterval(function(){gainFunctions("green")}, updateRate)
+            gainCurrency("green")
+            autobuyersInterval.green = setInterval(function(){gainCurrency("green")}, updateRate)
           }
           break;
         case "blue":
           player.blueAuto = !player.blueAuto
           clearInterval(autobuyersInterval.blue)
           if(player.blueAuto){
-            gainFunctions("blue")
-            autobuyersInterval.blue = setInterval(function(){gainFunctions("blue")}, updateRate)
+            gainCurrency("blue")
+            autobuyersInterval.blue = setInterval(function(){gainCurrency("blue")}, updateRate)
           }
           break;
       }
@@ -79,7 +75,7 @@ new Vue ({
       }
     },
     currencys: function(){
-      let gainFunctions = this.gainFunctions
+      let gainCurrency = this.gainCurrency
       let autobuyFunctions = this.autobuyFunctions
       let gainRate = this.gainRate
       let buttonEnabledStyle = {
@@ -107,14 +103,14 @@ new Vue ({
             text: "Auto (Avg. 1 CPS): " + customTrueFalseOutput(player.redAuto,"On","Off"),
             seen: player.unlocks.redAuto,
             onclick: function(){
-              autobuyFunctions("red", 100)
+              autobuyFunctions("red", 1000)
             }
           },
           addsub: {
             text: "+" + gainRate.red +" Red",
             seen: true,
             onclick: function(){
-              gainFunctions("red")
+              gainCurrency("red")
             },
             style: customTrueFalseOutput(player.red==255,buttonDisabledStyle,buttonEnabledStyle),
             disabled: player.red==255
@@ -141,7 +137,7 @@ new Vue ({
             text: "Reset to gain " + gainRate.green + " Green (Requires 255 Red)",
             seen: player.unlocks.green,
             onclick: function(){
-              gainFunctions("green")
+              gainCurrency("green")
             },
             style: customTrueFalseOutput(player.green==255||player.red!=255,buttonDisabledStyle,buttonEnabledStyle),
             disabled: player.green==255||player.red!=255
@@ -168,7 +164,7 @@ new Vue ({
             text: "Reset to gain " + gainRate.blue +" Blue (Requires 255 Green)",
             seen: player.unlocks.blue,
             onclick: function(){
-              gainFunctions("blue")
+              gainCurrency("blue")
             },
             style: customTrueFalseOutput(player.blue==255||player.green!=255,buttonDisabledStyle,buttonEnabledStyle),
             disabled: player.blue==255||player.green!=255

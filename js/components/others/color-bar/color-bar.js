@@ -8,14 +8,14 @@
         max: BarMaxValue,
         color: "barColor",
         display: "fraction"/"percentage"
-        intRounding: "ceiling"/"floor"/"round"/"none" (fraction only)
+        intRounding: "ceiling"/"floor"/"round"/"none" (fraction only) (default round)
        }
     }
 */
 
 
 let colorBarAmountComponent = {
-  template: "#color-bar-amount-template",
+  template: '<div class="color-bar-amount" :style="style"><span v-html="text"></span></div>',
   data: function (){
     return {
       player: player
@@ -32,13 +32,7 @@ let colorBarAmountComponent = {
       },
       color: String,
       display: String,
-      intRounding:{
-        type: String,
-        required: true,
-        validator: function (value) {
-          return ['ceiling', 'floor', 'round','none'].indexOf(value) !== -1
-        }
-      }
+      intRounding: String
     },
   },
   computed:{
@@ -91,7 +85,11 @@ let colorBarAmountComponent = {
 }
 
 Vue.component('color-bar', {
-  template: "#color-bar-template",
+  template: `
+    <div class="color-bar">
+      <color-bar-amount :bar="bar"></color-bar-amount>
+    </div>
+  `,
   components:{
     'color-bar-amount': colorBarAmountComponent
   },

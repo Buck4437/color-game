@@ -18,11 +18,9 @@
         <div id="playerMain">
           <player-rgb v-for="currency in currencys" :bar="currency.bar" :addsub="currency.addsub" :auto="currency.auto" :key="currency.id"></player-rgb>
         </div>
-        <div id="placeholder">
-          Placeholder
-        </div>
         <br>
-        <br> 2. Save/load/hard reset
+        <br> 1. Refactor
+        <br> 2. Save/load/hard reset (fix bug related to autobuyers by seperating the function)
         <br> 3. Change make upgrades on 2nd div
         <br> Change last 2 automation to prestige when possible (when bought upgrades)
         <br> 4. Unlock features based on progression (autobuyers, upgrades, next bars)
@@ -40,26 +38,6 @@
 
 
 
-
-
-      <script type="text/x-template" id="color-bar-template">
-        <div class="color-bar">
-          <color-bar-amount :bar="bar"></color-bar-amount>
-        </div>
-      </script>
-
-      <script type="text/x-template" id="color-bar-amount-template">
-        <div class="color-bar-amount" :style="style"><span v-html="text"></span></div>
-      </script>
-
-
-      <script type="text/x-template" id="player-rgb-template">
-        <div>
-          <color-bar :bar="bar" v-if="bar.seen"></color-bar>
-          <button-custom :name="auto"></button-custom>
-          <button-custom :name="addsub"></button-custom>
-        </div>
-      </script>
 
     <script type="text/x-template" id="button-custom-template">
       <button @click="onclick()" v-if="name.seen" :style="name.style" :disabled="name.disabled">{{name.text}}</button>
@@ -79,7 +57,6 @@
   <script src="js/main/init/loadsave.js"></script>
   <script src="js/main/top/VueTopBar.js"></script>
   <script src="js/main/top/functionSwitchTab.js"></script>
-  <script src="js/main/tabs/tab1/VueTab1PlayerData.js"></script>
-  <script src="js/main/tabs/tab3/importSave.js"></script>
-  <script src="js/main/tabs/tab3/VueTab3Buttons.js"></script>
+  <script src="js/main/tabs/tab1/tab1.js"></script>
+  <script src="js/main/tabs/tab3/Tab3Buttons.js"></script>
 </html>
