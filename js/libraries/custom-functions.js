@@ -3,6 +3,7 @@
 Custom functions list:
 locateVar("varName"): return the value of var inputted (support properties in dot notations, global only)
 customTrueFalseOutput(varName, trueText, falseText): return Text base on val of varName
+IsJsonString(str): true if it is valid, false otherwise
 
 */
 
@@ -20,4 +21,13 @@ function customTrueFalseOutput(input,trueText,falseText){
     return trueText
   }
   return falseText
+}
+
+function IsJsonString(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
 }
