@@ -38,7 +38,7 @@ new Vue ({
     player: player,
   },
   computed:{
-    currencys: function(){
+    colors: function(){
       let buttonEnabledStyle = {
         color: "white",
         border: "4px solid white",
