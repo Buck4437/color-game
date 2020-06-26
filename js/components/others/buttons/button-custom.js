@@ -1,5 +1,5 @@
 Vue.component('button-custom',{
-  template: "#button-custom-template",
+  template: '<button @click="onclick()" v-if="name.seen" :style="name.style" :disabled="name.disabled">{{name.text}}</button>',
   props:{
     name:{
       text: String,
