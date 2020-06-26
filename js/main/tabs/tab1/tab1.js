@@ -1,29 +1,3 @@
-const defaultSave = {
-  red: 0,
-  redAuto: false,
-  green: 0,
-  greenAuto: false,
-  blue: 0,
-  blueAuto: false,
-  unlocks: {
-   redAuto: true,
-   green: true,
-   greenAuto: true,
-   blue: true,
-   blueAuto: true
-  }
-};
-var player = defaultSave;
-
-var autobuyersInterval = {
-  red: null,
-  green: null,
-  blue: null
-}
-var selectedTab = {
-  tab: "tab1"
-}
-
 function canGainColor(){
   return {
     red: player.red != 255,
@@ -75,8 +49,6 @@ function updateAutobuyers(){
     setAutoBuyColor(color, player[color+"Auto"], 1000)
   }
 }
-
-updateAutobuyers(); //initiation
 
 new Vue ({
   el: "#playerMain",

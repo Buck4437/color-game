@@ -1,2 +1,2 @@
 loadSave()
-updateAutobuyers()
+// autobuyers are updated in importSave()

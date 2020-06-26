@@ -19,13 +19,15 @@
           <player-rgb v-for="color in colors" :bar="color.bar" :addsub="color.addsub" :auto="color.auto" :key="color.id"></player-rgb>
         </div>
         <br>
-        <br> 1. Refactor
-        <br> 2. Hard reset, autosave, pop-up while saving/loading to make it less dull
-        <br> 3. Change make upgrades on 2nd div
-        <br> Change last 2 automation to prestige when possible (when bought upgrades)
-        <br> 4. Unlock features based on progression (autobuyers, upgrades, next bars)
-        <br> 5. Hotkey
-        <br> 6. Export, import
+        <ol>
+          <li>Export, import</li>
+          <li>Refactor</li>
+          <li>Change make upgrades on 2nd div
+          <br>Change last 2 automation to prestige when possible (when bought upgrades)</li>
+          <li>Unlock features based on progression (autobuyers, upgrades, next bars)</li>
+          <li>Hotkey</li>
+          <li>better pop-up while saving/loading to make it less dull</li>
+        </ol>
       </div>
       <div id="tab2">
         Placeholder
@@ -33,6 +35,8 @@
       <div id="tab3">
         <button-custom :name="save"></button-custom>
         <button-custom :name="load"></button-custom><br>
+        <button-custom :name="reset"></button-custom><br>
+        Game autosaves every 10 seconds
       </div>
     </div>
   </body>
@@ -42,6 +46,7 @@
   <script src="js/components/others/buttons/button-custom.js"></script>
   <script src="js/components/others/color-bar/color-bar.js"></script>
   <script src="js/components/main/tab1/player-rgb.js"></script>
+  <script src="js/main/declare.js"></script>
   <script src="js/main/tabs/tab1/tab1.js"></script>
   <script src="js/main/tabs/tab3/tab3.js"></script>
   <script src="js/main/top/topbar.js"></script>
