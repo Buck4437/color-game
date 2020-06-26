@@ -32,6 +32,15 @@ function canGainColor(){
   }
 }
 
+function resetPreviousColor(color){
+  let array = ["red", "green", "blue"]
+  for (let i = 1; i< array.length; i++){
+    if (color == array[i]){
+      player[array[i-1]] = 0
+    }
+  }
+}
+
 function gainRateColor(){
   return {
     red: Math.min(255,(player.green+1)*(player.blue+1)),
@@ -42,6 +51,7 @@ function gainRateColor(){
 
 function gainColor(color){
   if(canGainColor()[color]){
+    resetPreviousColor(color)
     player[color] += gainRateColor()[color]
     if(player[color] > 255){
       player[color] = 255
