@@ -1,3 +1,7 @@
+function save(){
+  localStorage.setItem('player', JSON.stringify(player))
+}
+
 function importSave(string){
    let save = JSON.parse(string)
    function ImportAndSaveFixerUnit(property){
@@ -13,6 +17,15 @@ function importSave(string){
    }
 }
 
+function loadSave(){
+  let string = localStorage.getItem("player")
+  if(IsJsonString(string) && string != null){
+    importSave(string)
+    switchTab("tab1")
+    return
+  }
+}
+
 new Vue ({
   el: "#tab3",
   data: {
@@ -20,20 +33,14 @@ new Vue ({
       text: "Save",
       seen: true,
       onclick: function(){
-        localStorage.setItem('player', JSON.stringify(player));
+        save();
       }
     },
     load: {
       text: "Load",
       seen: true,
       onclick: function(){
-        let string = localStorage.getItem("player")
-        if(IsJsonString(string)){
-          importSave(string)
-          switchTab("tab1")
-          return
-        }
-        alert("An error occurred while loading.")
+        loadSave()
       }
     }
   }

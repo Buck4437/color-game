@@ -1,3 +1,29 @@
+const defaultSave = {
+  red: 0,
+  redAuto: false,
+  green: 0,
+  greenAuto: false,
+  blue: 0,
+  blueAuto: false,
+  unlocks: {
+   redAuto: true,
+   green: true,
+   greenAuto: true,
+   blue: true,
+   blueAuto: true
+  }
+};
+var player = defaultSave;
+
+var autobuyersInterval = {
+  red: null,
+  green: null,
+  blue: null
+}
+var selectedTab = {
+  tab: "tab1"
+}
+
 function canGainColor(){
   return {
     red: player.red != 255,
@@ -23,14 +49,24 @@ function gainColor(color){
   }
 }
 
-function setAutoBuyColor(color, interval){
-  player[color+"Auto"] = !player[color+"Auto"]
+function setAutoBuyColor(color, boolean, interval){
+  player[color+"Auto"] = boolean
   clearInterval(autobuyersInterval[color])
   if(player[color+"Auto"]){
     gainColor(color)
     autobuyersInterval[color] = setInterval(function(){gainColor(color)}, interval)
   }
 }
+
+function updateAutobuyers(){
+  let array = Object.keys(autobuyersInterval)
+  for (let i=0;i<array.length;i++){
+    color = array[i]
+    setAutoBuyColor(color, player[color+"Auto"], 1000)
+  }
+}
+
+updateAutobuyers(); //initiation
 
 new Vue ({
   el: "#playerMain",
@@ -64,7 +100,7 @@ new Vue ({
             text: "Auto (Avg. 1 CPS): " + customTrueFalseOutput(player.redAuto,"On","Off"),
             seen: player.unlocks.redAuto,
             onclick: function(){
-              setAutoBuyColor("red", 1000)
+              setAutoBuyColor("red", !player.redAuto, 1000)
             }
           },
           addsub: {
@@ -91,7 +127,7 @@ new Vue ({
             text: "Auto (Avg. 1 CPS): " + customTrueFalseOutput(player.greenAuto,"On","Off"),
             seen: player.unlocks.greenAuto,
             onclick: function(){
-              setAutoBuyColor("green", 1000)
+              setAutoBuyColor("green", !player.greenAuto, 1000)
             }
           },
           addsub: {
@@ -118,7 +154,7 @@ new Vue ({
             text: "Auto (Avg. 1 CPS): " + customTrueFalseOutput(player.blueAuto,"On","Off"),
             seen: player.unlocks.blue,
             onclick: function(){
-              setAutoBuyColor("blue", 1000)
+              setAutoBuyColor("blue", !player.blueAuto, 1000)
             }
           },
           addsub: {
