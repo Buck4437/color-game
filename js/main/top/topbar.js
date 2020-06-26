@@ -1,16 +1,23 @@
+function updateTab(){
+  let tabs = ["tab1", "tab2","tab3"]
+  for(let i=0;i<tabs.length;i++){
+    document.getElementById(tabs[i]).style.display = "none"
+  }
+    document.getElementById(selectedTab.tab).style.display = "block"
+}
+
+function switchTab(tab){
+    selectedTab.tab = tab
+    updateTab()
+}
+
 new Vue ({
   el: "#top-bar",
   data: {
     selectedTab: selectedTab
   },
-  methods: {
-    select: function(tab){
-      switchTab(tab)
-    }
-  },
   computed:{
     buttons: function(){
-      let select = this.select
       let buttonDeselectedStyle = {
         color: "white",
         border: "4px solid #888888",
@@ -30,9 +37,9 @@ new Vue ({
             text: "Primary",
             seen: true,
             onclick: function(){
-              select("tab1")
+              switchTab("tab1")
             },
-            style: customTrueFalseOutput(this.selectedTab.tab=="tab1",buttonSelectedStyle,buttonDeselectedStyle),
+            style: customTrueFalseOutput(this.selectedTab.tab=="tab1", buttonSelectedStyle, buttonDeselectedStyle),
             disabled: this.selectedTab.tab=="tab1"
           }
         },
@@ -42,9 +49,9 @@ new Vue ({
             text: "Upgrades",
             seen: true,
             onclick: function(){
-              select("tab2")
+              switchTab("tab2")
             },
-            style: customTrueFalseOutput(this.selectedTab.tab=="tab2",buttonSelectedStyle,buttonDeselectedStyle),
+            style: customTrueFalseOutput(this.selectedTab.tab=="tab2", buttonSelectedStyle, buttonDeselectedStyle),
             disabled: this.selectedTab.tab=="tab2"
           }
         },
@@ -54,9 +61,9 @@ new Vue ({
             text: "Settings",
             seen: true,
             onclick: function(){
-              select("tab3")
+              switchTab("tab3")
             },
-            style: customTrueFalseOutput(this.selectedTab.tab=="tab3",buttonSelectedStyle,buttonDeselectedStyle),
+            style: customTrueFalseOutput(this.selectedTab.tab=="tab3", buttonSelectedStyle, buttonDeselectedStyle),
             disabled: this.selectedTab.tab=="tab3"
           }
         }
