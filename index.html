@@ -20,13 +20,13 @@
         </div>
         <br>
         <ol>
-          <li>Export, import</li>
-          <li>Refactor</li>
           <li>Change make upgrades on 2nd div
           <br>Change last 2 automation to prestige when possible (when bought upgrades)</li>
+          <li>Refactor</li>
           <li>Unlock features based on progression (autobuyers, upgrades, next bars)</li>
           <li>Hotkey</li>
           <li>better pop-up while saving/loading to make it less dull</li>
+          <li>Footer, changelog</li>
         </ol>
       </div>
       <div id="tab2">
@@ -35,8 +35,13 @@
       <div id="tab3">
         <button-custom :name="save"></button-custom>
         <button-custom :name="load"></button-custom><br>
+        <button-custom :name="exportGame"></button-custom>
+        <button-custom :name="importGame"></button-custom><br>
         <button-custom :name="reset"></button-custom><br>
         Game autosaves every 10 seconds
+        <div id="exportedSave" style="display: none;">
+            Save: <input type="text" id="exportedSaveField">
+        </div>
       </div>
     </div>
   </body>

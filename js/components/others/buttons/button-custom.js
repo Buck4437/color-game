@@ -1,9 +1,9 @@
 Vue.component('button-custom',{
-  template: '<button @click="onclick()" v-if="name.seen" :style="name.style" :disabled="name.disabled">{{name.text}}</button>',
+  template: '<button @click="onclick()" v-if="seen" :style="name.style" :disabled="name.disabled">{{name.text}}</button>',
   props:{
     name:{
       text: String,
-      seen: Boolean,
+      isHidden: Boolean,
       onclick: Function,
       style: Object,
       disabled: Boolean
@@ -12,6 +12,11 @@ Vue.component('button-custom',{
   methods:{
     onclick: function(){
       this.name.onclick()
+    }
+  },
+  computed:{
+    seen: function(){
+      return !this.name.isHidden
     }
   }
 })

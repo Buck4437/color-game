@@ -12,24 +12,24 @@ function saveTimerCountdown(){
 
 setInterval(saveTimerCountdown, 50)
 
+function ImportAndSaveFixer(property, save){
+  if(player[property] === undefined){
+    player[proprety] = defaultSave[property]
+    return
+  }
+  player[property] = save[property]
+}
+
 function importSave(string){
    let save = JSON.parse(string)
-   function ImportAndSaveFixerUnit(property){
-     if(player[property] === undefined){
-       player[proprety] = defaultSave[property]
-       return
-     }
-     player[property] = save[property]
-   }
    let array = Object.keys(defaultSave)
    for (let i=0;i<array.length;i++){
-     ImportAndSaveFixerUnit(array[i])
+     ImportAndSaveFixer(array[i], save)
    }
    updateAutobuyers()
 }
 
-function loadSave(){
-  let string = localStorage.getItem("player")
+function loadSave(string){
   if(IsJsonString(string) && string != null){
     importSave(string)
     switchTab("tab1")
@@ -37,6 +37,20 @@ function loadSave(){
   }
   return false
 }
+
+function exportSave(){
+  $("#exportedSave").css("display", "inline")
+  $("#exportedSaveField").val(window.btoa(JSON.stringify(player)));
+  $("#exportedSaveField").select();
+  try {
+    document.execCommand('copy');
+    $("#exportedSave").css("display", "none")
+    alert("Save copied to clipboard!")
+  } catch (error) {
+     prompt('Save:', window.btoa(JSON.stringify(player)));
+  }
+}
+
 
 function resetGame(){
   importSave(JSON.stringify(defaultSave))
@@ -49,7 +63,6 @@ new Vue ({
   data: {
     save: {
       text: "Save",
-      seen: true,
       onclick: function(){
         save();
         alert("Game saved!")
@@ -57,13 +70,39 @@ new Vue ({
     },
     load: {
       text: "Load",
-      seen: true,
       onclick: function(){
-        if(loadSave()){
+        if(loadSave(localStorage.getItem("player"))){
           alert("Game loaded!")
           return
         }
         alert("Game failed to load!")
+      }
+    },
+    exportGame: {
+      text: "Export",
+      onclick: function(){
+        exportSave()
+      }
+    },
+    importGame: {
+      text: "Import",
+      seen: true,
+      onclick: function(){
+        try{
+          let importedSave =  window.atob(prompt("Enter your save:"))
+          if(loadSave(importedSave)){
+            alert("Game loaded!")
+            return
+          }
+          // if(importedSave === "69"){
+          //   alert("nice")
+          //   return
+          // }
+          // placeholder for secrets/ cheats etc
+          alert("Invalid save!")
+        } catch(error){
+          alert("Invalid save!") //not base64
+        }
       }
     },
     reset: {

@@ -1,9 +1,9 @@
 function updateTab(){
   let tabs = ["tab1", "tab2","tab3"]
   for(let i=0;i<tabs.length;i++){
-    document.getElementById(tabs[i]).style.display = "none"
+    $("#"+tabs[i]).css("display", "none")
   }
-    document.getElementById(selectedTab.tab).style.display = "block"
+    $("#"+ selectedTab.tab).css("display", "block")
 }
 
 function switchTab(tab){
@@ -35,7 +35,6 @@ new Vue ({
           id: 0,
           tab:{
             text: "Primary",
-            seen: true,
             onclick: function(){
               switchTab("tab1")
             },
@@ -47,7 +46,6 @@ new Vue ({
           id: 1,
           tab:{
             text: "Upgrades",
-            seen: true,
             onclick: function(){
               switchTab("tab2")
             },
@@ -59,7 +57,6 @@ new Vue ({
           id: 2,
           tab:{
             text: "Settings",
-            seen: true,
             onclick: function(){
               switchTab("tab3")
             },

@@ -1,7 +1,7 @@
 Vue.component('player-rgb',{
   template: `
     <div>
-      <color-bar :bar="bar" v-if="bar.seen"></color-bar>
+      <color-bar :bar="bar" v-if="seen"></color-bar>
       <button-custom :name="auto"></button-custom>
       <button-custom :name="addsub"></button-custom>
     </div>
@@ -23,6 +23,11 @@ Vue.component('player-rgb',{
   methods:{
     add: function(){
       this.addsub.onclick()
+    }
+  },
+  computed:{
+    seen: function(){
+      return !this.bar.isHidden
     }
   }
 })
