@@ -6,11 +6,11 @@ const defaultSave = {
   blue: 0,
   blueAuto: false,
   unlocks: {
-   redAuto: true,
-   green: true,
-   greenAuto: true,
-   blue: true,
-   blueAuto: true
+   redAuto: false,
+   green: false,
+   greenAuto: false,
+   blue: false,
+   blueAuto: false
   }
 };
 

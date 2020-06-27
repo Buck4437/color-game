@@ -26,5 +26,9 @@ body{
 }
 
 #tab2, #tab3{
-  display: none
+  display: none;
+}
+
+.tab2Headings{
+  font-size: 25px;
 }
