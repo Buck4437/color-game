@@ -20,9 +20,10 @@
         </div>
         <br>
         <ol>
-          <li>Change make upgrades on 2nd div
+          <li>Refactor
+          <li>Remove CPS from tab1 (?)</li>
+          <li>Make it so autobuyers are off when the upgrade for unlocking them is set to 0
           <br>Change last 2 automation to prestige when possible (when bought upgrades)</li>
-          <li>Refactor</li>
           <li>Unlock features based on progression (autobuyers, upgrades, next bars)</li>
           <li>Hotkey</li>
           <li>better pop-up while saving/loading to make it less dull</li>
@@ -30,8 +31,8 @@
         </ol>
       </div>
       <div id="tab2">
-        <span class="tab2Headings">Red: (placeholder)</span><br>
-        <button-custom :name="upgrade1"></button-custom>
+        <span class="tab2Headings">Red: {{player.red}}</span><br><br>
+        <button-custom :name="upgrades.upgrade1"></button-custom>
       </div>
       <div id="tab3">
         <button-custom :name="save"></button-custom>

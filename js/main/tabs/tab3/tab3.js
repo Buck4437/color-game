@@ -13,11 +13,12 @@ function saveTimerCountdown(){
 setInterval(saveTimerCountdown, 50)
 
 function ImportAndSaveFixer(property, save){
-  if(player[property] === undefined){
-    player[proprety] = defaultSave[property]
+  if(save[property] === undefined){
+    player[property] = defaultSave[property]
     return
   }
   player[property] = save[property]
+  return
 }
 
 function importSave(string){

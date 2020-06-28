@@ -6,16 +6,35 @@ const defaultSave = {
   blue: 0,
   blueAuto: false,
   unlocks: {
-   redAuto: false,
-   green: false,
+   // redAuto: false,
+   // green: true, (unlock at beginning)
    greenAuto: false,
    blue: false,
    blueAuto: false
-  }
+ },
+ upgrades:{
+   redAuto: 0,
+   redMulti: 0,
+ }
 };
 
 var player = {}
 Object.assign(player, defaultSave)
+
+const upgradesCost =  {
+  redAuto: [
+    null,
+    {red: 10},
+    {green: 10000},
+    {blue: 100000}
+  ],
+  redMulti:[
+    null,
+    {red: 10},
+    {red: 40},
+    {red: 160}
+  ],
+}
 
 var autobuyersInterval = {
   red: null,

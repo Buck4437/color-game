@@ -46,7 +46,7 @@ function updateAutobuyers(){
   let array = Object.keys(autobuyersInterval)
   for (let i=0;i<array.length;i++){
     color = array[i]
-    setAutoBuyColor(color, player[color+"Auto"], 1000)
+    setAutoBuyColor(color, player[color+"Auto"], 1000/Math.max(1,player.upgrades[color+"Auto"]))
   }
 }
 
@@ -78,10 +78,10 @@ new Vue ({
             intRounding: "floor"
           },
           auto: {
-            text: "Auto (Avg. 1 CPS): " + customTrueFalseOutput(player.redAuto,"On","Off"),
-            isHidden: !player.unlocks.redAuto,
+            text: "Auto (" + player.upgrades.redAuto +" CPS): " + customTrueFalseOutput(player.redAuto,"On","Off"),
+            isHidden: !player.upgrades.redAuto != 0,
             onclick: function(){
-              setAutoBuyColor("red", !player.redAuto, 1000)
+              setAutoBuyColor("red", !player.redAuto, 1000/Math.max(1,player.upgrades.redAuto))
             }
           },
           addsub: {
@@ -101,19 +101,17 @@ new Vue ({
             counter: "player.green",
             max: 255,
             color: "green",
-            isHidden: !player.unlocks.green,
             intRounding: "floor"
           },
           auto: {
             text: "Auto (Avg. 1 CPS): " + customTrueFalseOutput(player.greenAuto,"On","Off"),
-            isHidden: !(player.unlocks.green && player.unlocks.greenAuto),
+            isHidden: !player.unlocks.greenAuto,
             onclick: function(){
               setAutoBuyColor("green", !player.greenAuto, 1000)
             }
           },
           addsub: {
             text: "Reset to gain " + gainRateColor().green + " Green (Requires 255 Red)",
-            isHidden: !player.unlocks.green,
             onclick: function(){
               gainColor("green")
             },

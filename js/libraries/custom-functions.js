@@ -4,6 +4,7 @@ Custom functions list:
 locateVar("varName"): return the value of var inputted (support properties in dot notations, global only)
 customTrueFalseOutput(varName, trueText, falseText): return Text base on val of varName
 IsJsonString(str): true if it is valid, false otherwise
+capitalizeFirstLetter(string): Capitalize First Letter of the string
 
 */
 
@@ -30,4 +31,9 @@ function IsJsonString(str) {
         return false;
     }
     return true;
+}
+
+function capitalizeFirstLetter(input) {
+  string = String(input)
+  return string.charAt(0).toUpperCase() + string.slice(1)
 }
