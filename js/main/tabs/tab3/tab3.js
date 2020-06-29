@@ -21,8 +21,9 @@ function ImportAndSaveFixer(property, save){
   return
 }
 
-function versionFixer(save){
-  let versionNo = save.versionNo
+function playerVersionFixer(){
+  let versionNo = player.version
+  //placeholder
   return
 }
 
@@ -31,7 +32,7 @@ function importSave(string){
    for (let prop in defaultSave){
      ImportAndSaveFixer(prop, save)
    }
-   versionFixer(save)
+   playerVersionFixer()
    updateAutobuyers()
 }
 
