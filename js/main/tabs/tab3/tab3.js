@@ -21,12 +21,17 @@ function ImportAndSaveFixer(property, save){
   return
 }
 
+function versionFixer(save){
+  let versionNo = save.versionNo
+  return
+}
+
 function importSave(string){
    let save = JSON.parse(string)
-   let array = Object.keys(defaultSave)
-   for (let i=0;i<array.length;i++){
-     ImportAndSaveFixer(array[i], save)
+   for (let prop in defaultSave){
+     ImportAndSaveFixer(prop, save)
    }
+   versionFixer(save)
    updateAutobuyers()
 }
 

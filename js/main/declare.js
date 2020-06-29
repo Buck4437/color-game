@@ -8,14 +8,19 @@ const defaultSave = {
   unlocks: {
    // redAuto: false,
    // green: true, (unlock at beginning)
-   greenAuto: false,
-   blue: false,
-   blueAuto: false
- },
- upgrades:{
-   redAuto: 0,
-   redMulti: 0,
- }
+    greenAuto: false,
+    blue: false,
+    blueAuto: false
+  },
+  upgrades:{
+    redAuto: 0,
+    redMulti: 0,
+    greenAuto: 0,
+    greenMulti: 0,
+    blueAuto: 0,
+    blueMulti: 0,
+  },
+  version: "0.0.0"
 };
 
 var player = {}

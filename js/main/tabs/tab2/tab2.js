@@ -1,7 +1,5 @@
 function buyUpgrades(type, level){
-  let array = Object.keys(upgradesCost[type][level])
-  for (let i=0;i<array.length;i++){
-    currency = array[i]
+  for (let currency in upgradesCost[type][level]){
     player[currency] -= upgradesCost[type][level][currency]
   }
   player.upgrades[type] = level
@@ -11,9 +9,7 @@ function canBuyUpgrades(type, level){
   if(upgradesCost[type][level] === undefined){
     return false
   }
-  let array = Object.keys(upgradesCost[type][level])
-  for (let i=0;i<array.length;i++){
-    currency = array[i]
+  for (let currency in upgradesCost[type][level]){
     if(player[currency] < upgradesCost[type][level][currency]){
       return false
     }
@@ -23,14 +19,12 @@ function canBuyUpgrades(type, level){
 
 function costStringify(object){
   if(object === undefined){
-    return
+    return ""
   }
   let string = ""
-  let array = Object.keys(object)
-  for (let i=0;i<array.length;i++){
-    let property = array[i]
+  for (let property in object){
     if(string != ""){
-      string += ","
+      string += ", "
     }
     string += (object[property] + " " + capitalizeFirstLetter(property))
   }
@@ -64,7 +58,7 @@ new Vue ({
         upgrade1: {
           text: upgradesCost.redAuto[player.upgrades.redAuto + 1] === undefined ? "Upgrade Red Autoclicker<br><br>"+ player.upgrades.redAuto + " CPS (Maxed!)"
               : player.upgrades.redAuto == 0 ? "Unlock Red Autoclicker <br><br>Cost: 10 Red"
-              : "Upgrade Red Autoclicker <br><br>"+ player.upgrades.redAuto + " CPS -> " + (player.upgrades.redAuto + 1) + " CPS<br><br>Cost: " + costStringify(upgradesCost.redAuto[player.upgrades.redAuto + 1]),
+              : "Upgrade Red Autoclicker <br><br>" + player.upgrades.redAuto + " CPS -> " + (player.upgrades.redAuto + 1) + " CPS<br><br>Cost: " + costStringify(upgradesCost.redAuto[player.upgrades.redAuto + 1]),
           onclick: function(){
             if(canBuyUpgrades("redAuto", player.upgrades.redAuto + 1)){
               buyUpgrades("redAuto", player.upgrades.redAuto + 1)

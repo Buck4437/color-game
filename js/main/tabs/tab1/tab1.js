@@ -42,11 +42,18 @@ function setAutoBuyColor(color, boolean, interval){
   }
 }
 
+// function updateAutobuyers(){
+//   let array = Object.keys(autobuyersInterval)
+//   for (let i=0;i<array.length;i++){
+//     color = array[i]
+//     setAutoBuyColor(color, player[color+"Auto"], 1000/Math.max(1,player.upgrades[color+"Auto"]))
+//   }
+// }
+
 function updateAutobuyers(){
-  let array = Object.keys(autobuyersInterval)
-  for (let i=0;i<array.length;i++){
-    color = array[i]
-    setAutoBuyColor(color, player[color+"Auto"], 1000/Math.max(1,player.upgrades[color+"Auto"]))
+  let colors = Object.keys(autobuyersInterval)
+  for (let color of colors){
+    setAutoBuyColor(color, player[color+"Auto"], 1000/Math.max(1,player.upgrades[color+"Auto"]||1))
   }
 }
 
@@ -81,12 +88,11 @@ new Vue ({
             text: "Auto: " + (player.redAuto ? "On" : "Off"),
             isHidden: !player.upgrades.redAuto != 0,
             onclick: function(){
-              setAutoBuyColor("red", !player.redAuto, 1000/Math.max(1,player.upgrades.redAuto))
+              setAutoBuyColor("red", !player.redAuto, 1000/Math.max(1,player.upgrades.redAuto||1))
             }
           },
           addsub: {
             text: "+" + gainRateColor().red +" Red",
-            // is: true,
             onclick: function(){
               gainColor("red")
             },
