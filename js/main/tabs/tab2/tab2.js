@@ -62,14 +62,9 @@ new Vue ({
       }
       return {
         upgrade1: {
-          text: customTrueFalseOutput(
-            upgradesCost.redAuto[player.upgrades.redAuto + 1] === undefined,
-              "Upgrade Red Autoclicker<br><br>"+ player.upgrades.redAuto + " CPS (Maxed!)",
-              customTrueFalseOutput(player.upgrades.redAuto == 0,
-                "Unlock Red Autoclicker <br><br>Cost: 10 Red",
-                "Upgrade Red Autoclicker <br><br>"+ player.upgrades.redAuto + " CPS -> " + (player.upgrades.redAuto + 1) + " CPS<br><br>Cost: " + costStringify(upgradesCost.redAuto[player.upgrades.redAuto + 1])
-              ),
-          ),
+          text: upgradesCost.redAuto[player.upgrades.redAuto + 1] === undefined ? "Upgrade Red Autoclicker<br><br>"+ player.upgrades.redAuto + " CPS (Maxed!)"
+              : player.upgrades.redAuto == 0 ? "Unlock Red Autoclicker <br><br>Cost: 10 Red"
+              : "Upgrade Red Autoclicker <br><br>"+ player.upgrades.redAuto + " CPS -> " + (player.upgrades.redAuto + 1) + " CPS<br><br>Cost: " + costStringify(upgradesCost.redAuto[player.upgrades.redAuto + 1]),
           onclick: function(){
             if(canBuyUpgrades("redAuto", player.upgrades.redAuto + 1)){
               buyUpgrades("redAuto", player.upgrades.redAuto + 1)
@@ -77,11 +72,9 @@ new Vue ({
             }
           },
           disabled: !canBuyUpgrades("redAuto", player.upgrades.redAuto + 1),
-          style: customTrueFalseOutput(
-            upgradesCost.redAuto[player.upgrades.redAuto + 1] === undefined,
-              maxBuyStyle,
-              customTrueFalseOutput(canBuyUpgrades("redAuto", player.upgrades.redAuto + 1), canBuyStyle, cannotBuyStyle )
-          )
+          style: upgradesCost.redAuto[player.upgrades.redAuto + 1] === undefined ? maxBuyStyle
+               : canBuyUpgrades("redAuto", player.upgrades.redAuto + 1) ? canBuyStyle
+               : cannotBuyStyle
         }
       }
     }

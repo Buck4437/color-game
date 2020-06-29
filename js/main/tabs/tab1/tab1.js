@@ -78,7 +78,7 @@ new Vue ({
             intRounding: "floor"
           },
           auto: {
-            text: "Auto (" + player.upgrades.redAuto +" CPS): " + customTrueFalseOutput(player.redAuto,"On","Off"),
+            text: "Auto: " + (player.redAuto ? "On" : "Off"),
             isHidden: !player.upgrades.redAuto != 0,
             onclick: function(){
               setAutoBuyColor("red", !player.redAuto, 1000/Math.max(1,player.upgrades.redAuto))
@@ -90,7 +90,7 @@ new Vue ({
             onclick: function(){
               gainColor("red")
             },
-            style: customTrueFalseOutput(canGainColor().red,buttonEnabledStyle,buttonDisabledStyle),
+            style: canGainColor().red ? buttonEnabledStyle : buttonDisabledStyle,
             disabled: !canGainColor().red
           },
         },
@@ -104,7 +104,7 @@ new Vue ({
             intRounding: "floor"
           },
           auto: {
-            text: "Auto (Avg. 1 CPS): " + customTrueFalseOutput(player.greenAuto,"On","Off"),
+            text: "Auto: " + (player.greenAuto ? "On" : "Off"),
             isHidden: !player.unlocks.greenAuto,
             onclick: function(){
               setAutoBuyColor("green", !player.greenAuto, 1000)
@@ -115,7 +115,7 @@ new Vue ({
             onclick: function(){
               gainColor("green")
             },
-            style: customTrueFalseOutput(canGainColor().green,buttonEnabledStyle,buttonDisabledStyle),
+            style: canGainColor().green ? buttonEnabledStyle : buttonDisabledStyle,
             disabled: !canGainColor().green
           }
         },
@@ -130,7 +130,7 @@ new Vue ({
             intRounding: "floor"
           },
           auto: {
-            text: "Auto (Avg. 1 CPS): " + customTrueFalseOutput(player.blueAuto,"On","Off"),
+            text: "Auto: " + (player.blueAuto ? "On" : "Off"),
             isHidden: !(player.unlocks.blue && player.unlocks.blueAuto),
             onclick: function(){
               setAutoBuyColor("blue", !player.blueAuto, 1000)
@@ -142,7 +142,7 @@ new Vue ({
             onclick: function(){
               gainColor("blue")
             },
-            style: customTrueFalseOutput(canGainColor().blue,buttonEnabledStyle,buttonDisabledStyle),
+            style: canGainColor().blue ? buttonEnabledStyle : buttonDisabledStyle,
             disabled: !canGainColor().blue
           },
         }

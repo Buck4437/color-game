@@ -38,7 +38,7 @@ new Vue ({
             onclick: function(){
               switchTab("tab1")
             },
-            style: customTrueFalseOutput(this.selectedTab.tab=="tab1", buttonSelectedStyle, buttonDeselectedStyle),
+            style: this.selectedTab.tab=="tab1" ? buttonSelectedStyle : buttonDeselectedStyle,
             disabled: this.selectedTab.tab=="tab1"
           }
         },
@@ -49,7 +49,7 @@ new Vue ({
             onclick: function(){
               switchTab("tab2")
             },
-            style: customTrueFalseOutput(this.selectedTab.tab=="tab2", buttonSelectedStyle, buttonDeselectedStyle),
+            style: this.selectedTab.tab=="tab2" ? buttonSelectedStyle : buttonDeselectedStyle,
             disabled: this.selectedTab.tab=="tab2"
           }
         },
@@ -60,7 +60,7 @@ new Vue ({
             onclick: function(){
               switchTab("tab3")
             },
-            style: customTrueFalseOutput(this.selectedTab.tab=="tab3", buttonSelectedStyle, buttonDeselectedStyle),
+            style: this.selectedTab.tab=="tab3" ? buttonSelectedStyle : buttonDeselectedStyle,
             disabled: this.selectedTab.tab=="tab3"
           }
         }
