@@ -42,14 +42,6 @@ function setAutoBuyColor(color, boolean, interval){
   }
 }
 
-// function updateAutobuyers(){
-//   let array = Object.keys(autobuyersInterval)
-//   for (let i=0;i<array.length;i++){
-//     color = array[i]
-//     setAutoBuyColor(color, player[color+"Auto"], 1000/Math.max(1,player.upgrades[color+"Auto"]))
-//   }
-// }
-
 function updateAutobuyers(){
   let colors = Object.keys(autobuyersInterval)
   for (let color of colors){
