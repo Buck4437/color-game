@@ -21,7 +21,6 @@
         <br>
         <!-- <ol>
           <li>Refactor
-          <li>Custom components for upgrade buttons</li>
           <li>Make it so autobuyers are off when the upgrade for unlocking them is set to 0
           <br>Change last 2 automation to prestige when possible (when bought upgrades)</li>
           <li>Unlock features based on progression (autobuyers, upgrades, next bars)</li>
@@ -37,7 +36,10 @@
       <div id="tab2">
         <span class="tab2Headings">Red: {{player.red}}</span><br><br>
         <button-custom :name="upgrades.redAuto"></button-custom>
+        <br>
         <button-custom :name="upgrades.redMulti"></button-custom>
+        <br>
+        <button>PLACEHOLDER (This is not yet a custom button)</button>
       </div>
       <div id="tab3">
         <button-custom :name="save"></button-custom>
