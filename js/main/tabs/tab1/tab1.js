@@ -16,8 +16,13 @@ function resetPreviousColor(color){
 }
 
 function gainRateColor(){
+  let redRate = 1
+  let redMultis = [player.green+1, player.blue+1, Math.pow(2,player.upgrades.redMulti)]
+  for (let redmulti of redMultis){
+    redRate *= redmulti
+  }
   return {
-    red: Math.min(255,(player.green+1)*(player.blue+1)),
+    red: Math.min(255,redRate),
     green: Math.min(255, player.blue+1),
     blue: 1
   }

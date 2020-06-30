@@ -19,7 +19,7 @@
           <player-rgb v-for="color in colors" :bar="color.bar" :addsub="color.addsub" :auto="color.auto" :key="color.id"></player-rgb>
         </div>
         <br>
-        <!-- <ol>
+        <ol>
           <li>Refactor
           <li>Custom components for upgrade buttons</li>
           <li>Make it so autobuyers are off when the upgrade for unlocking them is set to 0
@@ -32,11 +32,12 @@
           <li>better pop-up while saving/loading to make it less dull</li>
           <li>Footer, changelog</li>
           <li>Update Readme</li>
-        </ol> -->
+        </ol>
       </div>
       <div id="tab2">
         <span class="tab2Headings">Red: {{player.red}}</span><br><br>
-        <button-custom :name="upgrades.upgrade1"></button-custom>
+        <button-custom :name="upgrades.redAuto"></button-custom>
+        <button-custom :name="upgrades.redMulti"></button-custom>
       </div>
       <div id="tab3">
         <button-custom :name="save"></button-custom>

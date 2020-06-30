@@ -6,8 +6,6 @@ const defaultSave = {
   blue: 0,
   blueAuto: false,
   unlocks: {
-   // redAuto: false,
-   // green: true, (unlock at beginning)
     greenAuto: false,
     blue: false,
     blueAuto: false
@@ -36,8 +34,8 @@ const upgradesCost =  {
   redMulti:[
     null,
     {red: 10},
-    {red: 40},
-    {red: 160}
+    {red: 30},
+    {red: 90}
   ],
 }
 
