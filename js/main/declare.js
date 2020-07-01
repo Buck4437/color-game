@@ -1,4 +1,4 @@
-const defaultSave = {
+var defaultSave = {
   red: 0,
   redAuto: false,
   green: 0,
@@ -6,37 +6,68 @@ const defaultSave = {
   blue: 0,
   blueAuto: false,
   unlocks: {
-    greenAuto: false,
-    blue: false,
-    blueAuto: false
+    color:{
+      blue: false
+    },
+    upgrades:{
+      green: false,
+      blue: false
+    }
   },
   upgrades:{
-    redAuto: 0,
-    redMulti: 0,
-    greenAuto: 0,
-    greenMulti: 0,
-    blueAuto: 0,
-    blueMulti: 0,
+    red:{
+      auto: 0,
+      multi: 0
+    },
+    green:{
+      auto: 0,
+      multi: 0,
+    },
+    blue:{
+      auto: 0,
+      multi: 0,
+    }
   },
-  version: "0.0.0"
+  version: [0,0,0,1]
+  // [major, minor, bugfix, internal]
 };
 
 var player = {}
 Object.assign(player, defaultSave)
 
 const upgradesCost =  {
-  redAuto: [
-    null,
-    {red: 10},
-    {green: 10000},
-    {blue: 100000}
-  ],
-  redMulti:[
-    null,
-    {red: 10},
-    {red: 30},
-    {red: 90}
-  ],
+  red:{
+    auto: [
+      null,
+      {red: 10},
+      {red: 100},
+      {green: 3},
+      {green: 5},
+      {green: 15},
+      {green: 50},
+      {blue: 100000}
+    ],
+    multi:[
+      null,
+      {red: 10},
+      {red: 40},
+      {green: 25},
+      {blue: 100000}
+    ],
+  },
+  green:{
+    auto: [
+      null,
+      {green: 10},
+      {green: 100},
+      {blue: 100000}
+    ],
+    multi:[
+      null,
+      {green: 50},
+      {blue: 100000}
+    ],
+  }
 }
 
 var autobuyersInterval = {

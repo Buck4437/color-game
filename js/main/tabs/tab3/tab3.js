@@ -23,7 +23,11 @@ function ImportAndSaveFixer(property, save){
 
 function playerVersionFixer(){
   let versionNo = player.version
-  //placeholder
+  if(versionNo == "0.0.0"){
+    resetGame()
+    //too old
+    alert("Your save is incompatible with this version of game and therefore has been reset.")
+  }
   return
 }
 
@@ -101,11 +105,6 @@ new Vue ({
             alert("Game loaded!")
             return
           }
-          // if(importedSave === "69"){
-          //   alert("nice")
-          //   return
-          // }
-          // placeholder for secrets/ cheats etc
           alert("Invalid save!")
         } catch(error){
           alert("Invalid save!") //not base64

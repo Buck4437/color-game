@@ -6,31 +6,27 @@ function canGainColor(){
   }
 }
 
-function resetPreviousColor(color){
-  let array = ["red", "green", "blue"]
-  for (let i = 1; i< array.length; i++){
-    if (color == array[i]){
-      player[array[i-1]] = 0
-    }
-  }
-}
-
 function gainRateColor(){
   let redRate = 1
-  let redMultis = [player.green+1, player.blue+1, Math.pow(2,player.upgrades.redMulti)]
+  let greenRate = 1
+  let redMultis = [player.green+1, player.blue+1, 2**player.upgrades.red.multi]
+  let greenMultis = [player.blue+1, 2**player.upgrades.green.multi]
   for (let redmulti of redMultis){
     redRate *= redmulti
   }
+  for (let greenmulti of greenMultis){
+    greenRate *= greenmulti
+  }
   return {
     red: Math.min(255,redRate),
-    green: Math.min(255, player.blue+1),
+    green: Math.min(255,greenRate),
     blue: 1
   }
 }
 
 function gainColor(color){
   if(canGainColor()[color]){
-    resetPreviousColor(color)
+    prestige(color)
     player[color] += gainRateColor()[color]
     if(player[color] > 255){
       player[color] = 255
@@ -50,7 +46,7 @@ function setAutoBuyColor(color, boolean, interval){
 function updateAutobuyers(){
   let colors = Object.keys(autobuyersInterval)
   for (let color of colors){
-    setAutoBuyColor(color, player[color+"Auto"], 1000/Math.max(1,player.upgrades[color+"Auto"]||1))
+    setAutoBuyColor(color, player[color+"Auto"], 1000/Math.max(1,player.upgrades[color].auto||1))
   }
 }
 
@@ -69,8 +65,8 @@ new Vue ({
       let buttonDisabledStyle = {
         color: "grey",
         border: "4px solid #888888",
-        cursor: "default"
       }
+      cursor: "default"
       return [
         {
           id: 0,
@@ -83,9 +79,9 @@ new Vue ({
           },
           auto: {
             text: "Auto: " + (player.redAuto ? "On" : "Off"),
-            isHidden: !player.upgrades.redAuto != 0,
+            isHidden: player.upgrades.red.auto == 0,
             onclick: function(){
-              setAutoBuyColor("red", !player.redAuto, 1000/Math.max(1,player.upgrades.redAuto||1))
+              setAutoBuyColor("red", !player.redAuto, 1000/Math.max(1,player.upgrades.red.auto||1))
             }
           },
           addsub: {
@@ -108,7 +104,7 @@ new Vue ({
           },
           auto: {
             text: "Auto: " + (player.greenAuto ? "On" : "Off"),
-            isHidden: !player.unlocks.greenAuto,
+            isHidden: player.upgrades.green.auto == 0,
             onclick: function(){
               setAutoBuyColor("green", !player.greenAuto, 1000)
             }
@@ -116,7 +112,11 @@ new Vue ({
           addsub: {
             text: "Reset to gain " + gainRateColor().green + " Green (Requires 255 Red)",
             onclick: function(){
-              gainColor("green")
+              if(canGainColor("green")){
+                gainColor("green")
+                player.unlocks.color.blue = true
+                player.unlocks.upgrades.green = true
+              }
             },
             style: canGainColor().green ? buttonEnabledStyle : buttonDisabledStyle,
             disabled: !canGainColor().green
@@ -129,21 +129,22 @@ new Vue ({
             counter: "player.blue",
             max: 255,
             color: "blue",
-            isHidden: !player.unlocks.blue,
+            isHidden: !player.unlocks.color.blue,
             intRounding: "floor"
           },
           auto: {
             text: "Auto: " + (player.blueAuto ? "On" : "Off"),
-            isHidden: !(player.unlocks.blue && player.unlocks.blueAuto),
+            isHidden: !(player.unlocks.color.blue && player.unlocks.blueAuto),
             onclick: function(){
               setAutoBuyColor("blue", !player.blueAuto, 1000)
             }
           },
           addsub: {
             text: "Reset to gain " + gainRateColor().blue +" Blue (Requires 255 Green)",
-            isHidden: !player.unlocks.blue,
+            isHidden: !player.unlocks.color.blue,
             onclick: function(){
               gainColor("blue")
+              player.unlocks.upgrades.blue = true
             },
             style: canGainColor().blue ? buttonEnabledStyle : buttonDisabledStyle,
             disabled: !canGainColor().blue

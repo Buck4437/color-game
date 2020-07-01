@@ -20,7 +20,7 @@ Vue.component('button-custom',{
       return !this.name.isHidden
     },
     displayedText: function(){
-      return typeof this.name.text === "object" ? this.name.text[this.name.currentText]||"Text not found in text properties" : this.name.text||"Text is missing"
+      return typeof this.name.text === "object" ? this.name.text.data[this.name.text.currentText]||"Text not found in text properties" : this.name.text||"Text is missing"
     }
   }
 })

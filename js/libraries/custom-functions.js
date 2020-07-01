@@ -9,7 +9,7 @@ capitalizeFirstLetter(string): Capitalize First Letter of the string
 
 function locateVar(input){
   let array = input.split('.')
-  let target = window[array[0]]
+  let target = window.top[array[0]]
   for (let i=1;i<array.length;i++){
     target = target[array[i]]
   }
