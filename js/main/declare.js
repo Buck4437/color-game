@@ -28,7 +28,8 @@ var defaultSave = {
       multi: 0,
     }
   },
-  version: "0.0.0.i1"
+  version: [0,0,0,1]
+  // [major, minor, bugfix, internal]
 };
 
 var player = {}

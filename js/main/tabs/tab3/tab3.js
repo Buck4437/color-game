@@ -25,7 +25,7 @@ function playerVersionFixer(){
   let versionNo = player.version
   if(versionNo == "0.0.0"){
     resetGame()
-    alert("I changed a lot of things related to how variables are stored in the save file, so I have to wipe your save")
+    //too old
   }
   return
 }
