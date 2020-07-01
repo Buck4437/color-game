@@ -41,10 +41,10 @@ const upgradesCost =  {
       null,
       {red: 10},
       {red: 100},
+      {green: 3},
       {green: 5},
       {green: 15},
       {green: 50},
-      {green: 100},
       {blue: 100000}
     ],
     multi:[
@@ -60,13 +60,12 @@ const upgradesCost =  {
       null,
       {green: 10},
       {green: 100},
-      {blue: 1000000}
+      {blue: 100000}
     ],
     multi:[
       null,
       {green: 50},
-      {blue: 100000},
-      {blue: 1000000}
+      {blue: 100000}
     ],
   }
 }
