@@ -26,6 +26,7 @@ function playerVersionFixer(){
   if(versionNo == "0.0.0"){
     resetGame()
     //too old
+    alert("Your save is incompatible with this version of game and therefore has been reset.")
   }
   return
 }
