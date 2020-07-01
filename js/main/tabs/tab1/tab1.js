@@ -6,42 +6,27 @@ function canGainColor(){
   }
 }
 
-function resetPlayer(){
-  for (let item of arguments){
-    if(item == "red") {
-      player.red = defaultSave.red
-      // player.redAuto = defaultSave.redAuto
-      // player.upgrades.red = defaultSave.upgrades.red
-    }else if(item == "green"){
-      player.green = defaultSave.green
-      // player.greenAuto = defaultSave.greenAuto
-      // player.upgrades.green = defaultSave.upgrades.green
-    }
-  }
-  updateAutobuyers()
-}
-
-function resetPreviousColor(color){
-   color == "blue" ? resetPlayer("red", "green")
-  :color == "green" && resetPlayer("red", "redAuto", "upgrades")
-}
-
 function gainRateColor(){
   let redRate = 1
+  let greenRate = 1
   let redMultis = [player.green+1, player.blue+1, 2**player.upgrades.red.multi]
+  let greenMultis = [player.blue+1, 2**player.upgrades.green.multi]
   for (let redmulti of redMultis){
     redRate *= redmulti
   }
+  for (let greenmulti of greenMultis){
+    greenRate *= greenmulti
+  }
   return {
     red: Math.min(255,redRate),
-    green: Math.min(255, player.blue+1),
+    green: Math.min(255,greenRate),
     blue: 1
   }
 }
 
 function gainColor(color){
   if(canGainColor()[color]){
-    resetPreviousColor(color)
+    prestige(color)
     player[color] += gainRateColor()[color]
     if(player[color] > 255){
       player[color] = 255
@@ -119,7 +104,7 @@ new Vue ({
           },
           auto: {
             text: "Auto: " + (player.greenAuto ? "On" : "Off"),
-            isHidden: !player.unlocks.greenAuto,
+            isHidden: player.upgrades.green.auto == 0,
             onclick: function(){
               setAutoBuyColor("green", !player.greenAuto, 1000)
             }
@@ -129,7 +114,8 @@ new Vue ({
             onclick: function(){
               if(canGainColor("green")){
                 gainColor("green")
-                player.unlocks.blue = true
+                player.unlocks.color.blue = true
+                player.unlocks.upgrades.green = true
               }
             },
             style: canGainColor().green ? buttonEnabledStyle : buttonDisabledStyle,
@@ -143,21 +129,22 @@ new Vue ({
             counter: "player.blue",
             max: 255,
             color: "blue",
-            isHidden: !player.unlocks.blue,
+            isHidden: !player.unlocks.color.blue,
             intRounding: "floor"
           },
           auto: {
             text: "Auto: " + (player.blueAuto ? "On" : "Off"),
-            isHidden: !(player.unlocks.blue && player.unlocks.blueAuto),
+            isHidden: !(player.unlocks.color.blue && player.unlocks.blueAuto),
             onclick: function(){
               setAutoBuyColor("blue", !player.blueAuto, 1000)
             }
           },
           addsub: {
             text: "Reset to gain " + gainRateColor().blue +" Blue (Requires 255 Green)",
-            isHidden: !player.unlocks.blue,
+            isHidden: !player.unlocks.color.blue,
             onclick: function(){
               gainColor("blue")
+              player.unlocks.upgrades.blue = true
             },
             style: canGainColor().blue ? buttonEnabledStyle : buttonDisabledStyle,
             disabled: !canGainColor().blue

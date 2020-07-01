@@ -21,25 +21,26 @@
         <br>
         <!-- <ol>
           <li>Refactor
-          <li>Make it so autobuyers are off when the upgrade for unlocking them is set to 0
           <br>Change last 2 automation to prestige when possible (when bought upgrades)</li>
-          <li>Unlock features based on progression (autobuyers, upgrades, next bars)</li>
+          <li>Custom Components for upgrades</li>
           <li>Cheat tab to change variables (for balancing)
           <br>Can have fields to enter cost/scaling etc.
           <br>Activated via import section</li>
           <li>Hotkey</li>
           <li>better pop-up while saving/loading to make it less dull</li>
-          <li>Footer, changelog</li>
+          <li>changelog, discord server link at settings</li>
           <li>Update Readme</li>
         </ol> -->
       </div>
       <div id="tab2">
-        <span class="tab2Headings">Red: {{player.red}}</span><br><br>
+        <span class="tab2Headings" v-html="topText"></span><br><br>
         <button-custom :name="upgrades.redAuto"></button-custom>
-        <br>
         <button-custom :name="upgrades.redMulti"></button-custom>
         <br>
-        <button>PLACEHOLDER (This is not yet a custom button)</button>
+        <button-custom :name="upgrades.greenAuto"></button-custom>
+        <button-custom :name="upgrades.greenMulti"></button-custom>
+        <br>
+        <!-- <button>PLACEHOLDER FOR QOL that makes early early prestige faster(This is not yet a custom button)</button> -->
       </div>
       <div id="tab3">
         <button-custom :name="save"></button-custom>
@@ -61,6 +62,7 @@
   <script src="js/components/others/color-bar/color-bar.js"></script>
   <script src="js/components/main/tab1/player-rgb.js"></script>
   <script src="js/main/declare.js"></script>
+  <script src="js/main/prestige/prestige.js"></script>
   <script src="js/main/tabs/tab1/tab1.js"></script>
   <script src="js/main/tabs/tab2/tab2.js"></script>
   <script src="js/main/tabs/tab3/tab3.js"></script>

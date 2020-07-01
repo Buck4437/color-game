@@ -6,11 +6,13 @@ var defaultSave = {
   blue: 0,
   blueAuto: false,
   unlocks: {
-    greenUpgrades: false,
-    greenAuto: false,
-    blue: false,
-    blueUpgrades: false,
-    blueAuto: false
+    color:{
+      blue: false
+    },
+    upgrades:{
+      green: false,
+      blue: false
+    }
   },
   upgrades:{
     red:{
@@ -20,11 +22,10 @@ var defaultSave = {
     green:{
       auto: 0,
       multi: 0,
-      qol: []
     },
     blue:{
       auto: 0,
-      multi: 0
+      multi: 0,
     }
   },
   version: "0.0.0.i1"
@@ -39,13 +40,32 @@ const upgradesCost =  {
       null,
       {red: 10},
       {red: 100},
-      {green: 10000000}
+      {green: 5},
+      {green: 25},
+      {green: 50},
+      {green: 100},
+      {blue: 100000}
     ],
     multi:[
       null,
       {red: 10},
       {red: 40},
-      {green: 1000000}
+      {green: 25},
+      {blue: 100000}
+    ],
+  },
+  green:{
+    auto: [
+      null,
+      {green: 10},
+      {green: 100},
+      {blue: 1000000}
+    ],
+    multi:[
+      null,
+      {green: 50},
+      {blue: 100000},
+      {blue: 1000000}
     ],
   }
 }
