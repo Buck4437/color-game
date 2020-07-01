@@ -42,7 +42,7 @@ const upgradesCost =  {
       {red: 10},
       {red: 100},
       {green: 5},
-      {green: 25},
+      {green: 15},
       {green: 50},
       {green: 100},
       {blue: 100000}
