@@ -19,8 +19,11 @@
           <player-rgb v-for="color in colors" :bar="color.bar" :addsub="color.addsub" :auto="color.auto" :key="color.id"></player-rgb>
         </div>
         <br>
-        <!-- <ol>
-          <li>Refactor </li>
+        <ol>
+          <li>Functions for color upgrades and multi (To make the code cleaner in tab2 part)
+          <br>Can also try to use functions in tab1</li>
+          <li>Refactor</li>
+          <li>Blue Upgrades, Blue Amount in header</li>
           <li>Change how player color amount is stored</li>
           <li>Cheat tab to change variables (for balancing)
           <br>Can have fields to enter cost/scaling etc.
@@ -30,7 +33,7 @@
           <li>Better buttons</li>
           <li>changelog at settings</li>
           <li>Update Readme</li>
-        </ol> -->
+        </ol>
       </div>
       <div id="tab2">
         <span class="tab2Headings" v-html="topText"></span><br><br>
@@ -69,7 +72,7 @@
   <script src="js/main/declare.js"></script>
   <script src="js/main/prestige/prestige.js"></script>
   <script src="js/main/tabs/tab1/tab1.js"></script>
-  <script src="js/main/tabs/tab2/tab2.js"></script>
+  <script src="js/main/tabs/tab2/colorUpgrades.js"></script>
   <script src="js/main/tabs/tab3/tab3.js"></script>
   <script src="js/main/top/topbar.js"></script>
   <script src="js/main/initiate.js"></script>
