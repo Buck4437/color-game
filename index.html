@@ -20,7 +20,6 @@
         </div>
         <br>
         <!-- <ol>
-          <li>Custom Components for upgrades</li>
           <li>Refactor </li>
           <li>Change how player color amount is stored</li>
           <li>Cheat tab to change variables (for balancing)
@@ -35,12 +34,11 @@
       </div>
       <div id="tab2">
         <span class="tab2Headings" v-html="topText"></span><br><br>
-        <button-custom :name="upgrades.redAuto"></button-custom>
-        <button-custom :name="upgrades.redMulti"></button-custom>
-        <br>
-        <button-custom :name="upgrades.greenAuto"></button-custom>
-        <button-custom :name="upgrades.greenMulti"></button-custom>
-        <br>
+        <div v-for="upgrade in upgrades" :name="upgrade" :key="upgrade.id">
+          <button-color-upgrades-auto :name="upgrade.auto"></button-color-upgrades-auto>
+          <button-color-upgrades-multi :name="upgrade.multi"></button-color-upgrades-multi>
+          <br>
+        </div>
         Upgrades for blue are not done yet
         <!-- <button>PLACEHOLDER FOR QOL that makes early early prestige faster(This is not yet a custom button)</button> -->
       </div>
@@ -64,6 +62,8 @@
   <script src="js/libraries/vue.js"></script>
   <script src="js/libraries/custom-functions.js"></script>
   <script src="js/components/others/buttons/button-custom.js"></script>
+  <script src="js/components/others/buttons/colorUpgrades/button-color-upgrades-auto.js"></script>
+  <script src="js/components/others/buttons/colorUpgrades/button-color-upgrades-multi.js"></script>
   <script src="js/components/others/color-bar/color-bar.js"></script>
   <script src="js/components/main/tab1/player-rgb.js"></script>
   <script src="js/main/declare.js"></script>
