@@ -1,3 +1,47 @@
+new Vue ({
+  el: "#tab2",
+  data: {
+    player: player
+  },
+  computed: {
+    topText: function(){
+      return "Red: " + player.red + (player.unlocks.color.blue ? ", Green: " + player.green : "" )
+    },
+    upgrades: function(){
+      let costParse = this.costParse
+      let styles = {
+        max: {
+          color: "#00FF00",
+          border: "4px solid #00FF00",
+          cursor: "default"
+        },
+        canBuy: {
+          color: "white",
+          border: "4px solid white",
+          cursor: "pointer"
+        },
+        cannotBuy: {
+          color: "grey",
+          border: "4px solid #888888",
+          cursor: "default"
+        }
+      }
+      return[
+        {
+          id: 0,
+          auto: colorUpgradesProperties("red", "auto", styles),
+          multi: colorUpgradesProperties("red", "multi", styles),
+        },
+        {
+          id: 1,
+          auto: colorUpgradesProperties("green", "auto", styles, !player.unlocks.upgrades.green),
+          multi: colorUpgradesProperties("green", "multi", styles, !player.unlocks.upgrades.green)
+        }
+      ]
+    },
+  }
+})
+
 function colorUpgradesProperties(name, type, styles, isHidden){
   return{
     color: name,
@@ -45,47 +89,3 @@ function costStringify(object){
   }
   return string
 }
-
-new Vue ({
-  el: "#tab2",
-  data: {
-    player: player
-  },
-  computed: {
-    topText: function(){
-      return "Red: " + player.red + (player.unlocks.color.blue ? ", Green: " + player.green : "" )
-    },
-    upgrades: function(){
-      let costParse = this.costParse
-      let styles = {
-        max: {
-          color: "#00FF00",
-          border: "4px solid #00FF00",
-          cursor: "default"
-        },
-        canBuy: {
-          color: "white",
-          border: "4px solid white",
-          cursor: "pointer"
-        },
-        cannotBuy: {
-          color: "grey",
-          border: "4px solid #888888",
-          cursor: "default"
-        }
-      }
-      return[
-        {
-          id: 0,
-          auto: colorUpgradesProperties("red", "auto", styles),
-          multi: colorUpgradesProperties("red", "multi", styles),
-        },
-        {
-          id: 1,
-          auto: colorUpgradesProperties("green", "auto", styles, !player.unlocks.upgrades.green),
-          multi: colorUpgradesProperties("green", "multi", styles, !player.unlocks.upgrades.green)
-        }
-      ]
-    },
-  }
-})

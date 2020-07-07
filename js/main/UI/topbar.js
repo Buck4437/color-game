@@ -1,16 +1,3 @@
-function updateTab(){
-  let tabs = ["tab1", "tab2","tab3"]
-  for(let i=0;i<tabs.length;i++){
-    $("#"+tabs[i]).css("display", "none")
-  }
-    $("#"+ selectedTab.tab).css("display", "block")
-}
-
-function switchTab(tab){
-    selectedTab.tab = tab
-    updateTab()
-}
-
 new Vue ({
   el: "#top-bar",
   data: {
@@ -68,3 +55,16 @@ new Vue ({
     }
   }
 })
+
+function updateTab(){
+  let tabs = ["tab1", "tab2","tab3"]
+  for(let i=0;i<tabs.length;i++){
+    $("#"+tabs[i]).css("display", "none")
+  }
+    $("#"+ selectedTab.tab).css("display", "block")
+}
+
+function switchTab(tab){
+    selectedTab.tab = tab
+    updateTab()
+}

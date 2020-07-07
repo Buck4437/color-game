@@ -1,55 +1,3 @@
-function canGainColor(){
-  return {
-    red: player.red != 255,
-    green: player.red >= 255 && player.green != 255,
-    blue: player.green >= 255 && player.blue != 255
-  }
-}
-
-function gainRateColor(){
-  let redRate = 1
-  let greenRate = 1
-  let redMultis = [player.green+1, player.blue+1, 2**player.upgrades.red.multi]
-  let greenMultis = [player.blue+1, 2**player.upgrades.green.multi]
-  for (let redmulti of redMultis){
-    redRate *= redmulti
-  }
-  for (let greenmulti of greenMultis){
-    greenRate *= greenmulti
-  }
-  return {
-    red: Math.min(255,redRate),
-    green: Math.min(255,greenRate),
-    blue: 1
-  }
-}
-
-function gainColor(color){
-  if(canGainColor()[color]){
-    prestige(color)
-    player[color] += gainRateColor()[color]
-    if(player[color] > 255){
-      player[color] = 255
-    }
-  }
-}
-
-function setAutoBuyColor(color, boolean, interval){
-  player[color+"Auto"] = boolean
-  clearInterval(autobuyersInterval[color])
-  if(player[color+"Auto"]){
-    gainColor(color)
-    autobuyersInterval[color] = setInterval(function(){gainColor(color)}, interval)
-  }
-}
-
-function updateAutobuyers(){
-  let colors = Object.keys(autobuyersInterval)
-  for (let color of colors){
-    setAutoBuyColor(color, player[color+"Auto"], 1000/Math.max(1,player.upgrades[color].auto||1))
-  }
-}
-
 new Vue ({
   el: "#playerMain",
   data: {
@@ -154,3 +102,55 @@ new Vue ({
     }
   }
 })
+
+function canGainColor(){
+  return {
+    red: player.red != 255,
+    green: player.red >= 255 && player.green != 255,
+    blue: player.green >= 255 && player.blue != 255
+  }
+}
+
+function gainRateColor(){
+  let redRate = 1
+  let greenRate = 1
+  let redMultis = [player.green+1, player.blue+1, 2**player.upgrades.red.multi]
+  let greenMultis = [player.blue+1, 2**player.upgrades.green.multi]
+  for (let redmulti of redMultis){
+    redRate *= redmulti
+  }
+  for (let greenmulti of greenMultis){
+    greenRate *= greenmulti
+  }
+  return {
+    red: Math.min(255,redRate),
+    green: Math.min(255,greenRate),
+    blue: 1
+  }
+}
+
+function gainColor(color){
+  if(canGainColor()[color]){
+    prestige(color)
+    player[color] += gainRateColor()[color]
+    if(player[color] > 255){
+      player[color] = 255
+    }
+  }
+}
+
+function setAutoBuyColor(color, boolean, interval){
+  player[color+"Auto"] = boolean
+  clearInterval(autobuyersInterval[color])
+  if(player[color+"Auto"]){
+    gainColor(color)
+    autobuyersInterval[color] = setInterval(function(){gainColor(color)}, interval)
+  }
+}
+
+function updateAutobuyers(){
+  let colors = Object.keys(autobuyersInterval)
+  for (let color of colors){
+    setAutoBuyColor(color, player[color+"Auto"], 1000/Math.max(1,player.upgrades[color].auto||1))
+  }
+}
