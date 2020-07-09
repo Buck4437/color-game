@@ -16,7 +16,7 @@
     <div id="tabs">
       <div id="tab1">
         <div id="playerMain">
-          <player-rgb v-for="color in colors" :bar="color.bar" :addsub="color.addsub" :auto="color.auto" :key="color.id"></player-rgb>
+          <player-rgb v-for="color in colors" :global="color.global" :bar="color.bar" :addsub="color.addsub" :auto="color.auto" :key="color.id"></player-rgb>
         </div>
         <br>
         <ol>
@@ -24,13 +24,15 @@
           <br>Can also try to use functions in tab1</li>
           <li>Refactor</li>
           <li>Blue Upgrades, Blue Amount in header</li>
-          <li>Change how player color amount is stored</li>
+          <li>Change how player color amount (To arrays of rgb like Reality ex: amount: [255,255,255], auto: [true,true,true] )
+          <br>and game variables/cconstant are stored</li>
           <li>Cheat tab to change variables (for balancing)
           <br>Can have fields to enter cost/scaling etc.
           <br>Activated via import section</li>
           <li>Hotkey</li>
           <li>Better pop-up while saving/loading to make it less dull</li>
           <li>Better buttons</li>
+          <li>Mobile compatability</li>
           <li>changelog at settings</li>
           <li>Update Readme</li>
         </ol>

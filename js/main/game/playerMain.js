@@ -1,3 +1,23 @@
+function playerMainProperty(id, name, isBarHidden, text, styles, unlockFunction){
+  return {
+    id: id,
+    global:{
+      name: name,
+      color: name
+    },
+    bar:{
+      max: 255,
+      isHidden: isBarHidden
+    },
+    addsub: {
+      text: text,
+      isHidden: isBarHidden,
+      style: styles,
+      unlocks: unlockFunction
+    },
+  }
+}
+
 new Vue ({
   el: "#playerMain",
   data: {
@@ -5,103 +25,38 @@ new Vue ({
   },
   computed:{
     colors: function(){
-      let buttonEnabledStyle = {
-        color: "white",
-        border: "4px solid white",
-        cursor: "pointer"
-      }
-      let buttonDisabledStyle = {
-        color: "grey",
-        border: "4px solid #888888",
-      }
-      cursor: "default"
-      return [
-        {
-          id: 0,
-          bar: {
-            name: "Red",
-            counter: "player.red",
-            max: 255,
-            color: "red",
-            intRounding: "floor"
-          },
-          auto: {
-            text: "Auto: " + (player.redAuto ? "On" : "Off"),
-            isHidden: player.upgrades.red.auto == 0,
-            onclick: function(){
-              setAutoBuyColor("red", !player.redAuto, 1000/Math.max(1,player.upgrades.red.auto||1))
-            }
-          },
-          addsub: {
-            text: "+" + gainRateColor().red +" Red",
-            onclick: function(){
-              gainColor("red")
-            },
-            style: canGainColor().red ? buttonEnabledStyle : buttonDisabledStyle,
-            disabled: !canGainColor().red
-          },
+      let styles = {
+        enabled:{
+          color: "white",
+          border: "4px solid white",
+          cursor: "pointer"
         },
-        {
-          id: 1,
-          bar: {
-            name: "Green",
-            counter: "player.green",
-            max: 255,
-            color: "green",
-            intRounding: "floor"
-          },
-          auto: {
-            text: "Auto: " + (player.greenAuto ? "On" : "Off"),
-            isHidden: player.upgrades.green.auto == 0,
-            onclick: function(){
-              setAutoBuyColor("green", !player.greenAuto, 1000)
-            }
-          },
-          addsub: {
-            text: "Reset to gain " + gainRateColor().green + " Green (Requires 255 Red)",
-            onclick: function(){
-              if(canGainColor("green")){
-                gainColor("green")
-                player.unlocks.color.blue = true
-                player.unlocks.upgrades.green = true
-              }
-            },
-            style: canGainColor().green ? buttonEnabledStyle : buttonDisabledStyle,
-            disabled: !canGainColor().green
-          }
-        },
-        {
-          id: 2,
-          bar: {
-            name: "Blue",
-            counter: "player.blue",
-            max: 255,
-            color: "blue",
-            isHidden: !player.unlocks.color.blue,
-            intRounding: "floor"
-          },
-          auto: {
-            text: "Auto: " + (player.blueAuto ? "On" : "Off"),
-            isHidden: !(player.unlocks.color.blue && player.unlocks.blueAuto),
-            onclick: function(){
-              setAutoBuyColor("blue", !player.blueAuto, 1000)
-            }
-          },
-          addsub: {
-            text: "Reset to gain " + gainRateColor().blue +" Blue (Requires 255 Green)",
-            isHidden: !player.unlocks.color.blue,
-            onclick: function(){
-              gainColor("blue")
-              player.unlocks.upgrades.blue = true
-            },
-            style: canGainColor().blue ? buttonEnabledStyle : buttonDisabledStyle,
-            disabled: !canGainColor().blue
-          },
+        disabled:{
+          color: "grey",
+          border: "4px solid #888888",
+          cursor: "default"
         }
+      }
+      return [
+        playerMainProperty(0, "red", false, "+" + gainRateColor().red +" Red", styles),
+        playerMainProperty(1, "green", false, "+" + "Reset to gain " + gainRateColor().green + " Green (Requires 255 Red)", styles, firstTimeUnlock().green),
+        playerMainProperty(2, "blue", !player.unlocks.color.blue, "Reset to gain " + gainRateColor().blue +" Blue (Requires 255 Green)", styles, firstTimeUnlock().blue)
       ]
     }
   }
 })
+
+function firstTimeUnlock(){
+  return{
+    green: function(){
+      player.unlocks.upgrades.green = true
+      player.unlocks.color.blue = true
+    },
+    blue: function(){
+      player.unlocks.upgrades.blue = true
+    }
+  }
+}
 
 function canGainColor(){
   return {
