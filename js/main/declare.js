@@ -28,7 +28,7 @@ var defaultSave = {
       multi: 0,
     }
   },
-  version: [0,0,0,1]
+  version: [0,0,0,2]
   // [major, minor, bugfix, internal]
 };
 
@@ -44,15 +44,13 @@ const upgradesCost =  {
       {green: 3},
       {green: 5},
       {green: 15},
-      {green: 50},
-      {blue: 100000}
+      {blue: 10000}
     ],
     multi:[
       null,
       {red: 10},
       {red: 40},
-      {green: 25},
-      {blue: 100000}
+      {green: 25}
     ],
   },
   green:{
@@ -60,12 +58,25 @@ const upgradesCost =  {
       null,
       {green: 10},
       {green: 100},
-      {blue: 100000}
+      {blue: 20},
+      {blue: 50}
     ],
     multi:[
       null,
       {green: 50},
-      {blue: 100000}
+      {blue: 5},
+      {blue: 50}
+    ],
+  },
+  blue:{
+    auto: [
+      null,
+      {blue: 10},
+      {blue: 100}
+    ],
+    multi:[
+      null,
+      {blue: 50}
     ],
   }
 }

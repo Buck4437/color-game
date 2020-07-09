@@ -5,7 +5,7 @@ new Vue ({
   },
   computed: {
     topText: function(){
-      return "Red: " + player.red + (player.unlocks.color.blue ? ", Green: " + player.green : "" )
+      return "Red: " + player.red + (player.unlocks.upgrades.green ? ", Green: " + player.green : "" ) + (player.unlocks.upgrades.blue ? ", Blue: " + player.blue: "" )
     },
     upgrades: function(){
       let costParse = this.costParse
@@ -36,6 +36,11 @@ new Vue ({
           id: 1,
           auto: colorUpgradesProperties("green", "auto", styles, !player.unlocks.upgrades.green),
           multi: colorUpgradesProperties("green", "multi", styles, !player.unlocks.upgrades.green)
+        },
+        {
+          id: 2,
+          auto: colorUpgradesProperties("blue", "auto", styles, !player.unlocks.upgrades.blue),
+          multi: colorUpgradesProperties("blue", "multi", styles, !player.unlocks.upgrades.blue)
         }
       ]
     },

@@ -112,7 +112,7 @@ function exportSave(){
     $("#exportedSave").css("display", "none")
     alert("Save copied to clipboard!")
   } catch (error) {
-     prompt('Save:', window.btoa(JSON.stringify(player)));
+     prompt('Exported ave:', window.btoa(JSON.stringify(player)));
   }
 }
 

@@ -69,18 +69,23 @@ function canGainColor(){
 function gainRateColor(){
   let redRate = 1
   let greenRate = 1
+  let blueRate = 1
   let redMultis = [player.green+1, player.blue+1, 2**player.upgrades.red.multi]
   let greenMultis = [player.blue+1, 2**player.upgrades.green.multi]
+  let blueMultis = [2**player.upgrades.blue.multi]
   for (let redmulti of redMultis){
     redRate *= redmulti
   }
   for (let greenmulti of greenMultis){
     greenRate *= greenmulti
   }
+  for (let bluemulti of blueMultis){
+    blueRate *= bluemulti
+  }
   return {
     red: Math.min(255,redRate),
     green: Math.min(255,greenRate),
-    blue: 1
+    blue: Math.min(255,blueRate)
   }
 }
 
