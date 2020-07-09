@@ -1,3 +1,57 @@
+new Vue ({
+  el: "#tab3",
+  data: {
+    save: {
+      text: "Save",
+      onclick: function(){
+        save();
+        alert("Game saved!")
+      }
+    },
+    load: {
+      text: "Load",
+      onclick: function(){
+        if(loadSave(localStorage.getItem("player"))){
+          alert("Game loaded!")
+          return
+        }
+        alert("Game failed to load!")
+      }
+    },
+    exportGame: {
+      text: "Export",
+      onclick: function(){
+        exportSave()
+      }
+    },
+    importGame: {
+      text: "Import",
+      seen: true,
+      onclick: function(){
+        try{
+          let importedSave =  window.atob(prompt("Enter your save:"))
+          if(loadSave(importedSave)){
+            alert("Game loaded!")
+            return
+          }
+          alert("Invalid save!")
+        } catch(error){
+          alert("Invalid save!") //not base64
+        }
+      }
+    },
+    reset: {
+      text: "HARD RESET",
+      seen: true,
+      onclick: function(){
+        if(prompt("Enter 'RESET' in ALL CAPS to reset the game. THIS ACTION CANNOT BE UNDONE.") === 'RESET'){
+          resetGame()
+        }
+      }
+    }
+  }
+})
+
 function save(){
   localStorage.setItem('player', JSON.stringify(player))
   saveTimer = 10
@@ -58,7 +112,7 @@ function exportSave(){
     $("#exportedSave").css("display", "none")
     alert("Save copied to clipboard!")
   } catch (error) {
-     prompt('Save:', window.btoa(JSON.stringify(player)));
+     prompt('Exported ave:', window.btoa(JSON.stringify(player)));
   }
 }
 
@@ -68,57 +122,3 @@ function resetGame(){
   save()
   switchTab("tab1")
 }
-
-new Vue ({
-  el: "#tab3",
-  data: {
-    save: {
-      text: "Save",
-      onclick: function(){
-        save();
-        alert("Game saved!")
-      }
-    },
-    load: {
-      text: "Load",
-      onclick: function(){
-        if(loadSave(localStorage.getItem("player"))){
-          alert("Game loaded!")
-          return
-        }
-        alert("Game failed to load!")
-      }
-    },
-    exportGame: {
-      text: "Export",
-      onclick: function(){
-        exportSave()
-      }
-    },
-    importGame: {
-      text: "Import",
-      seen: true,
-      onclick: function(){
-        try{
-          let importedSave =  window.atob(prompt("Enter your save:"))
-          if(loadSave(importedSave)){
-            alert("Game loaded!")
-            return
-          }
-          alert("Invalid save!")
-        } catch(error){
-          alert("Invalid save!") //not base64
-        }
-      }
-    },
-    reset: {
-      text: "HARD RESET",
-      seen: true,
-      onclick: function(){
-        if(prompt("Enter 'RESET' in ALL CAPS to reset the game. THIS ACTION CANNOT BE UNDONE.") === 'RESET'){
-          resetGame()
-        }
-      }
-    }
-  }
-})
