@@ -5,7 +5,8 @@ new Vue ({
       text: "Save",
       onclick: function(){
         save();
-        alert("Game saved!")
+        $("#exportedSaveField").val("Game saved!")
+
       }
     },
     load: {
@@ -82,6 +83,12 @@ function playerVersionFixer(){
     //too old
     alert("Your save is incompatible with this version of game and therefore has been reset.")
   }
+  if(versionNo == [0,0,0,1]){
+    resetGame()
+  }
+  if(versionNo != [0,0,0,3]){
+    versionNo = [0,0,0,3]
+  }
   return
 }
 
@@ -97,7 +104,7 @@ function importSave(string){
 function loadSave(string){
   if(IsJsonString(string) && string != null){
     importSave(string)
-    switchTab("tab1")
+    // switchTab("tab1")
     return true
   }
   return false

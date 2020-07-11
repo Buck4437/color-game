@@ -5,56 +5,44 @@ new Vue ({
   },
   computed:{
     buttons: function(){
-      let buttonDeselectedStyle = {
-        color: "white",
-        border: "4px solid #888888",
-        backgroundColor: "black",
-        cursor: "pointer"
-      }
-      let buttonSelectedStyle = {
-        color: "black",
-        border: "4px solid white",
-        backgroundColor: "#eeeeee",
-        cursor: "default"
+      let selectedTab = this.selectedTab
+      let style = {
+        selected:{
+          color: "black",
+          border: "4px solid white",
+          backgroundColor: "#eeeeee",
+          cursor: "default"
+        },
+        deselected:{
+          color: "white",
+          border: "4px solid #888888",
+          backgroundColor: "black",
+          cursor: "pointer"
+        }
       }
       return [
-        {
-          id: 0,
-          tab:{
-            text: "Primary",
-            onclick: function(){
-              switchTab("tab1")
-            },
-            style: this.selectedTab.tab=="tab1" ? buttonSelectedStyle : buttonDeselectedStyle,
-            disabled: this.selectedTab.tab=="tab1"
-          }
-        },
-        {
-          id: 1,
-          tab:{
-            text: "Settings",
-            onclick: function(){
-              switchTab("tab2")
-            },
-            style: this.selectedTab.tab=="tab2" ? buttonSelectedStyle : buttonDeselectedStyle,
-            disabled: this.selectedTab.tab=="tab2"
-          }
-        },
-        {
-          id: 2,
-          tab:{
-            text: "Settings",
-            onclick: function(){
-              switchTab("tab3")
-            },
-            style: this.selectedTab.tab=="tab3" ? buttonSelectedStyle : buttonDeselectedStyle,
-            disabled: this.selectedTab.tab=="tab3"
-          }
-        }
+        topBarButtonsProperties(0, "Primary", "tab1", style, selectedTab),
+        topBarButtonsProperties(1, "Upgrades", "tab2", style, selectedTab),
+        topBarButtonsProperties(2, "Settings", "tab3", style, selectedTab)
       ]
     }
   }
 })
+
+function topBarButtonsProperties(id, text, tabID, style, selectedTab){
+  return{
+    id: id,
+    tab:{
+      text: text,
+      onclick: function(){
+        switchTab(tabID)
+        $("#exportedSaveField").val("")
+      },
+      style: selectedTab.tab == tabID ? style.selected : style.deselected,
+      disabled: selectedTab.tab == tabID
+    }
+  }
+}
 
 function updateTab(){
   let tabs = ["tab1", "tab2","tab3"]

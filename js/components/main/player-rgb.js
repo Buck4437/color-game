@@ -31,7 +31,7 @@ Vue.component('player-rgb',{
     barParsed: function(){
       return {
         name: capitalizeFirstLetter(this.global.name),
-        counter: "player." + this.global.name,
+        counter: "player.colors." + this.global.name + ".amount",
         max: this.bar.max,
         color: this.global.color,
         isHidden: this.bar.isHidden,
@@ -41,10 +41,10 @@ Vue.component('player-rgb',{
     autoParsed: function(){
       let color = this.global.name
       return {
-        text: "Auto: " + (player[color + "Auto"] ? "On" : "Off"),
-        isHidden: player.upgrades[color].auto == 0,
+        text: "Auto: " + (player.colors[color].auto ? "On" : "Off"),
+        isHidden: player.colors[color].upgrades.auto == 0,
         onclick: function(){
-          setAutoBuyColor(color, !player[color + "Auto"], 1000/Math.max(1,player.upgrades[color].auto||1))
+          setAutoBuyColor(color, !player.colors[color].auto, 1000/Math.max(1,player.colors[color].upgrades.auto||1))
         }
       }
     },
