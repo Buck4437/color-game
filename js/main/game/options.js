@@ -54,12 +54,12 @@ new Vue ({
 
 function save(){
   localStorage.setItem('player', JSON.stringify(player))
-  saveTimer = 10
+  game.saveTimer = 10
 }
 
 function saveTimerCountdown(){
-  saveTimer -= 0.05
-  if (saveTimer < 0){
+  game.saveTimer -= 0.05
+  if (game.saveTimer < 0){
     save()
   }
 }

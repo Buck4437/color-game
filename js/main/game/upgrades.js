@@ -63,18 +63,18 @@ function colorUpgradesProperties(name, type, styles, isHidden){
 }
 
 function buyColorUpgrades(category, type, level){
-  for (let currency in upgradesCost[category][type][level]){
-    player[currency] -= upgradesCost[category][type][level][currency]
+  for (let currency in game.upgradesCost[category][type][level]){
+    player[currency] -= game.upgradesCost[category][type][level][currency]
   }
   player.upgrades[category][type] = level
 }
 
 function canbuyColorUpgrades(category, type, level){
-  if(upgradesCost[category][type][level] === undefined){
+  if(game.upgradesCost[category][type][level] === undefined){
     return false
   }
-  for (let currency in upgradesCost[category][type][level]){
-    if(player[currency] < upgradesCost[category][type][level][currency]){
+  for (let currency in game.upgradesCost[category][type][level]){
+    if(player[currency] < game.upgradesCost[category][type][level][currency]){
       return false
     }
   }

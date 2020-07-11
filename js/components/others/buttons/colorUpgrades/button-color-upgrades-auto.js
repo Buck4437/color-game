@@ -25,19 +25,19 @@ Vue.component('button-color-upgrades-auto',{
     descriptions: function(){
       let noun = capitalizeFirstLetter(this.name.color)
       return {
-        locked: "Unlock " + noun + " Autoclicker<br><br>Cost: " + costStringify(upgradesCost[this.name.color].auto[1]),
-        unlocked: "Upgrade " + noun + " Autoclicker <br><br>" + player.upgrades[this.name.color].auto + " CPS => " + (player.upgrades[this.name.color].auto + 1) + " CPS<br><br>Cost: " + costStringify(upgradesCost[this.name.color].auto[player.upgrades[this.name.color].auto + 1]),
+        locked: "Unlock " + noun + " Autoclicker<br><br>Cost: " + costStringify(game.upgradesCost[this.name.color].auto[1]),
+        unlocked: "Upgrade " + noun + " Autoclicker <br><br>" + player.upgrades[this.name.color].auto + " CPS => " + (player.upgrades[this.name.color].auto + 1) + " CPS<br><br>Cost: " + costStringify(game.upgradesCost[this.name.color].auto[player.upgrades[this.name.color].auto + 1]),
         maxed: "Upgrade " + noun + " Autoclicker<br><br>"+ player.upgrades[this.name.color].auto + " CPS (Maxed!)"
       }
     },
     currentText: function(){
-      return upgradesCost[this.name.color].auto[player.upgrades[this.name.color].auto + 1] === undefined ? "maxed" : player.upgrades[this.name.color].auto == 0 ? "locked" : "unlocked"
+      return game.upgradesCost[this.name.color].auto[player.upgrades[this.name.color].auto + 1] === undefined ? "maxed" : player.upgrades[this.name.color].auto == 0 ? "locked" : "unlocked"
     },
     displayedText: function(){
       return this.descriptions[this.currentText]
     },
     style: function(){
-      return upgradesCost[this.name.color].auto[player.upgrades[this.name.color].auto + 1] === undefined ? this.name.styles.max
+      return game.upgradesCost[this.name.color].auto[player.upgrades[this.name.color].auto + 1] === undefined ? this.name.styles.max
                : canbuyColorUpgrades(this.name.color, "auto", player.upgrades[this.name.color].auto + 1) ? this.name.styles.canBuy
                : this.name.styles.cannotBuy
     }

@@ -101,15 +101,15 @@ function gainColor(color){
 
 function setAutoBuyColor(color, boolean, interval){
   player[color+"Auto"] = boolean
-  clearInterval(autobuyersInterval[color])
+  clearInterval(game.autobuyersInterval[color])
   if(player[color+"Auto"]){
     gainColor(color)
-    autobuyersInterval[color] = setInterval(function(){gainColor(color)}, interval)
+    game.autobuyersInterval[color] = setInterval(function(){gainColor(color)}, interval)
   }
 }
 
 function updateAutobuyers(){
-  let colors = Object.keys(autobuyersInterval)
+  let colors = Object.keys(game.autobuyersInterval)
   for (let color of colors){
     setAutoBuyColor(color, player[color+"Auto"], 1000/Math.max(1,player.upgrades[color].auto||1))
   }

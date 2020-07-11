@@ -1,7 +1,7 @@
 new Vue ({
   el: "#top-bar",
   data: {
-    selectedTab: selectedTab
+    selectedTab: game.selectedTab
   },
   computed:{
     buttons: function(){
@@ -32,7 +32,7 @@ new Vue ({
         {
           id: 1,
           tab:{
-            text: "Upgrades",
+            text: "Settings",
             onclick: function(){
               switchTab("tab2")
             },
@@ -61,10 +61,10 @@ function updateTab(){
   for(let i=0;i<tabs.length;i++){
     $("#"+tabs[i]).css("display", "none")
   }
-    $("#"+ selectedTab.tab).css("display", "block")
+    $("#"+ game.selectedTab.tab).css("display", "block")
 }
 
 function switchTab(tab){
-    selectedTab.tab = tab
+    game.selectedTab.tab = tab
     updateTab()
 }
