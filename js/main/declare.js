@@ -1,4 +1,36 @@
 var defaultSave = {
+  colors:{
+    red:{
+      unlocked: true,
+      amount: 0,
+      auto: false,
+      upgrades:{
+        unlocked: true,
+        auto: 0,
+        multi: 0
+      }
+    },
+    green:{
+      unlocked: true,
+      amount: 0,
+      auto: false,
+      upgrades:{
+        unlocked: false,
+        auto: 0,
+        multi: 0
+      }
+    },
+    blue:{
+      unlocked: false,
+      amount: 0,
+      auto: false,
+      upgrades:{
+        unlocked: false,
+        auto: 0,
+        multi: 0
+      }
+    }
+  },
   red: 0,
   redAuto: false,
   green: 0,
@@ -28,7 +60,7 @@ var defaultSave = {
       multi: 0,
     }
   },
-  version: [0,0,0,2]
+  version: [0,0,0,3]
   // [major, minor, bugfix, internal]
 };
 
