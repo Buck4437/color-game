@@ -24,14 +24,14 @@ Vue.component('button-color-upgrades-multi',{
     },
     descriptions: function(){
       let noun = capitalizeFirstLetter(this.name.color)
-      return "x2 multiplier to " + noun + " gain<br><br>Currently: x" + 2**player.upgrades[this.name.color].multi + (upgradesCost[this.name.color].multi[player.upgrades[this.name.color].multi + 1] === undefined ? " (Maxed!)" : ("<br><br>Cost: " + costStringify(upgradesCost[this.name.color].multi[player.upgrades[this.name.color].multi + 1])))
+      return "x2 multiplier to " + noun + " gain<br><br>Currently: x" + 2**player.colors[this.name.color].upgrades.multi + (game.upgradesCost[this.name.color].multi[player.colors[this.name.color].upgrades.multi + 1] === undefined ? " (Maxed!)" : ("<br><br>Cost: " + costStringify(game.upgradesCost[this.name.color].multi[player.colors[this.name.color].upgrades.multi + 1])))
     },
     displayedText: function(){
       return this.descriptions
     },
     style: function(){
-      return upgradesCost[this.name.color].multi[player.upgrades[this.name.color].multi + 1] === undefined ? this.name.styles.max
-               : canbuyColorUpgrades(this.name.color, "multi", player.upgrades[this.name.color].multi + 1) ? this.name.styles.canBuy
+      return game.upgradesCost[this.name.color].multi[player.colors[this.name.color].upgrades.multi + 1] === undefined ? this.name.styles.max
+               : canbuyColorUpgrades(this.name.color, "multi", player.colors[this.name.color].upgrades.multi + 1) ? this.name.styles.canBuy
                : this.name.styles.cannotBuy
     }
   }

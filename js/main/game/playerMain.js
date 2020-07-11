@@ -40,7 +40,7 @@ new Vue ({
       return [
         playerMainProperty(0, "red", false, "+" + gainRateColor().red +" Red", styles),
         playerMainProperty(1, "green", false, "+" + "Reset to gain " + gainRateColor().green + " Green (Requires 255 Red)", styles, firstTimeUnlock().green),
-        playerMainProperty(2, "blue", !player.unlocks.color.blue, "Reset to gain " + gainRateColor().blue +" Blue (Requires 255 Green)", styles, firstTimeUnlock().blue)
+        playerMainProperty(2, "blue", !player.colors.blue.isUnlocked, "Reset to gain " + gainRateColor().blue +" Blue (Requires 255 Green)", styles, firstTimeUnlock().blue)
       ]
     }
   }
@@ -49,20 +49,20 @@ new Vue ({
 function firstTimeUnlock(){
   return{
     green: function(){
-      player.unlocks.upgrades.green = true
-      player.unlocks.color.blue = true
+      player.colors.green.upgrades.isUnlocked = true
+      player.colors.blue.isUnlocked = true
     },
     blue: function(){
-      player.unlocks.upgrades.blue = true
+      player.colors.blue.upgrades.isUnlocked = true
     }
   }
 }
 
 function canGainColor(){
   return {
-    red: player.red != 255,
-    green: player.red >= 255 && player.green != 255,
-    blue: player.green >= 255 && player.blue != 255
+    red: player.colors.red.amount != 255,
+    green: player.colors.red.amount >= 255 && player.colors.green.amount != 255,
+    blue: player.colors.green.amount >= 255 && player.colors.blue.amount != 255
   }
 }
 
@@ -70,9 +70,9 @@ function gainRateColor(){
   let redRate = 1
   let greenRate = 1
   let blueRate = 1
-  let redMultis = [player.green+1, player.blue+1, 2**player.upgrades.red.multi]
-  let greenMultis = [player.blue+1, 2**player.upgrades.green.multi]
-  let blueMultis = [2**player.upgrades.blue.multi]
+  let redMultis = [player.colors.green.amount+1, player.colors.blue.amount+1, 2**player.colors.red.upgrades.multi]
+  let greenMultis = [player.colors.blue.amount+1, 2**player.colors.green.upgrades.multi]
+  let blueMultis = [2**player.colors.blue.upgrades.multi]
   for (let redmulti of redMultis){
     redRate *= redmulti
   }
@@ -92,25 +92,25 @@ function gainRateColor(){
 function gainColor(color){
   if(canGainColor()[color]){
     prestige(color)
-    player[color] += gainRateColor()[color]
-    if(player[color] > 255){
-      player[color] = 255
+    player.colors[color].amount += gainRateColor()[color]
+    if(player.colors[color].amount > 255){
+      player.colors[color].amount = 255
     }
   }
 }
 
 function setAutoBuyColor(color, boolean, interval){
-  player[color+"Auto"] = boolean
-  clearInterval(autobuyersInterval[color])
-  if(player[color+"Auto"]){
+  player.colors[color].auto = boolean
+  clearInterval(game.autobuyersInterval[color])
+  if(player.colors[color].auto){
     gainColor(color)
-    autobuyersInterval[color] = setInterval(function(){gainColor(color)}, interval)
+    game.autobuyersInterval[color] = setInterval(function(){gainColor(color)}, interval)
   }
 }
 
 function updateAutobuyers(){
-  let colors = Object.keys(autobuyersInterval)
+  let colors = Object.keys(game.autobuyersInterval)
   for (let color of colors){
-    setAutoBuyColor(color, player[color+"Auto"], 1000/Math.max(1,player.upgrades[color].auto||1))
+    setAutoBuyColor(color, player.colors[color].auto, 1000/Math.max(1,player.colors[color].upgrades.auto||1))
   }
 }

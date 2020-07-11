@@ -20,15 +20,8 @@
         </div>
         <br>
         <!-- <ol>
-          <li>Refactor</li>
-          <li>Change how player color amount (To arrays of rgb like Reality ex: amount: [255,255,255], auto: [true,true,true], unlock: [true,true,true] )
-          <br>and game variables/cconstant are stored</li>
-          <li>Cheat tab to change variables (for balancing)
-          <br>Can have fields to enter cost/scaling etc.
-          <br>Activated via import section</li>
           <li>Autoclickers priority Red => Green => Blue</li>
           <li>Better pop-up while saving/loading to make it less dull</li>
-          <li>Better buttons</li>
           <li>Mobile compatability</li>
           <li>changelog at settings</li>
           <li>Update Readme</li>
@@ -44,7 +37,8 @@
       </div>
       <div id="tab3">
         <button-custom :name="save"></button-custom>
-        <button-custom :name="load"></button-custom><br>
+        <button-custom :name="load"></button-custom>
+        <span id="gameSavedLoadedPopup"></span><br>
         <button-custom :name="exportGame"></button-custom>
         <button-custom :name="importGame"></button-custom><br>
         <button-custom :name="reset"></button-custom><br>

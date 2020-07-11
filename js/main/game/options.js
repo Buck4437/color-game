@@ -5,7 +5,7 @@ new Vue ({
       text: "Save",
       onclick: function(){
         save();
-        alert("Game saved!")
+        $("#gameSavedLoadedPopup").text("Game saved!")
       }
     },
     load: {
@@ -54,12 +54,12 @@ new Vue ({
 
 function save(){
   localStorage.setItem('player', JSON.stringify(player))
-  saveTimer = 10
+  game.saveTimer = 10
 }
 
 function saveTimerCountdown(){
-  saveTimer -= 0.05
-  if (saveTimer < 0){
+  game.saveTimer -= 0.05
+  if (game.saveTimer < 0){
     save()
   }
 }
@@ -82,6 +82,12 @@ function playerVersionFixer(){
     //too old
     alert("Your save is incompatible with this version of game and therefore has been reset.")
   }
+  if(versionNo == [0,0,0,1]){
+    resetGame()
+  }
+  if(versionNo != [0,0,0,3]){
+    versionNo = [0,0,0,3]
+  }
   return
 }
 
@@ -97,7 +103,7 @@ function importSave(string){
 function loadSave(string){
   if(IsJsonString(string) && string != null){
     importSave(string)
-    switchTab("tab1")
+    // switchTab("tab1")
     return true
   }
   return false

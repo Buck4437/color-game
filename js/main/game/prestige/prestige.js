@@ -1,6 +1,6 @@
 function resetColor(){
   for (let item of arguments){
-    player[item] = defaultSave[item]
+    player.colors[item].amount = defaultSave.colors[item].amount
   }
 }
 

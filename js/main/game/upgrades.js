@@ -5,7 +5,7 @@ new Vue ({
   },
   computed: {
     topText: function(){
-      return "Red: " + player.red + (player.unlocks.upgrades.green ? ", Green: " + player.green : "" ) + (player.unlocks.upgrades.blue ? ", Blue: " + player.blue: "" )
+      return "Red: " + player.colors.red.amount + (player.colors.green.upgrades.isUnlocked ? ", Green: " + player.colors.green.amount : "" ) + (player.colors.blue.upgrades.isUnlocked ? ", Blue: " + player.colors.blue.amount: "" )
     },
     upgrades: function(){
       let costParse = this.costParse
@@ -34,13 +34,13 @@ new Vue ({
         },
         {
           id: 1,
-          auto: colorUpgradesProperties("green", "auto", styles, !player.unlocks.upgrades.green),
-          multi: colorUpgradesProperties("green", "multi", styles, !player.unlocks.upgrades.green)
+          auto: colorUpgradesProperties("green", "auto", styles, !player.colors.green.upgrades.isUnlocked),
+          multi: colorUpgradesProperties("green", "multi", styles, !player.colors.green.upgrades.isUnlocked)
         },
         {
           id: 2,
-          auto: colorUpgradesProperties("blue", "auto", styles, !player.unlocks.upgrades.blue),
-          multi: colorUpgradesProperties("blue", "multi", styles, !player.unlocks.upgrades.blue)
+          auto: colorUpgradesProperties("blue", "auto", styles, !player.colors.blue.upgrades.isUnlocked),
+          multi: colorUpgradesProperties("blue", "multi", styles, !player.colors.blue.upgrades.isUnlocked)
         }
       ]
     },
@@ -51,30 +51,30 @@ function colorUpgradesProperties(name, type, styles, isHidden){
   return{
     color: name,
     onclick: function(){
-      if(canbuyColorUpgrades(name, type, player.upgrades[name][type] + 1)){
-        buyColorUpgrades(name, type, player.upgrades[name][type] + 1)
+      if(canbuyColorUpgrades(name, type, player.colors[name].upgrades[type] + 1)){
+        buyColorUpgrades(name, type, player.colors[name].upgrades[type] + 1)
         updateAutobuyers()
       }
     },
     isHidden: isHidden,
-    disabled: !canbuyColorUpgrades(name, type, player.upgrades[name][type] + 1),
+    disabled: !canbuyColorUpgrades(name, type, player.colors[name].upgrades[type] + 1),
     styles: styles
   }
 }
 
-function buyColorUpgrades(category, type, level){
-  for (let currency in upgradesCost[category][type][level]){
-    player[currency] -= upgradesCost[category][type][level][currency]
+function buyColorUpgrades(name, type, level){
+  for (let currency in game.upgradesCost[name][type][level]){
+    player.colors[currency].amount -= game.upgradesCost[name][type][level][currency]
   }
-  player.upgrades[category][type] = level
+  player.colors[name].upgrades[type] = level
 }
 
 function canbuyColorUpgrades(category, type, level){
-  if(upgradesCost[category][type][level] === undefined){
+  if(game.upgradesCost[category][type][level] === undefined){
     return false
   }
-  for (let currency in upgradesCost[category][type][level]){
-    if(player[currency] < upgradesCost[category][type][level][currency]){
+  for (let currency in game.upgradesCost[category][type][level]){
+    if(player.colors[currency].amount < game.upgradesCost[category][type][level][currency]){
       return false
     }
   }
