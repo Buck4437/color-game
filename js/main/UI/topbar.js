@@ -36,7 +36,7 @@ function topBarButtonsProperties(id, text, tabID, style, selectedTab){
       text: text,
       onclick: function(){
         switchTab(tabID)
-        $("#exportedSaveField").val("")
+        $("#gameSavedLoadedPopup").text("")
       },
       style: selectedTab.tab == tabID ? style.selected : style.deselected,
       disabled: selectedTab.tab == tabID

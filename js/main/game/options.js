@@ -5,8 +5,7 @@ new Vue ({
       text: "Save",
       onclick: function(){
         save();
-        $("#exportedSaveField").val("Game saved!")
-
+        $("#gameSavedLoadedPopup").text("Game saved!")
       }
     },
     load: {
