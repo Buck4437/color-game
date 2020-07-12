@@ -21,7 +21,7 @@ new Vue ({
         }
       }
       return [
-        topBarButtonsProperties(0, "Primary", "tab1", style, selectedTab),
+        topBarButtonsProperties(0, "Colors", "tab1", style, selectedTab),
         topBarButtonsProperties(1, "Upgrades", "tab2", style, selectedTab),
         topBarButtonsProperties(2, "Settings", "tab3", style, selectedTab)
       ]
