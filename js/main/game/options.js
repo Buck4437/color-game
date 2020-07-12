@@ -82,11 +82,11 @@ function playerVersionFixer(){
     //too old
     alert("Your save is incompatible with this version of game and therefore has been reset.")
   }
-  if(versionNo == [0,0,0,1]){
+  if(versionNo[3] == 1){
     resetGame()
   }
-  if(versionNo != [0,0,0,3]){
-    versionNo = [0,0,0,3]
+  if(versionNo != [0,1,0,0]){
+    versionNo = [0,1,0,0]
   }
   return
 }
@@ -103,7 +103,7 @@ function importSave(string){
 function loadSave(string){
   if(IsJsonString(string) && string != null){
     importSave(string)
-    // switchTab("tab1")
+    switchTab("tab1")
     return true
   }
   return false

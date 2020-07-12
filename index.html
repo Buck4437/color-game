@@ -18,12 +18,6 @@
         <div id="playerMain">
           <player-rgb v-for="color in colors" :global="color.global" :bar="color.bar" :addsub="color.addsub" :auto="color.auto" :key="color.id"></player-rgb>
         </div>
-        <br>
-        <!-- <ol>
-          <li>Autoclickers priority Red => Green => Blue</li>
-          <li>Mobile compatability</li>
-          <li>Update Readme</li>
-        </ol> -->
       </div>
       <div id="tab2">
         <span class="tab2Headings" v-html="topText"></span><br><br>
@@ -52,7 +46,7 @@
     </div>
   </body>
   <script type="text/javascript" src="js/libraries/jquery-3.4.1.js"></script>
-  <script src="js/libraries/vue.js"></script>
+  <script src="js/libraries/vue.min.js"></script>
   <script src="js/libraries/custom-functions.js"></script>
   <script src="js/components/others/buttons/button-custom.js"></script>
   <script src="js/components/others/buttons/colorUpgrades/button-color-upgrades-auto.js"></script>
