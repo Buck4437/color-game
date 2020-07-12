@@ -30,7 +30,7 @@ button:hover{
   margin-bottom: 20px;
 }
 
-#tab2 button{
+#tabUpgrades button{
   background-color:black;
   color:white;
   width:250px;
@@ -42,7 +42,7 @@ button:hover{
   font-size: 17px;
 }
 
-#tab3 button{
+#tabOptions button{
   background-color:black;
   color:white;
   padding: 10px 28px;

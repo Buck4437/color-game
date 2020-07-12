@@ -31,7 +31,10 @@ var defaultSave = {
       }
     }
   },
-  version: [0,1,1,0]
+  lights:{
+    isUnlocked: false
+  },
+  version: [0,1,1,1]
   // [major, minor, bugfix, internal]
 }
 var player = {}

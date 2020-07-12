@@ -1,5 +1,5 @@
 new Vue ({
-  el: "#tab2",
+  el: "#tabUpgrades",
   data: {
     player: player
   },

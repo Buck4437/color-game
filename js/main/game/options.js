@@ -1,5 +1,5 @@
 new Vue ({
-  el: "#tab3",
+  el: "#tabOptions",
   data: {
     save: {
       text: "Save",
@@ -78,7 +78,7 @@ function ImportAndSaveFixer(property, save){
 function playerVersionFixer(){
   let versionNo = player.version
   if(versionNo != [0,1,1,0]){
-    versionNo = [0,1,1,0]
+    player.version = [0,1,1,1]
   }
   return
 }
@@ -89,30 +89,32 @@ function importSaveVersionChecker(save){
     alert("Your save is incompatible with this version of game and therefore has been reset.")
     return false
   }
-  else if(save.version[3] != 0){
-    alert("You cannot use test saves in live version.")
-    return false
-  }
+  // else if(save.version[3] != 0){
+  //   alert("You cannot use test saves in live version.")
+  //   return false
+  // }
   return true
 }
 
 function importSave(string){
    let save = JSON.parse(string)
-   if(!importSaveVersionChecker(save)){
-     return
+   if(importSaveVersionChecker(save)){
+     for (let prop in defaultSave){
+       ImportAndSaveFixer(prop, save)
+     }
+     playerVersionFixer()
+     updateAutobuyers()
+     return true
    }
-   for (let prop in defaultSave){
-     ImportAndSaveFixer(prop, save)
-   }
-   playerVersionFixer()
-   updateAutobuyers()
-   return true
+   return false
 }
 
 function loadSave(string){
   if(IsJsonString(string) && string != null){
-    importSave(string)
-    switchTab("tab1")
+    if(importSave(string)){
+      switchTab("tabMain")
+      return true
+    }
     return true
   }
   return false
@@ -135,5 +137,5 @@ function exportSave(){
 function resetGame(){
   importSave(JSON.stringify(defaultSave))
   save()
-  switchTab("tab1")
+  switchTab("tabMain")
 }

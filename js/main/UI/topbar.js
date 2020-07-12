@@ -21,19 +21,21 @@ new Vue ({
         }
       }
       return [
-        topBarButtonsProperties(0, "Colors", "tab1", style, selectedTab),
-        topBarButtonsProperties(1, "Upgrades", "tab2", style, selectedTab),
-        topBarButtonsProperties(2, "Settings", "tab3", style, selectedTab)
+        topBarButtonsProperties(0, "Colors", false, "tabMain", style, selectedTab),
+        topBarButtonsProperties(1, "Upgrades", false, "tabUpgrades", style, selectedTab),
+        topBarButtonsProperties(3, "Lights", !player.lights.isUnlocked, "tabLights", style, selectedTab),
+        topBarButtonsProperties(2, "Options", false, "tabOptions", style, selectedTab)
       ]
     }
   }
 })
 
-function topBarButtonsProperties(id, text, tabID, style, selectedTab){
+function topBarButtonsProperties(id, text, isHidden, tabID, style, selectedTab){
   return{
     id: id,
     tab:{
       text: text,
+      isHidden: isHidden,
       onclick: function(){
         switchTab(tabID)
         $("#gameSavedLoadedPopup").text("")
@@ -45,7 +47,7 @@ function topBarButtonsProperties(id, text, tabID, style, selectedTab){
 }
 
 function updateTab(){
-  let tabs = ["tab1", "tab2","tab3"]
+  let tabs = ["tabMain", "tabUpgrades", "tabLights", "tabOptions"]
   for(let i=0;i<tabs.length;i++){
     $("#"+tabs[i]).css("display", "none")
   }

@@ -14,12 +14,12 @@
     </div>
     <br>
     <div id="tabs">
-      <div id="tab1">
+      <div id="tabMain" class="tabs">
         <div id="playerMain">
           <player-rgb v-for="color in colors" :global="color.global" :bar="color.bar" :addsub="color.addsub" :auto="color.auto" :key="color.id"></player-rgb>
         </div>
       </div>
-      <div id="tab2">
+      <div id="tabUpgrades" class="tabs">
         <span class="tab2Headings" v-html="topText"></span><br><br>
         <div v-for="upgrade in upgrades" :name="upgrade" :key="upgrade.id">
           <button-color-upgrades-auto :name="upgrade.auto"></button-color-upgrades-auto>
@@ -27,7 +27,10 @@
           <br>
         </div>
       </div>
-      <div id="tab3">
+      <div id="tabLights" class="tabs">
+        placeholder
+      </div>
+      <div id="tabOptions" class="tabs">
         <button-custom :name="save"></button-custom>
         <button-custom :name="load"></button-custom>
         <span id="gameSavedLoadedPopup"></span><br>
@@ -46,7 +49,7 @@
     </div>
   </body>
   <script type="text/javascript" src="js/libraries/jquery-3.4.1.js"></script>
-  <script src="js/libraries/vue.min.js"></script>
+  <script src="js/libraries/vue.js"></script>
   <script src="js/libraries/custom-functions.js"></script>
   <script src="js/components/others/buttons/button-custom.js"></script>
   <script src="js/components/others/buttons/colorUpgrades/button-color-upgrades-auto.js"></script>
