@@ -91,13 +91,28 @@ function gainRateColor(){
 
 function gainColor(color){
   if(canGainColor()[color]){
-    prestige(color)
+    prestigeColor(color)
     player.colors[color].amount += gainRateColor()[color]
     if(player.colors[color].amount > 255){
       player.colors[color].amount = 255
     }
   }
 }
+
+function resetColor(){
+  for (let item of arguments){
+    player.colors[item].amount = defaultSave.colors[item].amount
+  }
+}
+
+function prestigeColor(color){
+  if(color == "green"){
+    resetColor("red")
+  }else if(color == "blue"){
+    resetColor("red", "green")
+  }
+}
+
 
 function setAutoBuyColor(color, boolean, interval){
   player.colors[color].auto = boolean

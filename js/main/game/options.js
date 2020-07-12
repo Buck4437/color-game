@@ -77,8 +77,8 @@ function ImportAndSaveFixer(property, save){
 
 function playerVersionFixer(){
   let versionNo = player.version
-  if(versionNo != [0,1,0,0]){
-    versionNo = [0,1,0,0]
+  if(versionNo != [0,1,1,0]){
+    versionNo = [0,1,1,0]
   }
   return
 }
