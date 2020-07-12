@@ -32,7 +32,25 @@ var defaultSave = {
     }
   },
   lights:{
-    isUnlocked: false
+    isUnlocked: false,
+    amount: 0,
+    generators:{
+      level: 0,
+      resets: 0,
+      red: {
+        amount: 0,
+        auto: false
+      },
+      green: {
+        amount: 0,
+        auto: false
+      },
+      blue: {
+        amount: 0,
+        auto: false
+      }
+    },
+    upgrades: null
   },
   version: [0,1,1,1]
   // [major, minor, bugfix, internal]
@@ -61,7 +79,8 @@ var game = {
     }
   },
   selectedTab:{
-    tab: "tab1"
+    mainTab: "tabMain",
+    lights: "lightsTabRGBLights"
   },
   saveTimer: 10
 }

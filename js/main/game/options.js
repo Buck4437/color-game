@@ -112,7 +112,7 @@ function importSave(string){
 function loadSave(string){
   if(IsJsonString(string) && string != null){
     if(importSave(string)){
-      switchTab("tabMain")
+      switchMainTab("tabMain")
       return true
     }
     return true

@@ -8,7 +8,7 @@ button:hover{
   cursor: pointer
 }
 
-#top-bar button{
+#topBarButtonsMain, #topBarButtonsUpgrades, #topBarButtonsOptions{
   background-color:black;
   color:white;
   padding: 10px 28px;
@@ -16,10 +16,33 @@ button:hover{
   border: 3px solid white;
   margin: 5px;
   font-size: 20px;
+  transition-duration: 0.3s;
 }
 
+#topBarButtonsMain:hover, #topBarButtonsUpgrades:hover, #topBarButtonsOptions:hover {
+  background-color:white;
+  color:black;
+  border: 3px solid white;
+}
 
-#playerMain button{
+#topBarButtonsLights{
+  background-color: black;
+  color: #0f0;
+  padding: 10px 28px;
+  border-radius: 4px;
+  border: 4px solid #0f0;
+  margin: 5px;
+  font-size: 20px;
+  transition-duration: 0.3s;
+}
+
+#topBarButtonsLights:hover{
+  background-color: #0f0;
+  color: black;
+  border-color: #0f0
+}
+
+#tabMain button{
   height: 46px;
   background-color: black;
   border-radius: 8px;

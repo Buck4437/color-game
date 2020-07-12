@@ -10,13 +10,16 @@
   </head>
   <body style="background-color:black">
     <div id="top-bar">
-      <button-custom v-for="button in buttons" :name="button.tab" :key="button.id"></button-custom>
+      <button-tab-bar v-for="button in buttons" :name="button.tab" :key="button.id"></button-tab-bar>
     </div>
     <br>
     <div id="tabs">
       <div id="tabMain" class="tabs">
         <div id="playerMain">
           <player-rgb v-for="color in colors" :global="color.global" :bar="color.bar" :addsub="color.addsub" :auto="color.auto" :key="color.id"></player-rgb>
+        </div>
+        <div id="unlockLights">
+          <button-custom :name="gainLight"></button-custom>
         </div>
       </div>
       <div id="tabUpgrades" class="tabs">
@@ -26,9 +29,6 @@
           <button-color-upgrades-multi :name="upgrade.multi"></button-color-upgrades-multi>
           <br>
         </div>
-      </div>
-      <div id="tabLights" class="tabs">
-        placeholder
       </div>
       <div id="tabOptions" class="tabs">
         <button-custom :name="save"></button-custom>
@@ -46,6 +46,17 @@
         <a href="https://discord.com/invite/N8MuKMz" style="color: blue" target="_blank">Discord server</a> |
         <a href="changelog.html" style="color: blue" target="_blank">Changelog</a>
       </div>
+      <div id="tabLights" class="tabs">
+        <div id="lights-top-bar">
+          <button-tab-bar v-for="button in buttons" :name="button.tab" :key="button.id"></button-tab-bar>
+        </div>
+        <br>
+        <div id="lightsTabRGBLights">
+        </div>
+        <div id="lightsTabUpgrades" style="display: none">
+          2
+        </div>
+      </div>
     </div>
   </body>
   <script type="text/javascript" src="js/libraries/jquery-3.4.1.js"></script>
@@ -53,14 +64,16 @@
   <script src="js/libraries/custom-functions.js"></script>
   <script src="js/components/others/buttons/button-custom.js"></script>
   <script src="js/components/others/buttons/colorUpgrades/button-color-upgrades-auto.js"></script>
+  <script src="js/components/others/buttons/button-tab-bar.js"></script>
   <script src="js/components/others/buttons/colorUpgrades/button-color-upgrades-multi.js"></script>
   <script src="js/components/others/color-bar/color-bar.js"></script>
   <script src="js/components/main/player-rgb.js"></script>
   <script src="js/main/declare.js"></script>
-  <script src="js/main/game/prestige/prestige.js"></script>
   <script src="js/main/game/playerMain.js"></script>
   <script src="js/main/game/upgrades.js"></script>
   <script src="js/main/game/options.js"></script>
+  <script src="js/main/game/lights/prestige.js"></script>
+  <script src="js/main/game/lights/sub-tabs.js"></script>
   <script src="js/main/UI/topbar.js"></script>
   <script src="js/main/initiate.js"></script>
 </html>
