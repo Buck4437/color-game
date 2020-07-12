@@ -16,31 +16,21 @@
     <div id="tabs">
       <div id="tab1">
         <div id="playerMain">
-          <player-rgb v-for="color in colors" :bar="color.bar" :addsub="color.addsub" :auto="color.auto" :key="color.id"></player-rgb>
+          <player-rgb v-for="color in colors" :global="color.global" :bar="color.bar" :addsub="color.addsub" :auto="color.auto" :key="color.id"></player-rgb>
         </div>
-        <br>
-        <!-- <ol>
-          <li>Refactor
-          <li>Custom components for upgrade buttons</li>
-          <li>Make it so autobuyers are off when the upgrade for unlocking them is set to 0
-          <br>Change last 2 automation to prestige when possible (when bought upgrades)</li>
-          <li>Unlock features based on progression (autobuyers, upgrades, next bars)</li>
-          <li>Cheat tab to change variables (for balancing)
-          <br>Can have fields to enter cost/scaling etc.
-          <br>Activated via import section</li>
-          <li>Hotkey</li>
-          <li>better pop-up while saving/loading to make it less dull</li>
-          <li>Footer, changelog</li>
-          <li>Update Readme</li>
-        </ol> -->
       </div>
       <div id="tab2">
-        <span class="tab2Headings">Red: {{player.red}}</span><br><br>
-        <button-custom :name="upgrades.upgrade1"></button-custom>
+        <span class="tab2Headings" v-html="topText"></span><br><br>
+        <div v-for="upgrade in upgrades" :name="upgrade" :key="upgrade.id">
+          <button-color-upgrades-auto :name="upgrade.auto"></button-color-upgrades-auto>
+          <button-color-upgrades-multi :name="upgrade.multi"></button-color-upgrades-multi>
+          <br>
+        </div>
       </div>
       <div id="tab3">
         <button-custom :name="save"></button-custom>
-        <button-custom :name="load"></button-custom><br>
+        <button-custom :name="load"></button-custom>
+        <span id="gameSavedLoadedPopup"></span><br>
         <button-custom :name="exportGame"></button-custom>
         <button-custom :name="importGame"></button-custom><br>
         <button-custom :name="reset"></button-custom><br>
@@ -48,6 +38,10 @@
         <div id="exportedSave" style="display: none;">
             Save: <input type="text" id="exportedSaveField">
         </div>
+        <br>
+        <br>
+        <a href="https://discord.com/invite/N8MuKMz" style="color: blue" target="_blank">Discord server</a> |
+        <a href="changelog.html" style="color: blue" target="_blank">Changelog</a>
       </div>
     </div>
   </body>
@@ -55,12 +49,15 @@
   <script src="js/libraries/vue.min.js"></script>
   <script src="js/libraries/custom-functions.js"></script>
   <script src="js/components/others/buttons/button-custom.js"></script>
+  <script src="js/components/others/buttons/colorUpgrades/button-color-upgrades-auto.js"></script>
+  <script src="js/components/others/buttons/colorUpgrades/button-color-upgrades-multi.js"></script>
   <script src="js/components/others/color-bar/color-bar.js"></script>
-  <script src="js/components/main/tab1/player-rgb.js"></script>
+  <script src="js/components/main/player-rgb.js"></script>
   <script src="js/main/declare.js"></script>
-  <script src="js/main/tabs/tab1/tab1.js"></script>
-  <script src="js/main/tabs/tab2/tab2.js"></script>
-  <script src="js/main/tabs/tab3/tab3.js"></script>
-  <script src="js/main/top/topbar.js"></script>
+  <script src="js/main/game/prestige/prestige.js"></script>
+  <script src="js/main/game/playerMain.js"></script>
+  <script src="js/main/game/upgrades.js"></script>
+  <script src="js/main/game/options.js"></script>
+  <script src="js/main/UI/topbar.js"></script>
   <script src="js/main/initiate.js"></script>
 </html>

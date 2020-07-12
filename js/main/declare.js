@@ -1,53 +1,64 @@
-const defaultSave = {
-  red: 0,
-  redAuto: false,
-  green: 0,
-  greenAuto: false,
-  blue: 0,
-  blueAuto: false,
-  unlocks: {
-   // redAuto: false,
-   // green: true, (unlock at beginning)
-    greenAuto: false,
-    blue: false,
-    blueAuto: false
+var defaultSave = {
+  colors:{
+    red:{
+      isUnlocked: true,
+      amount: 0,
+      auto: false,
+      upgrades:{
+        isUnlocked: true,
+        auto: 0,
+        multi: 0
+      }
+    },
+    green:{
+      isUnlocked: true,
+      amount: 0,
+      auto: false,
+      upgrades:{
+        unlocked: false,
+        auto: 0,
+        multi: 0
+      }
+    },
+    blue:{
+      isUnlocked: false,
+      amount: 0,
+      auto: false,
+      upgrades:{
+        unlocked: false,
+        auto: 0,
+        multi: 0
+      }
+    }
   },
-  upgrades:{
-    redAuto: 0,
-    redMulti: 0,
-    greenAuto: 0,
-    greenMulti: 0,
-    blueAuto: 0,
-    blueMulti: 0,
-  },
-  version: "0.0.0"
-};
-
+  version: [0,1,0,0]
+  // [major, minor, bugfix, internal]
+}
 var player = {}
 Object.assign(player, defaultSave)
 
-const upgradesCost =  {
-  redAuto: [
-    null,
-    {red: 10},
-    {green: 10000},
-    {blue: 100000}
-  ],
-  redMulti:[
-    null,
-    {red: 10},
-    {red: 40},
-    {red: 160}
-  ],
+var game = {
+  autobuyersInterval:{
+    red: null,
+    green: null,
+    blue: null
+  },
+  upgradesCost:{
+    red:{
+      auto: [null, {red: 10}, {red: 100}, {green: 3}, {green: 5}, {green: 15}],
+      multi: [null, {red: 10}, {red: 40}, {green: 25}],
+    },
+    green:{
+      auto: [null, {green: 10}, {green: 100}, {blue: 20}, {blue: 50}],
+      multi:[null, {green: 50}, {blue: 5}, {blue: 50}],
+    },
+    blue:{
+      auto: [null, {blue: 10}, {blue: 100}],
+      multi:[null, {blue: 50}],
+    }
+  },
+  selectedTab:{
+    tab: "tab1"
+  },
+  saveTimer: 10
 }
-
-var autobuyersInterval = {
-  red: null,
-  green: null,
-  blue: null
-}
-var selectedTab = {
-  tab: "tab1"
-}
-
-var saveTimer = 10

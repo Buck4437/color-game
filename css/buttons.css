@@ -1,5 +1,11 @@
 button{
-  cursor: pointer;
+  vertical-align: top;
+  transition-duration: 0.1s;
+}
+
+button:hover{
+  box-shadow: 0 0 7px 1px #fff;
+  cursor: pointer
 }
 
 #top-bar button{
