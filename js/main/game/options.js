@@ -77,27 +77,36 @@ function ImportAndSaveFixer(property, save){
 
 function playerVersionFixer(){
   let versionNo = player.version
-  if(versionNo == "0.0.0"){
-    resetGame()
-    //too old
-    alert("Your save is incompatible with this version of game and therefore has been reset.")
-  }
-  if(versionNo[3] == 1){
-    resetGame()
-  }
   if(versionNo != [0,1,0,0]){
     versionNo = [0,1,0,0]
   }
   return
 }
 
+function importSaveVersionChecker(save){
+  if(save.version == "0.0.0"){
+    resetGame()
+    alert("Your save is incompatible with this version of game and therefore has been reset.")
+    return false
+  }
+  else if(save.version[3] != 0){
+    alert("You cannot use test saves in live version.")
+    return false
+  }
+  return true
+}
+
 function importSave(string){
    let save = JSON.parse(string)
+   if(!importSaveVersionChecker(save)){
+     return
+   }
    for (let prop in defaultSave){
      ImportAndSaveFixer(prop, save)
    }
    playerVersionFixer()
    updateAutobuyers()
+   return true
 }
 
 function loadSave(string){
