@@ -34,9 +34,7 @@ const defaultSave = {
   lights:{
     isUnlocked: false,
     amount: 0,
-    generators:{
-      level: 0,
-      resets: 0,
+    photons:{
       red: {
         amount: 0,
         auto: false

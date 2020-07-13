@@ -6,7 +6,7 @@ new Vue ({
   computed:{
     buttons: function(){
       let location = "lights"
-      let tabs = ["lightsTabRGBLights", "lightsTabUpgrades"]
+      let tabs = ["lightsTabPhotons", "lightsTabUpgrades"]
       let style = {
         backgroundColor: "black",
         color: "#0c0",
@@ -17,7 +17,7 @@ new Vue ({
         width: "170px"
       }
       return [
-        topBarButtonsProperties(0, null, "Generators", false, location, tabs[0], tabs, style),
+        topBarButtonsProperties(0, null, "Photons", false, location, tabs[0], tabs, style),
         topBarButtonsProperties(1, null, "Light Upgrades", !player.lights.upgrades.isUnlocked, location, tabs[1], tabs, style),
       ]
     }
