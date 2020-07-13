@@ -6,6 +6,7 @@
         counter: "variable name/ object property, must be global"/ number (cannot be changed)
         name: "Displayed Name",
         max: BarMaxValue,
+        hideMax: true/false, (for fraction only)
         color: "barColor",
         display: "fraction"/"percentage"
         intRounding: "ceiling"/"floor"/"round"/"none" (fraction only) (default round)
@@ -77,7 +78,13 @@ let colorBarAmountComponent = {
           num = Math.round(this.count)
       }
       if(this.bar.name === undefined){
+        if(this.bar.hideMax == true){
+          return num
+        }
         return num + "/" + this.bar.max
+      }
+      if(this.bar.hideMax == true){
+        return this.bar.name + ":&nbsp" + num
       }
       return this.bar.name + ":&nbsp" + num + "/" + this.bar.max
     }

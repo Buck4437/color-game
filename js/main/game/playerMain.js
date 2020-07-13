@@ -39,14 +39,14 @@ new Vue ({
       }
       return [
         playerMainProperty(0, "red", false, "+" + gainRateColor().red +" Red", styles),
-        playerMainProperty(1, "green", false, "+" + "Reset to gain " + gainRateColor().green + " Green (Requires 255 Red)", styles, firstTimeUnlock().green),
-        playerMainProperty(2, "blue", !player.colors.blue.isUnlocked, "Reset to gain " + gainRateColor().blue +" Blue (Requires 255 Green)", styles, firstTimeUnlock().blue)
+        playerMainProperty(1, "green", false, "+" + "Reset to gain " + gainRateColor().green + " Green (Requires 255 Red)", styles, firstTimeUnlockColor().green),
+        playerMainProperty(2, "blue", !player.colors.blue.isUnlocked, "Reset to gain " + gainRateColor().blue +" Blue (Requires 255 Green)", styles, firstTimeUnlockColor().blue)
       ]
     }
   }
 })
 
-function firstTimeUnlock(){
+function firstTimeUnlockColor(){
   return{
     green: function(){
       player.colors.green.upgrades.isUnlocked = true
