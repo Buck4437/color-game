@@ -19,7 +19,8 @@ Vue.component('player-rgb',{
       text: String,
       isHidden: Boolean,
       style: Object,
-      unlocks: Function
+      unlocks: Function,
+      elementID: String
     }
   },
   methods:{
@@ -59,7 +60,8 @@ Vue.component('player-rgb',{
           unlocks()
         },
         style: canGainColor()[color] ? this.addsub.style.enabled : this.addsub.style.disabled,
-        disabled: !canGainColor()[color]
+        disabled: !canGainColor()[color],
+        elementID: this.addsub.elementID
       }
     },
     seen: function(){

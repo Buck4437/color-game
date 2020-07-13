@@ -12,6 +12,7 @@ new Vue({
           if(confirm("This will reset all colors and upgrades, in exchange for new currencies. Proceed?")){
             player.lights.isUnlocked = true
             prestigeLights()
+            switchMainTab("tabLights")
           }
         },
         style: {

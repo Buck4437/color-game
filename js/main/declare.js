@@ -50,7 +50,9 @@ const defaultSave = {
         auto: false
       }
     },
-    upgrades: null
+    upgrades: {
+      isUnlocked: false
+    }
   },
   version: [0,1,2,1]
   // [major, minor, bugfix, internal]

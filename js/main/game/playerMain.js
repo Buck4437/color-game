@@ -13,7 +13,8 @@ function playerMainProperty(id, name, isBarHidden, text, styles, unlockFunction)
       text: text,
       isHidden: isBarHidden,
       style: styles,
-      unlocks: unlockFunction
+      unlocks: unlockFunction,
+      elementID: "colors" + capitalizeFirstLetter(name) + "Add"
     },
   }
 }
@@ -39,7 +40,7 @@ new Vue ({
       }
       return [
         playerMainProperty(0, "red", false, "+" + gainRateColor().red +" Red", styles),
-        playerMainProperty(1, "green", false, "+" + "Reset to gain " + gainRateColor().green + " Green (Requires 255 Red)", styles, firstTimeUnlockColor().green),
+        playerMainProperty(1, "green", false, "Reset to gain " + gainRateColor().green + " Green (Requires 255 Red)", styles, firstTimeUnlockColor().green),
         playerMainProperty(2, "blue", !player.colors.blue.isUnlocked, "Reset to gain " + gainRateColor().blue +" Blue (Requires 255 Green)", styles, firstTimeUnlockColor().blue)
       ]
     }
