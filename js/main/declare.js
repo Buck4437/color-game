@@ -1,4 +1,4 @@
-var defaultSave = {
+const defaultSave = {
   colors:{
     red:{
       isUnlocked: true,
@@ -52,11 +52,10 @@ var defaultSave = {
     },
     upgrades: null
   },
-  version: [0,1,1,1]
+  version: [0,1,2,1]
   // [major, minor, bugfix, internal]
 }
-var player = {}
-Object.assign(player, defaultSave)
+var player = JSON.parse(JSON.stringify(defaultSave));
 
 var game = {
   autobuyersInterval:{
