@@ -68,7 +68,7 @@ setInterval(saveTimerCountdown, 50)
 
 function ImportAndSaveFixer(property, save){
   if(save[property] === undefined){
-    player[property] = JSON.parse(JSON.stringify(defaultSave[property]))
+    player[property] = defaultSave[property]
     return
   }
   player[property] = save[property]
@@ -104,6 +104,9 @@ function importSave(string){
      }
      playerVersionFixer()
      updateAutobuyers()
+     for (let prop in defaultGame){
+       game.selectedTab[prop] = defaultGame.selectedTab[prop]
+     }
      return true
    }
    return false
@@ -138,5 +141,4 @@ function resetGame(){
   importSave(JSON.stringify(defaultSave))
   save()
   switchMainTab("tabMain")
-  game.selectedTab = JSON.parse(JSON.stringify(defaultGame.selectedTab))
 }
