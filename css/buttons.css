@@ -88,7 +88,6 @@ button:hover{
   border-color: #0f0
 }
 
-
 #topBarButtonsOptions{
   background-color:black;
   color:white;
@@ -97,6 +96,7 @@ button:hover{
   margin: 5px;
   font-size: 20px;
   transition-duration: 0.3s;
+  float: right;
 }
 
 #topBarButtonsOptions:hover {
