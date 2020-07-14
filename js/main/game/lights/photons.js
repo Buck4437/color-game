@@ -27,10 +27,11 @@ new Vue({
           intRounding: "floor"
         },
         gainLights:{
+          elementID: "buttonPrestigeLights",
           text: "Reset to gain " + gainRateLights().lights + " Light" + (gainRateLights().lights != 1 ? "s" : ""),
           onclick: function(){
             if(player.options.confirmation.lights){
-              if(confirm("This will reset all colors and upgrades in exchanging for lights. Proceed?")){
+              if(confirm("This will reset all colors and upgrades in exchanging for lights. Proceed? (You can't turn this off in Settings yet because i have not implemented it yet bear with me)")){
                 prestigeLights()
               }
               return

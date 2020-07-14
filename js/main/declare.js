@@ -63,7 +63,7 @@ const defaultSave = {
 }
 var player = JSON.parse(JSON.stringify(defaultSave));
 
-var defaultGame = {
+const defaultGame = {
   autobuyersInterval:{
     red: null,
     green: null,

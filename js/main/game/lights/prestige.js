@@ -38,13 +38,13 @@ function prestigeLights(){
       resetColorUpgrades(color, type)
     }
     clearInterval(game.autobuyersInterval[color])
-    player.colors[color].auto = defaultSave.colors[color].auto
+    player.colors[color].auto = JSON.parse(JSON.stringify(defaultSave.colors[color].auto))
   }
   gainLights()
 }
 
 function resetColorUpgrades(color, type){
-  player.colors[color].upgrades[type] = defaultSave.colors[color].upgrades[type]
+  player.colors[color].upgrades[type] = JSON.parse(JSON.stringify(defaultSave.colors[color].upgrades[type]))
 }
 
 function gainLights(){

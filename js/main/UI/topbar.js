@@ -12,7 +12,7 @@ new Vue ({
         topBarButtonsProperties(1, "topBarButtonsUpgrades", "Upgrades", false, location, "tabUpgrades", tabs),
         topBarButtonsProperties(2, "topBarButtonsLights", "Lights", !player.lights.isUnlocked, location, "tabLights", tabs),
         topBarButtonsProperties(3, "topBarButtonsOptions", "Options", false, location, "tabOptions", tabs)
-        ]
+      ]
     }
   }
 })
