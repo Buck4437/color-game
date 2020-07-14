@@ -4,7 +4,7 @@ new Vue({
     player: player
   },
   computed:{
-    gainLight: function (){
+    gainLights: function (){
       return{
         text: "Reset all progress to unlock new prestige layer.",
         isHidden: !((player.colors.red.amount >= 255 && player.colors.green.amount >= 255) && (player.colors.blue.amount >= 255 && !player.lights.isUnlocked)),
@@ -24,6 +24,10 @@ new Vue({
     }
   }
 })
+
+function canPrestigeLights(){
+  return (player.colors.red.amount >= 255 && player.colors.green.amount >= 255) && player.colors.blue.amount >= 255
+}
 
 function prestigeLights(){
   resetColor("red", "green", "blue")
@@ -52,3 +56,4 @@ function gainRateLights(){
     lights: Math.max(Math.floor( (player.colors.blue.amount+1)/16 - 15 ), 1)||1
   }
 }
+//temp formula

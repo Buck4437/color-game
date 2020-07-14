@@ -35,6 +35,7 @@ const defaultSave = {
     isUnlocked: false,
     amount: 0,
     photons:{
+      isInitiated: false,
       red: {
         amount: 0,
         auto: false
@@ -52,12 +53,17 @@ const defaultSave = {
       isUnlocked: false
     }
   },
+  options:{
+    confirmation:{
+      lights: true
+    }
+  },
   version: [0,1,2,1]
   // [major, minor, bugfix, internal]
 }
 var player = JSON.parse(JSON.stringify(defaultSave));
 
-var game = {
+var defaultGame = {
   autobuyersInterval:{
     red: null,
     green: null,
@@ -83,3 +89,5 @@ var game = {
   },
   saveTimer: 10
 }
+
+var game = JSON.parse(JSON.stringify(defaultGame));

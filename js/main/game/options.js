@@ -137,5 +137,6 @@ function exportSave(){
 function resetGame(){
   importSave(JSON.stringify(defaultSave))
   save()
-  switchTab("tabMain")
+  switchMainTab("tabMain")
+  game.selectedTab = defaultGame.selectedTab
 }

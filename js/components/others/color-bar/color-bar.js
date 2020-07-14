@@ -31,6 +31,7 @@ let colorBarAmountComponent = {
         type: Number,
         required: true
       },
+      hideMax: Boolean,
       color: String,
       display: String,
       intRounding: String
