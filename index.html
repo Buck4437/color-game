@@ -22,7 +22,7 @@
           <button-custom :name="gainLights"></button-custom>
         </div>
       </div>
-      <div id="tabUpgrades" class="tabs">
+      <div id="tabUpgrades" class="tabs" style="display: none">
         <span class="tab2Headings" v-html="topText"></span><br><br>
         <div v-for="upgrade in upgrades" :name="upgrade" :key="upgrade.id">
           <button-color-upgrades-auto :name="upgrade.auto"></button-color-upgrades-auto>
@@ -30,7 +30,7 @@
           <br>
         </div>
       </div>
-      <div id="tabLights" class="tabs">
+      <div id="tabLights" class="tabs" style="display: none">
         <div id="lights-top-bar">
           <button-tab-bar v-for="button in buttons" :name="button.tab" :key="button.id"></button-tab-bar>
         </div>
@@ -48,7 +48,7 @@
           2
         </div>
       </div>
-      <div id="tabOptions" class="tabs">
+      <div id="tabOptions" class="tabs" style="display: none">
         <button-custom :name="save"></button-custom>
         <button-custom :name="load"></button-custom>
         <span id="gameSavedLoadedPopup"></span><br>

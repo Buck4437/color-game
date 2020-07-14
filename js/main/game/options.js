@@ -115,7 +115,7 @@ function importSave(string){
 function loadSave(string){
   if(IsJsonString(string) && string != null){
     if(importSave(string)){
-      switchMainTab("tabMain")
+      resetTabs()
       return true
     }
     return true
@@ -140,5 +140,10 @@ function exportSave(){
 function resetGame(){
   importSave(JSON.stringify(defaultSave))
   save()
+  resetTabs()
+}
+
+function resetTabs(){
   switchMainTab("tabMain")
+  switchLightsTab("lightsTabPhotons")
 }

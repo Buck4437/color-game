@@ -23,3 +23,16 @@ new Vue ({
     }
   }
 })
+
+function updateLightsTab(){
+  let tabs = ["lightsTabPhotons", "lightsTabUpgrades"]
+  for(let i=0;i<tabs.length;i++){
+    $("#"+tabs[i]).css("display", "none")
+  }
+    $("#"+ game.selectedTab.lights).css("display", "block")
+}
+
+function switchLightsTab(tab){
+    game.selectedTab.lights= tab
+    updateLightsTab()
+}
