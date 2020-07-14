@@ -30,6 +30,19 @@
           <br>
         </div>
       </div>
+      </div>
+      <div id="tabLights" class="tabs">
+        <div id="lights-top-bar">
+          <button-tab-bar v-for="button in buttons" :name="button.tab" :key="button.id"></button-tab-bar>
+        </div>
+        <br>
+        <div id="lightsTabPhotons">
+          Help me this is hell
+        </div>
+        <div id="lightsTabUpgrades" style="display: none">
+          2
+        </div>
+      </div>
       <div id="tabOptions" class="tabs">
         <button-custom :name="save"></button-custom>
         <button-custom :name="load"></button-custom>
@@ -45,19 +58,6 @@
         <br>
         <a href="https://discord.com/invite/N8MuKMz" style="color: blue" target="_blank">Discord server</a> |
         <a href="changelog.html" style="color: blue" target="_blank">Changelog</a>
-      </div>
-      <div id="tabLights" class="tabs">
-        <div id="lights-top-bar">
-          <button-tab-bar v-for="button in buttons" :name="button.tab" :key="button.id"></button-tab-bar>
-        </div>
-        <br>
-        <div id="lightsTabPhotons">
-          Help me this is hell
-        </div>
-        <div id="lightsTabUpgrades" style="display: none">
-          2
-        </div>
-      </div>
     </div>
   </body>
   <script type="text/javascript" src="js/libraries/jquery-3.4.1.js"></script>
