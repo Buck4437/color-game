@@ -89,3 +89,12 @@ new Vue({
     }
   }
 })
+
+function photonEffect(){
+  let photons = player.lights.photons.amount
+  return{
+    red: Math.round(100 + 100 * (photons * player.lights.photons.percentage.red/100)**0.5) / 100,
+    green: Math.round(100 + 100 * (photons * player.lights.photons.percentage.green/100)**0.4) / 100,
+    blue: Math.round(100 + 100 * (photons * player.lights.photons.percentage.blue/100)**0.3) / 100,
+  }
+}

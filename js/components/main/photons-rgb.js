@@ -83,8 +83,7 @@ Vue.component('photons-rgb',{
       }
     },
     effect: function(){
-      let effect = 1
-      return "=> x<span style='font-size: 25px; color: " + this.colorName +  "'> " + effect + "</span> multiplier to "  + capitalizeFirstLetter(this.colorName) + "</span> gain"
+      return "=> x<span style='font-size: 25px; color: " + this.colorName +  "'> " + photonEffect()[this.colorName] + "</span> multiplier to "  + capitalizeFirstLetter(this.colorName) + "</span> gain"
     }
   }
 })
