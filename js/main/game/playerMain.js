@@ -79,7 +79,7 @@ function gainColor(color){
 
 function resetColor(){
   for (let item of arguments){
-    player.colors[item].amount = defaultSave.colors[item].amount
+    player.colors[item].amount = 0
   }
 }
 
