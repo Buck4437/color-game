@@ -62,14 +62,8 @@ new Vue({
             player.lights.photons.isInitiated = true
             player.lights.upgrades.isUnlocked = true
           },
-          style: {
-            borderRadius: "8px",
-            height: "46px",
-            width: "300px",
-            color: "white",
-            border: "4px solid white",
-            cursor: "pointer"
-          }
+          style: player.lights.amount >= 1 ? buttonStyles.enabled : buttonStyles.disabled,
+          disabled: player.lights.amount < 1
         },
         double:{
           text: "x2 Photon gain speed. Cost: " + 2**(player.lights.photons.multi) + " Light" + (player.lights.photons.multi == 0 ? "" : "s"),

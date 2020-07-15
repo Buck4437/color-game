@@ -7,6 +7,12 @@ body{
   margin: 30px;
 }
 
+.currencyBarCurrencies{
+  font-size: 20px;
+  display: inline-block;
+  width: 200px;
+}
+
 .color-bar{
   width: 25%;
   min-width: 170px;

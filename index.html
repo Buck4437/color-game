@@ -9,6 +9,13 @@
     <title>Trichromacy</title>
   </head>
   <body style="background-color:black">
+    <div id="currency-bar">
+      <span class="currencyBarCurrencies" style="color:red">Red:&nbsp{{red}}</span>
+      <span class="currencyBarCurrencies" style="color:green">Green:&nbsp{{green}}</span>
+      <span class="currencyBarCurrencies" style="color:blue" v-if="player.colors.blue.isUnlocked">Blue:&nbsp{{blue}}</span>
+      <span class="currencyBarCurrencies"  style="color:#0f0" v-if="player.lights.isUnlocked">Lights:&nbsp{{lights}}</span>
+    </div>
+    <br>
     <div id="top-bar">
       <button-tab-bar v-for="button in buttons" :name="button.tab" :key="button.id"></button-tab-bar>
     </div>
@@ -23,7 +30,6 @@
         </div>
       </div>
       <div id="tabUpgrades" class="tabs" style="display: none">
-        <span class="tab2Headings" v-html="topText"></span><br><br>
         <div v-for="upgrade in upgrades" :name="upgrade" :key="upgrade.id">
           <button-color-upgrades-auto :name="upgrade.auto"></button-color-upgrades-auto>
           <button-color-upgrades-multi :name="upgrade.multi"></button-color-upgrades-multi>
@@ -53,7 +59,7 @@
           </div>
         </div>
         <div id="lightsTabUpgrades" style="display: none">
-          Coming soon...
+          WIP
         </div>
       </div>
       <div id="tabOptions" class="tabs" style="display: none">
@@ -92,6 +98,7 @@
   <script src="js/main/game/lights/sub-tabs.js"></script>
   <script src="js/main/game/lights/photons.js"></script>
   <script src="js/main/game/generateThings.js"></script>
-  <script src="js/main/UI/topbar.js"></script>
+  <script src="js/main/top/currencybar.js"></script>
+  <script src="js/main/top/topbar.js"></script>
   <script src="js/main/initiate.js"></script>
 </html>
