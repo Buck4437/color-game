@@ -1,4 +1,4 @@
-var defaultSave = {
+const defaultSave = {
   colors:{
     red:{
       isUnlocked: true,
@@ -31,13 +31,35 @@ var defaultSave = {
       }
     }
   },
-  version: [0,0,0,3]
+  lights:{
+    isUnlocked: false,
+    amount: 0,
+    photons:{
+      isInitiated: false,
+      amount: 0,
+      auto: false,
+      multi: 0,
+      percentage:{
+        red: 0,
+        green: 0,
+        blue: 0
+      }
+    },
+    upgrades: {
+      isUnlocked: false
+    }
+  },
+  options:{
+    confirmation:{
+      lights: true
+    }
+  },
+  version: [0,1,2,1]
   // [major, minor, bugfix, internal]
 }
-var player = {}
-Object.assign(player, defaultSave)
+var player = JSON.parse(JSON.stringify(defaultSave));
 
-var game = {
+const defaultGame = {
   autobuyersInterval:{
     red: null,
     green: null,
@@ -49,7 +71,7 @@ var game = {
       multi: [null, {red: 10}, {red: 40}, {green: 25}],
     },
     green:{
-      auto: [null, {green: 10}, {green: 100}, {blue: 20}, {blue: 50}],
+      auto: [null, {green: 10}, {green: 100}, {blue: 5}, {blue: 20}, {blue: 50}],
       multi:[null, {green: 50}, {blue: 5}, {blue: 50}],
     },
     blue:{
@@ -58,7 +80,10 @@ var game = {
     }
   },
   selectedTab:{
-    tab: "tab1"
+    mainTab: "tabMain",
+    lights: "lightsTabRGBLights"
   },
   saveTimer: 10
 }
+
+var game = JSON.parse(JSON.stringify(defaultGame));

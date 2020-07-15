@@ -19,7 +19,8 @@ Vue.component('player-rgb',{
       text: String,
       isHidden: Boolean,
       style: Object,
-      unlocks: Function
+      unlocks: Function,
+      elementID: String
     }
   },
   methods:{
@@ -30,12 +31,10 @@ Vue.component('player-rgb',{
   computed:{
     barParsed: function(){
       return {
-        name: capitalizeFirstLetter(this.global.name),
-        counter: "player.colors." + this.global.name + ".amount",
-        max: this.bar.max,
+        text: capitalizeFirstLetter(this.global.name) + ":&nbsp" + Math.floor(player.colors[this.global.name].amount) + "/" + this.bar.max,
+        width: 100 * Math.floor(player.colors[this.global.name].amount) / this.bar.max,
         color: this.global.color,
         isHidden: this.bar.isHidden,
-        intRounding: "floor"
       }
     },
     autoParsed: function(){
@@ -59,7 +58,8 @@ Vue.component('player-rgb',{
           unlocks()
         },
         style: canGainColor()[color] ? this.addsub.style.enabled : this.addsub.style.disabled,
-        disabled: !canGainColor()[color]
+        disabled: !canGainColor()[color],
+        elementID: this.addsub.elementID
       }
     },
     seen: function(){

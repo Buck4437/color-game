@@ -13,7 +13,8 @@ function playerMainProperty(id, name, isBarHidden, text, styles, unlockFunction)
       text: text,
       isHidden: isBarHidden,
       style: styles,
-      unlocks: unlockFunction
+      unlocks: unlockFunction,
+      elementID: "colors" + capitalizeFirstLetter(name) + "Add"
     },
   }
 }
@@ -38,15 +39,15 @@ new Vue ({
         }
       }
       return [
-        playerMainProperty(0, "red", false, "+" + gainRateColor().red +" Red", styles),
-        playerMainProperty(1, "green", false, "+" + "Reset to gain " + gainRateColor().green + " Green (Requires 255 Red)", styles, firstTimeUnlock().green),
-        playerMainProperty(2, "blue", !player.colors.blue.isUnlocked, "Reset to gain " + gainRateColor().blue +" Blue (Requires 255 Green)", styles, firstTimeUnlock().blue)
+        playerMainProperty(0, "red", false, "+" + Math.floor(gainRateColor().red) +" Red", styles),
+        playerMainProperty(1, "green", false, "Reset to gain " + Math.floor(gainRateColor().green) + " Green (Requires 255 Red)", styles, firstTimeUnlockColor().green),
+        playerMainProperty(2, "blue", !player.colors.blue.isUnlocked, "Reset to gain " + Math.floor(gainRateColor().blue) +" Blue (Requires 255 Green)", styles, firstTimeUnlockColor().blue)
       ]
     }
   }
 })
 
-function firstTimeUnlock(){
+function firstTimeUnlockColor(){
   return{
     green: function(){
       player.colors.green.upgrades.isUnlocked = true
@@ -66,38 +67,30 @@ function canGainColor(){
   }
 }
 
-function gainRateColor(){
-  let redRate = 1
-  let greenRate = 1
-  let blueRate = 1
-  let redMultis = [player.colors.green.amount+1, player.colors.blue.amount+1, 2**player.colors.red.upgrades.multi]
-  let greenMultis = [player.colors.blue.amount+1, 2**player.colors.green.upgrades.multi]
-  let blueMultis = [2**player.colors.blue.upgrades.multi]
-  for (let redmulti of redMultis){
-    redRate *= redmulti
-  }
-  for (let greenmulti of greenMultis){
-    greenRate *= greenmulti
-  }
-  for (let bluemulti of blueMultis){
-    blueRate *= bluemulti
-  }
-  return {
-    red: Math.min(255,redRate),
-    green: Math.min(255,greenRate),
-    blue: Math.min(255,blueRate)
-  }
-}
-
 function gainColor(color){
   if(canGainColor()[color]){
-    prestige(color)
+    prestigeColor(color)
     player.colors[color].amount += gainRateColor()[color]
     if(player.colors[color].amount > 255){
       player.colors[color].amount = 255
     }
   }
 }
+
+function resetColor(){
+  for (let item of arguments){
+    player.colors[item].amount = defaultSave.colors[item].amount
+  }
+}
+
+function prestigeColor(color){
+  if(color == "green"){
+    resetColor("red")
+  }else if(color == "blue"){
+    resetColor("red", "green")
+  }
+}
+
 
 function setAutoBuyColor(color, boolean, interval){
   player.colors[color].auto = boolean

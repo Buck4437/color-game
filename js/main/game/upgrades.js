@@ -1,12 +1,9 @@
 new Vue ({
-  el: "#tab2",
+  el: "#tabUpgrades",
   data: {
     player: player
   },
   computed: {
-    topText: function(){
-      return "Red: " + player.colors.red.amount + (player.colors.green.upgrades.isUnlocked ? ", Green: " + player.colors.green.amount : "" ) + (player.colors.blue.upgrades.isUnlocked ? ", Blue: " + player.colors.blue.amount: "" )
-    },
     upgrades: function(){
       let costParse = this.costParse
       let styles = {

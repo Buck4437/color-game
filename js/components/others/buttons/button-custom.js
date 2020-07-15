@@ -1,7 +1,8 @@
 Vue.component('button-custom',{
-  template: '<button @click="onclick()" v-if="seen" :style="name.style" :disabled="name.disabled" v-html="displayedText"></button>',
+  template: '<button @click="onclick()" v-if="seen" :style="name.style" :disabled="name.disabled" :id="name.elementID" v-html="displayedText"></button>',
   props:{
     name:{
+      elementID: String,
       text: [Object, String, Number],
       currentText: String,
       isHidden: Boolean,
