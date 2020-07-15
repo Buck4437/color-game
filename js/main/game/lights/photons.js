@@ -41,7 +41,7 @@ new Vue({
         },
         gainLights:{
           elementID: "buttonPrestigeLights",
-          text: "Reset to gain " + gainRateLights().lights + " Light" + (gainRateLights().lights != 1 ? "s" : ""),
+          text: "Reset to gain " + gainRateLights().lights + " Light" + (gainRateLights().lights != 1 ? "s." : "."),
           onclick: function(){
             if(player.options.confirmation.lights){
               if(confirm("This will reset all colors, upgrades, AND photons in exchanging for lights. Proceed? (You can't turn this off in Settings yet because i have not implemented it yet bear with me)")){
@@ -71,6 +71,17 @@ new Vue({
             cursor: "pointer"
           }
         },
+        double:{
+          text: "x2 Photon gain speed. Cost: " + 2**(player.lights.photons.multi) + " Light" + (player.lights.photons.multi == 0 ? "" : "s"),
+          onclick: function(){
+            if(player.lights.amount >= 2**(player.lights.photons.multi)){
+              player.lights.amount -= 2**(player.lights.photons.multi)
+              player.lights.photons.multi ++
+            }
+          },
+          style: (player.lights.amount >= 2**(player.lights.photons.multi)) ? buttonStyles.enabled : buttonStyles.disabled,
+          disabled: player.lights.amount < 2**(player.lights.photons.multi)
+        },
         normalPhotons:{
           text: "Photons: " + Math.floor(player.lights.photons.amount) + " (+" + gainRateLights().photons + "/s)",
           width: 100,
@@ -89,12 +100,3 @@ new Vue({
     }
   }
 })
-
-function photonEffect(){
-  let photons = player.lights.photons.amount
-  return{
-    red: Math.round(100 + 100 * (photons * player.lights.photons.percentage.red/100)**0.5) / 100,
-    green: Math.round(100 + 100 * (photons * player.lights.photons.percentage.green/100)**0.4) / 100,
-    blue: Math.round(100 + 100 * (photons * player.lights.photons.percentage.blue/100)**0.3) / 100,
-  }
-}

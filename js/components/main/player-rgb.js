@@ -31,8 +31,8 @@ Vue.component('player-rgb',{
   computed:{
     barParsed: function(){
       return {
-        text: capitalizeFirstLetter(this.global.name) + ":&nbsp" + player.colors[this.global.name].amount + "/" + this.bar.max,
-        width: 100 * player.colors[this.global.name].amount / this.bar.max,
+        text: capitalizeFirstLetter(this.global.name) + ":&nbsp" + Math.floor(player.colors[this.global.name].amount) + "/" + this.bar.max,
+        width: 100 * Math.floor(player.colors[this.global.name].amount) / this.bar.max,
         color: this.global.color,
         isHidden: this.bar.isHidden,
       }

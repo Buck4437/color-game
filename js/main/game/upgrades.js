@@ -5,7 +5,7 @@ new Vue ({
   },
   computed: {
     topText: function(){
-      return "Red: " + player.colors.red.amount + (player.colors.green.upgrades.isUnlocked ? ", Green: " + player.colors.green.amount : "" ) + (player.colors.blue.upgrades.isUnlocked ? ", Blue: " + player.colors.blue.amount: "" )
+      return "Red: " + Math.floor(player.colors.red.amount) + (player.colors.green.upgrades.isUnlocked ? ", Green: " + Math.floor(player.colors.green.amount) : "" ) + (player.colors.blue.upgrades.isUnlocked ? ", Blue: " + Math.floor(player.colors.blue.amount): "" )
     },
     upgrades: function(){
       let costParse = this.costParse

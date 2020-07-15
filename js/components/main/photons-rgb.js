@@ -7,7 +7,7 @@ Vue.component('photons-rgb',{
       <span style="display: inline-block; width: 40px; text-align: center; margin-right: 10px">{{text}}</span>
       <button-custom :name="buttons.add1"></button-custom>
       <button-custom :name="buttons.add10"></button-custom>
-      <span style="display: inline-block; width: 250px; margin-right: 10px" v-html="effect"></span>
+      <span style="display: inline-block; margin-right: 10px" v-html="effect"></span>
     </div>
   `,
   props:{

@@ -39,9 +39,9 @@ new Vue ({
         }
       }
       return [
-        playerMainProperty(0, "red", false, "+" + gainRateColor().red +" Red", styles),
-        playerMainProperty(1, "green", false, "Reset to gain " + gainRateColor().green + " Green (Requires 255 Red)", styles, firstTimeUnlockColor().green),
-        playerMainProperty(2, "blue", !player.colors.blue.isUnlocked, "Reset to gain " + gainRateColor().blue +" Blue (Requires 255 Green)", styles, firstTimeUnlockColor().blue)
+        playerMainProperty(0, "red", false, "+" + Math.floor(gainRateColor().red) +" Red", styles),
+        playerMainProperty(1, "green", false, "Reset to gain " + Math.floor(gainRateColor().green) + " Green (Requires 255 Red)", styles, firstTimeUnlockColor().green),
+        playerMainProperty(2, "blue", !player.colors.blue.isUnlocked, "Reset to gain " + Math.floor(gainRateColor().blue) +" Blue (Requires 255 Green)", styles, firstTimeUnlockColor().blue)
       ]
     }
   }
@@ -64,29 +64,6 @@ function canGainColor(){
     red: player.colors.red.amount != 255,
     green: player.colors.red.amount >= 255 && player.colors.green.amount != 255,
     blue: player.colors.green.amount >= 255 && player.colors.blue.amount != 255
-  }
-}
-
-function gainRateColor(){
-  let redRate = 1
-  let greenRate = 1
-  let blueRate = 1
-  let redMultis = [player.colors.green.amount+1, player.colors.blue.amount+1, 2**player.colors.red.upgrades.multi]
-  let greenMultis = [player.colors.blue.amount+1, 2**player.colors.green.upgrades.multi]
-  let blueMultis = [2**player.colors.blue.upgrades.multi]
-  for (let redmulti of redMultis){
-    redRate *= redmulti
-  }
-  for (let greenmulti of greenMultis){
-    greenRate *= greenmulti
-  }
-  for (let bluemulti of blueMultis){
-    blueRate *= bluemulti
-  }
-  return {
-    red: Math.min(255,redRate),
-    green: Math.min(255,greenRate),
-    blue: Math.min(255,blueRate)
   }
 }
 

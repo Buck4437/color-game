@@ -38,10 +38,7 @@ const defaultSave = {
       isInitiated: false,
       amount: 0,
       auto: false,
-      upgrades:{
-        interval: 0,
-        multi: 0,
-      },
+      multi: 0,
       percentage:{
         red: 0,
         green: 0,
@@ -74,7 +71,7 @@ const defaultGame = {
       multi: [null, {red: 10}, {red: 40}, {green: 25}],
     },
     green:{
-      auto: [null, {green: 10}, {green: 100}, {blue: 20}, {blue: 50}],
+      auto: [null, {green: 10}, {green: 100}, {blue: 5}, {blue: 20}, {blue: 50}],
       multi:[null, {green: 50}, {blue: 5}, {blue: 50}],
     },
     blue:{
