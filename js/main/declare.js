@@ -42,17 +42,10 @@ const defaultSave = {
         interval: 0,
         multi: 0,
       },
-      red: {
-        amount: 0,
-        percentage: 0
-      },
-      green: {
-        amount: 0,
-        percentage: 0
-      },
-      blue: {
-        amount: 0,
-        percentage: 0
+      percentage:{
+        red: 0,
+        green: 0,
+        blue: 0
       }
     },
     upgrades: {

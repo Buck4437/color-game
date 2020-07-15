@@ -17,6 +17,22 @@ new Vue({
           cursor: "default"
         }
       }
+      let unassignedPhotonsAmount = function(){
+        let init = player.lights.photons.amount
+        let colors = ["red", "green", "blue"]
+        for (color of colors){
+          init -= Math.floor(player.lights.photons.percentage[color] * player.lights.photons.amount/100)
+        }
+        return Math.floor(init)
+      }
+      let unassignedPhotonsWidth = function(){
+        let init = 100
+        let colors = ["red", "green", "blue"]
+        for (color of colors){
+          init -= player.lights.photons.percentage[color]
+        }
+        return init
+      }
       return {
         bar:{
           text: "Lights: " + Math.floor(player.lights.amount),
@@ -28,7 +44,7 @@ new Vue({
           text: "Reset to gain " + gainRateLights().lights + " Light" + (gainRateLights().lights != 1 ? "s" : ""),
           onclick: function(){
             if(player.options.confirmation.lights){
-              if(confirm("This will reset all colors and upgrades in exchanging for lights. Proceed? (You can't turn this off in Settings yet because i have not implemented it yet bear with me)")){
+              if(confirm("This will reset all colors, upgrades, AND photons in exchanging for lights. Proceed? (You can't turn this off in Settings yet because i have not implemented it yet bear with me)")){
                 prestigeLights()
               }
               return
@@ -55,13 +71,19 @@ new Vue({
             cursor: "pointer"
           }
         },
-        photons:{
+        normalPhotons:{
           text: "Photons: " + Math.floor(player.lights.photons.amount) + " (+" + gainRateLights().photons + "/s)",
           width: 100,
           color: "#ccc",
           textStyle:{
             color: "#333"
           }
+        },
+        colorPhotons:["red", "green", "blue"],
+        unassignedPhotons:{
+          text: "Unassigned&nbspPhotons:&nbsp" + unassignedPhotonsAmount(),
+          width: unassignedPhotonsWidth(),
+          color: "#888",
         }
       }
     }

@@ -40,6 +40,7 @@ function prestigeLights(){
     clearInterval(game.autobuyersInterval[color])
     player.colors[color].auto = defaultSave.colors[color].auto
   }
+  player.lights.photons.amount = defaultSave.lights.photons.amount
   gainLights()
 }
 

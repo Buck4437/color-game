@@ -43,9 +43,12 @@
           <button-custom :name="lights.initiate"></button-custom>
           <div v-if="player.lights.photons.isInitiated">
             <div>
-              <color-bar :bar="lights.photons"></color-bar>
+              <color-bar :bar="lights.normalPhotons"></color-bar>
             </div>
-            Help me this is hell (placeholder for lasers)
+            <div>
+              <photons-rgb v-for="bar in lights.colorPhotons" :color-name="bar" :key="bar"></photons-rgb>
+              <color-bar :bar="lights.unassignedPhotons"></color-bar>
+            </div>
           </div>
         </div>
         <div id="lightsTabUpgrades" style="display: none">
@@ -78,6 +81,7 @@
   <script src="js/components/others/buttons/colorUpgrades/button-color-upgrades-multi.js"></script>
   <script src="js/components/others/color-bar/color-bar.js"></script>
   <script src="js/components/main/player-rgb.js"></script>
+  <script src="js/components/main/photons-rgb.js"></script>
   <script src="js/main/declare.js"></script>
   <script src="js/main/game/playerMain.js"></script>
   <script src="js/main/game/upgrades.js"></script>

@@ -10,6 +10,8 @@ button:hover{
 
 #top-bar{
   border-bottom: 1px solid white;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 #topBarButtonsMain, #topBarButtonsUpgrades{
@@ -52,7 +54,6 @@ button:hover{
   margin: 5px;
   font-size: 20px;
   transition-duration: 0.3s;
-  float: right;
 }
 
 #topBarButtonsOptions:hover {
@@ -123,6 +124,7 @@ button:hover{
 #buttonPrestigeLights{
   width: 220px
 }
+
 
 
 
