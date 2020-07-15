@@ -36,12 +36,16 @@
         </div>
         <br>
         <div id="lightsTabPhotons">
-          <color-bar :bar="lights.bar"></color-bar>
-          <button-custom :name="lights.gainLights"></button-custom>
-          <br>
+          <div>
+            <color-bar :bar="lights.bar"></color-bar>
+            <button-custom :name="lights.gainLights"></button-custom>
+          </div>
           <button-custom :name="lights.initiate"></button-custom>
           <div v-if="player.lights.photons.isInitiated">
-            Help me this is hell
+            <div>
+              <color-bar :bar="lights.photons"></color-bar>
+            </div>
+            Help me this is hell (placeholder for lasers)
           </div>
         </div>
         <div id="lightsTabUpgrades" style="display: none">
@@ -81,6 +85,7 @@
   <script src="js/main/game/lights/prestige.js"></script>
   <script src="js/main/game/lights/sub-tabs.js"></script>
   <script src="js/main/game/lights/photons.js"></script>
+  <script src="js/main/game/generateThings.js"></script>
   <script src="js/main/UI/topbar.js"></script>
   <script src="js/main/initiate.js"></script>
 </html>

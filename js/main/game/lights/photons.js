@@ -5,7 +5,7 @@ new Vue({
   },
   computed:{
     lights: function(){
-      let prestigeLightsStyles = {
+      let buttonStyles = {
         enabled:{
           color: "white",
           border: "4px solid white",
@@ -19,12 +19,9 @@ new Vue({
       }
       return {
         bar:{
-          name: "Lights",
-          counter: "player.lights.amount",
-          max: 1,
-          hideMax: true,
-          color: "#4c4",
-          intRounding: "floor"
+          text: "Lights: " + Math.floor(player.lights.amount),
+          width: 100,
+          color: "#4c4"
         },
         gainLights:{
           elementID: "buttonPrestigeLights",
@@ -38,7 +35,7 @@ new Vue({
             }
             prestigeLights()
           },
-          style: canPrestigeLights() ? prestigeLightsStyles.enabled : prestigeLightsStyles.disabled,
+          style: canPrestigeLights() ? buttonStyles.enabled : buttonStyles.disabled,
           disabled: !canPrestigeLights()
         },
         initiate:{
@@ -50,12 +47,20 @@ new Vue({
             player.lights.upgrades.isUnlocked = true
           },
           style: {
+            borderRadius: "8px",
+            height: "46px",
+            width: "300px",
             color: "white",
             border: "4px solid white",
-            borderRadius: "8px",
-            cursor: "pointer",
-            height: "46px",
-            width: "300px"
+            cursor: "pointer"
+          }
+        },
+        photons:{
+          text: "Photons: " + Math.floor(player.lights.photons.amount) + " (+" + gainRateLights().photons + "/s)",
+          width: 100,
+          color: "#ccc",
+          textStyle:{
+            color: "#333"
           }
         }
       }

@@ -36,17 +36,23 @@ const defaultSave = {
     amount: 0,
     photons:{
       isInitiated: false,
+      amount: 0,
+      auto: false,
+      upgrades:{
+        interval: 0,
+        multi: 0,
+      },
       red: {
         amount: 0,
-        auto: false
+        percentage: 0
       },
       green: {
         amount: 0,
-        auto: false
+        percentage: 0
       },
       blue: {
         amount: 0,
-        auto: false
+        percentage: 0
       }
     },
     upgrades: {

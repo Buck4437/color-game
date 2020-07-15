@@ -6,6 +6,7 @@ PART A: BROAD
 locateVar("varName"): return the value of var inputted (support properties in dot notations, global only)
 IsJsonString(str): true if it is valid, false otherwise
 capitalizeFirstLetter(string): Capitalize First Letter of the string
+isNumber(thing): return whether the thing is a finite number
 
 PART B: SPECFIC
 topBarButtonsProperties(id, elementID, text, isHidden, variable, tabID, tabs, style):
@@ -35,7 +36,9 @@ function capitalizeFirstLetter(input) {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
-
+function isNumber(value) {
+   return typeof value === 'number' && isFinite(value);
+}
 
 
 

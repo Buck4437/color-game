@@ -31,12 +31,10 @@ Vue.component('player-rgb',{
   computed:{
     barParsed: function(){
       return {
-        name: capitalizeFirstLetter(this.global.name),
-        counter: "player.colors." + this.global.name + ".amount",
-        max: this.bar.max,
+        text: capitalizeFirstLetter(this.global.name) + ":&nbsp" + player.colors[this.global.name].amount + "/" + this.bar.max,
+        width: 100 * player.colors[this.global.name].amount / this.bar.max,
         color: this.global.color,
         isHidden: this.bar.isHidden,
-        intRounding: "floor"
       }
     },
     autoParsed: function(){

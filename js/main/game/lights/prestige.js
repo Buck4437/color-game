@@ -53,7 +53,8 @@ function gainLights(){
 
 function gainRateLights(){
   return{
-    lights: Math.max(Math.floor( (player.colors.blue.amount+1)/16 - 15 ), 1)||1
+    lights: Math.max(Math.floor( (player.colors.blue.amount+1)/16 - 15 ), 1)||1,
+    photons: 2 ** player.lights.photons.upgrades.multi
   }
 }
 //temp formula
