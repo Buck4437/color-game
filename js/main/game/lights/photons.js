@@ -39,21 +39,6 @@ new Vue({
           width: 100,
           color: "#4c4"
         },
-        gainLights:{
-          elementID: "buttonPrestigeLights",
-          text: "Reset to gain " + gainRateLights().lights + " Light" + (gainRateLights().lights != 1 ? "s." : "."),
-          onclick: function(){
-            if(player.options.confirmation.lights){
-              if(confirm("This will reset all colors, upgrades, AND photons in exchanging for lights. Proceed? (You can't turn this off in Settings yet because i have not implemented it yet bear with me)")){
-                prestigeLights()
-              }
-              return
-            }
-            prestigeLights()
-          },
-          style: canPrestigeLights() ? buttonStyles.enabled : buttonStyles.disabled,
-          disabled: !canPrestigeLights()
-        },
         initiate:{
           text: "Initiate Photon Emission. Cost: 1 Light",
           isHidden: player.lights.photons.isInitiated,

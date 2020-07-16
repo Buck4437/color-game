@@ -10,10 +10,13 @@
   </head>
   <body style="background-color:black">
     <div id="currency-bar">
-      <span class="currencyBarCurrencies" style="color:red">Red:&nbsp{{red}}</span>
-      <span class="currencyBarCurrencies" style="color:green">Green:&nbsp{{green}}</span>
-      <span class="currencyBarCurrencies" style="color:blue" v-if="player.colors.blue.isUnlocked">Blue:&nbsp{{blue}}</span>
-      <span class="currencyBarCurrencies"  style="color:#0f0" v-if="player.lights.isUnlocked">Lights:&nbsp{{lights}}</span>
+      <div class="currencyBarCurrencies" style="color:red">Red:&nbsp{{red}}</div>
+      <div class="currencyBarCurrencies" style="color:green">Green:&nbsp{{green}}</div>
+      <div class="currencyBarCurrencies" style="color:blue" v-if="player.colors.blue.isUnlocked">Blue:&nbsp{{blue}}</div>
+      <div class="currencyBarCurrencies"  style="color:#0f0" v-if="player.lights.isUnlocked">
+        Lights:&nbsp{{lights}}<br>
+        <button-custom :name="lightsPrestige" style="padding: 5px 15px; margin-top: 5px"></button-custom>
+      </div>
     </div>
     <br>
     <div id="top-bar">
@@ -44,7 +47,6 @@
         <div id="lightsTabPhotons">
           <div>
             <color-bar :bar="lights.bar"></color-bar>
-            <button-custom :name="lights.gainLights"></button-custom>
           </div>
           <button-custom :name="lights.initiate"></button-custom>
           <div v-if="player.lights.photons.isInitiated">
@@ -71,12 +73,27 @@
         </div>
       </div>
       <div id="tabOptions" class="tabs" style="display: none">
-        <button-custom :name="save"></button-custom>
-        <button-custom :name="load"></button-custom>
-        <span id="gameSavedLoadedPopup"></span><br>
-        <button-custom :name="exportGame"></button-custom>
-        <button-custom :name="importGame"></button-custom><br>
-        <button-custom :name="reset"></button-custom><br>
+        <div style="width: 350px; display: inline-block; margin-right: 150px">
+          <div style="width: 310px; padding-bottom: 30px; text-align: center; color: #f00">
+            Save file management
+          </div>
+          <button-custom :name="save"></button-custom>
+          <button-custom :name="load"></button-custom>
+          <button-custom :name="exportGame"></button-custom>
+          <button-custom :name="importGame"></button-custom>
+          <button-custom :name="reset" style="border-color: red; color: red"></button-custom>
+        </div>
+        <div style="width: 170px; display: inline-block; vertical-align:top">
+          <div style="width: 160px; padding-bottom: 30px; text-align: center; color: #0f0">
+            Confirmations
+          </div>
+          <button-custom :name="confirmation.lights" style="border-color: #0f0"></button-custom>
+        </div>
+        <br>
+        <div style="width: 150px; display: inline-block;">
+          <span id="gameSavedLoadedPopup"></span>
+        </div>
+        <br>
         Game autosaves every 10 seconds
         <div id="exportedSave" style="display: none;">
             Save: <input type="text" id="exportedSaveField">

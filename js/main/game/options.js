@@ -1,11 +1,11 @@
 new Vue ({
   el: "#tabOptions",
   data: {
+    player: player,
     save: {
       text: "Save",
       onclick: function(){
         save();
-        $("#gameSavedLoadedPopup").text("Game saved!")
       }
     },
     load: {
@@ -41,11 +41,23 @@ new Vue ({
       }
     },
     reset: {
-      text: "HARD RESET",
+      text: "RESET",
       seen: true,
       onclick: function(){
         if(prompt("Enter 'RESET' in ALL CAPS to reset the game. THIS ACTION CANNOT BE UNDONE.") === 'RESET'){
           resetGame()
+        }
+      }
+    }
+  },
+  computed:{
+    confirmation: function(){
+      return{
+        lights:{
+          text: "Lights: " + (player.options.confirmation.lights ? "On" : "Off"),
+          onclick: function(){
+            player.options.confirmation.lights = !player.options.confirmation.lights
+          }
         }
       }
     }
@@ -62,13 +74,19 @@ function saveTimerCountdown(){
   if (game.saveTimer < 0){
     save()
   }
+  else if(game.saveTimer < 7){
+    $("#gameSavedLoadedPopup").text("")
+  }
+  else{
+    $("#gameSavedLoadedPopup").text("Game saved!")
+  }
 }
 
 setInterval(saveTimerCountdown, 50)
 
 function ImportAndSaveFixer(property, save){
   if(save[property] === undefined){
-    player[property] = defaultSave[property]
+    player[property] = JSON.parse(JSON.stringify(defaultSave[property]))
     return
   }
   player[property] = save[property]

@@ -1,7 +1,21 @@
 new Vue({
   el: "#currency-bar",
   data:{
-    player: player
+    player: player,
+    buttonStyles: {
+      lights:{
+        enabled:{
+          color: "#0f0",
+          border: "4px solid #0f0",
+          cursor: "pointer"
+        },
+        disabled:{
+          color: "#080",
+          border: "4px solid #080",
+          cursor: "default"
+        }
+      }
+    }
   },
   computed:{
     red: function(){
@@ -15,6 +29,23 @@ new Vue({
     },
     lights: function(){
       return Math.floor(player.lights.amount)
+    },
+    lightsPrestige: function(){
+      return {
+        elementID: "buttonPrestigeLights",
+        text: "+" + gainRateLights().lights + " Light" + (gainRateLights().lights != 1 ? "s" : ""),
+        onclick: function(){
+          if(player.options.confirmation.lights){
+            if(confirm("This will reset all colors, upgrades, AND photons in exchanging for lights. Proceed? (You can turn this off in Settings)")){
+              prestigeLights()
+            }
+            return
+          }
+          prestigeLights()
+        },
+        style: canPrestigeLights() ? this.buttonStyles.lights.enabled : this.buttonStyles.lights.disabled,
+        disabled: !canPrestigeLights()
+      }
     }
   }
 })
