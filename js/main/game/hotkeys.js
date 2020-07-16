@@ -18,4 +18,5 @@ window.addEventListener("keydown", function (event) {
     default:
       return;
   }
+  event.preventDefault();
 }, true);

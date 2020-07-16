@@ -12,8 +12,8 @@
     <div id="currency-bar">
       <div class="currencyBarCurrencies" style="color:red">Red:&nbsp{{red}}</div>
       <div class="currencyBarCurrencies" style="color:green">Green:&nbsp{{green}}</div>
-      <div class="currencyBarCurrencies" style="color:blue" v-if="player.colors.blue.isUnlocked">Blue:&nbsp{{blue}}</div>
-      <div class="currencyBarCurrencies"  style="color:#0f0" v-if="player.lights.isUnlocked">
+      <div class="currencyBarCurrencies" style="color:blue;" v-if="player.colors.blue.isUnlocked">Blue:&nbsp{{blue}}</div>
+      <div class="currencyBarCurrencies"  style="color:#0f0;" v-if="player.lights.isUnlocked">
         Lights:&nbsp{{lights}}<br>
         <button-custom :name="lightsPrestige" style="padding: 5px 15px; margin-top: 5px"></button-custom>
       </div>
@@ -89,9 +89,11 @@
           <button-custom :name="confirmation.lights" style="border-color: #0f0; color: #0a0"></button-custom>
         </div>
         <br>
+        <br>
         <div style="width: 150px; display: inline-block;">
           <span id="gameSavedLoadedPopup"></span>
         </div>
+        <br>
         <br>
         Game autosaves every 10 seconds
         <div id="exportedSave" style="display: none;">

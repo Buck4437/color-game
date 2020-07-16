@@ -1,5 +1,5 @@
 Vue.component('button-custom',{
-  template: '<button @click="onclick()" v-if="seen" :style="name.style" :disabled="name.disabled" :id="name.elementID" v-html="displayedText"></button>',
+  template: '<button @click="onclick()" v-if="seen" :style="name.style" :id="name.elementID" v-html="displayedText"></button>',
   props:{
     name:{
       elementID: String,
@@ -13,7 +13,9 @@ Vue.component('button-custom',{
   },
   methods:{
     onclick: function(){
-      this.name.onclick()
+      if(!this.name.disabled){
+        this.name.onclick()
+      }
     }
   },
   computed:{

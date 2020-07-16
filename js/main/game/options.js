@@ -74,7 +74,7 @@ function saveTimerCountdown(){
   if (game.saveTimer < 0){
     save()
   }
-  else if(game.saveTimer < 7){
+  else if(game.saveTimer < 8.5){
     $("#gameSavedLoadedPopup").text("")
   }
   else{

@@ -1,5 +1,5 @@
 Vue.component('button-light-upgrades-one-time',{
-  template: '<button @click="onclick()" v-if="seen" :style="name.style" :disabled="name.disabled" v-html="name.text"></button>',
+  template: '<button @click="onclick()" v-if="seen" :style="name.style" v-html="name.text"></button>',
   props:{
     name:{
       text: String,
@@ -12,7 +12,9 @@ Vue.component('button-light-upgrades-one-time',{
   },
   methods:{
     onclick: function(){
-      this.name.onclick()
+      if(!this.name.disabled){
+        this.name.onclick()
+      }
     }
   },
   computed:{

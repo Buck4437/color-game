@@ -1,6 +1,5 @@
 Vue.component('button-tab-bar',{
-  // template: '<div :id="containerID" style="display: inline-block"><button @click="onclick()" v-if="seen" :style="name.style" :disabled="disabled" :id="name.elementID" v-html="displayedText"></button></div>',
- template: '<button @click="onclick()" v-if="seen" :style="name.style" :disabled="disabled" :id="name.elementID" v-html="displayedText"></button>',
+  template: '<button @click="onclick()" v-if="seen" :style="name.style":id="name.elementID" v-html="displayedText"></button>',
   props:{
     name:{
       elementID: String,
@@ -21,14 +20,13 @@ Vue.component('button-tab-bar',{
     },
     disabled: function(){
       return game.selectedTab[this.name.selectedTabVariable] == this.name.correspondingTabID
-    },
-    // containerID: function(){
-    //   return this.name.elementID + "-container"
-    // }
+    }
   },
   methods:{
     onclick: function(){
-      buttonTabBarSwitchTab(this.name.selectedTabVariable, this.name.correspondingTabID, this.name.listOfTabs)
+      if(!this.disabled){
+        buttonTabBarSwitchTab(this.name.selectedTabVariable, this.name.correspondingTabID, this.name.listOfTabs)
+      }
     }
   }
 })

@@ -33,7 +33,7 @@ new Vue({
     lightsPrestige: function(){
       return {
         elementID: "buttonPrestigeLights",
-        text: "+" + gainRateLights().lights + " Light" + (gainRateLights().lights != 1 ? "s" : ""),
+        text: "+" + gainRateLights().lights + " <u style='color:" + (canPrestigeLights() ? this.buttonStyles.lights.enabled.color : this.buttonStyles.lights.disabled.color) + "'>L</u>ight" + (gainRateLights().lights != 1 ? "s" : ""),
         onclick: function(){
           if((player.colors.red.amount >= 255 && player.colors.green.amount >= 255) && player.colors.blue.amount >= 255){
             if(player.options.confirmation.lights){
