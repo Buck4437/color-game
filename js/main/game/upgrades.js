@@ -8,8 +8,8 @@ new Vue ({
       let costParse = this.costParse
       let styles = {
         max: {
-          color: "#00FF00",
-          border: "4px solid #00FF00",
+          color: "#0a0",
+          border: "4px solid #0f0",
           cursor: "default"
         },
         canBuy: {
@@ -19,7 +19,7 @@ new Vue ({
         },
         cannotBuy: {
           color: "grey",
-          border: "4px solid #888888",
+          border: "4px solid #888",
           cursor: "default"
         }
       }

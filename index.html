@@ -40,10 +40,9 @@
         </div>
       </div>
       <div id="tabLights" class="tabs" style="display: none">
-        <div id="lights-top-bar">
+        <div id="lights-top-bar" style="margin-bottom: 20px">
           <button-tab-bar v-for="button in buttons" :name="button.tab" :key="button.id"></button-tab-bar>
         </div>
-        <br>
         <div id="lightsTabPhotons">
           <div>
             <color-bar :bar="lights.bar"></color-bar>
@@ -83,11 +82,11 @@
           <button-custom :name="importGame"></button-custom>
           <button-custom :name="reset" style="border-color: red; color: red"></button-custom>
         </div>
-        <div style="width: 170px; display: inline-block; vertical-align:top">
+        <div style="width: 170px; display: inline-block; vertical-align:top" v-if="player.lights.isUnlocked">
           <div style="width: 160px; padding-bottom: 30px; text-align: center; color: #0f0">
             Confirmations
           </div>
-          <button-custom :name="confirmation.lights" style="border-color: #0f0"></button-custom>
+          <button-custom :name="confirmation.lights" style="border-color: #0f0; color: #0a0"></button-custom>
         </div>
         <br>
         <div style="width: 150px; display: inline-block;">
@@ -125,6 +124,7 @@
   <script src="js/main/game/lights/photons.js"></script>
   <script src="js/main/game/lights/lightUpgrades.js"></script>
   <script src="js/main/game/generateThings.js"></script>
+  <script src="js/main/game/hotkeys.js"></script>
   <script src="js/main/top/currencybar.js"></script>
   <script src="js/main/top/topbar.js"></script>
   <script src="js/main/initiate.js"></script>

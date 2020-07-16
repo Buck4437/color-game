@@ -3,21 +3,57 @@ new Vue({
   data:{
     player: player,
     styles: {
-      max: {
-        color: "#00FF00",
-        border: "4px solid #00FF00",
-        cursor: "default"
+      red: {
+        max: {
+          color: "#c00",
+          border: "4px solid #f00",
+          cursor: "default"
+        },
+        canBuy: {
+          color: "white",
+          border: "4px solid #f00",
+          cursor: "pointer"
+        },
+        cannotBuy: {
+          color: "grey",
+          border: "4px solid #800",
+          cursor: "default"
+        }
       },
-      canBuy: {
-        color: "white",
-        border: "4px solid white",
-        cursor: "pointer"
+      green: {
+        max: {
+          color: "#0c0",
+          border: "4px solid #0f0",
+          cursor: "default"
+        },
+        canBuy: {
+          color: "white",
+          border: "4px solid #0f0",
+          cursor: "pointer"
+        },
+        cannotBuy: {
+          color: "grey",
+          border: "4px solid #080",
+          cursor: "default"
+        }
       },
-      cannotBuy: {
-        color: "grey",
-        border: "4px solid #888888",
-        cursor: "default"
-      }
+      blue: {
+        max: {
+          color: "#00c",
+          border: "4px solid #00f",
+          cursor: "default"
+        },
+        canBuy: {
+          color: "white",
+          border: "4px solid #00f",
+          cursor: "pointer"
+        },
+        cannotBuy: {
+          color: "grey",
+          border: "4px solid #008",
+          cursor: "default"
+        }
+      },
     }
   },
   computed:{
@@ -34,8 +70,8 @@ new Vue({
               player.lights.amount --
             }
           },
-          style: player.lights.upgrades.keep[color].auto ? this.styles.max
-                :player.lights.amount >= 1 ? this.styles.canBuy : this.styles.cannotBuy,
+          style: player.lights.upgrades.keep[color].auto ? this.styles[color].max
+                :player.lights.amount >= 1 ? this.styles[color].canBuy : this.styles[color].cannotBuy,
           disabled: player.lights.upgrades.keep[color].auto || player.lights.amount < 1
         })
       }
@@ -54,8 +90,8 @@ new Vue({
               player.lights.amount --
             }
           },
-          style: player.lights.upgrades.keep[color].multi ? this.styles.max
-                :player.lights.amount >= 1 ? this.styles.canBuy : this.styles.cannotBuy,
+          style: player.lights.upgrades.keep[color].multi ? this.styles[color].max
+                :player.lights.amount >= 1 ? this.styles[color].canBuy : this.styles[color].cannotBuy,
           disabled: player.lights.upgrades.keep[color].multi || player.lights.amount < 1
         })
       }
@@ -74,8 +110,8 @@ new Vue({
               player.lights.amount --
             }
           },
-          style: player.lights.upgrades.fasterAuto[color] ? this.styles.max
-                :player.lights.amount >= 1 ? this.styles.canBuy : this.styles.cannotBuy,
+          style: player.lights.upgrades.fasterAuto[color] ? this.styles[color].max
+                :player.lights.amount >= 1 ? this.styles[color].canBuy : this.styles[color].cannotBuy,
           disabled: player.lights.upgrades.fasterAuto[color] || player.lights.amount < 1
         })
       }
