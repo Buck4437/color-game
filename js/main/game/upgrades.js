@@ -87,7 +87,7 @@ function costStringify(object){
     if(string != ""){
       string += ", "
     }
-    string += (object[property] + " " + capitalizeFirstLetter(property))
+    string += (numToSci(object[property]) + " " + capitalizeFirstLetter(property))
   }
   return string
 }

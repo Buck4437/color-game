@@ -19,21 +19,21 @@ new Vue({
   },
   computed:{
     red: function(){
-      return Math.floor(player.colors.red.amount)
+      return numToSci(player.colors.red.amount, 0, 2)
     },
     green: function(){
-      return Math.floor(player.colors.green.amount)
+      return numToSci(player.colors.green.amount, 0, 2)
     },
     blue: function(){
-      return Math.floor(player.colors.blue.amount)
+      return numToSci(player.colors.blue.amount, 0, 2)
     },
     lights: function(){
-      return Math.floor(player.lights.amount)
+      return numToSci(player.lights.amount, 0, 2)
     },
     lightsPrestige: function(){
       return {
         elementID: "buttonPrestigeLights",
-        text: "+" + gainRateLights().lights + " <u style='color:" + (canPrestigeLights() ? this.buttonStyles.lights.enabled.color : this.buttonStyles.lights.disabled.color) + "'>L</u>ight" + (gainRateLights().lights != 1 ? "s" : ""),
+        text: "+" + numToSci(gainRateLights().lights, 0, 2) + " <u style='color:" + (canPrestigeLights() ? this.buttonStyles.lights.enabled.color : this.buttonStyles.lights.disabled.color) + "'>L</u>ight" + (gainRateLights().lights != 1 ? "s" : ""),
         onclick: function(){
           if((player.colors.red.amount >= 255 && player.colors.green.amount >= 255) && player.colors.blue.amount >= 255){
             if(player.options.confirmation.lights){

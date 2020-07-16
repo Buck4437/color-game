@@ -23,7 +23,7 @@ new Vue({
         for (color of colors){
           init -= Math.floor(player.lights.photons.percentage[color] * player.lights.photons.amount/100)
         }
-        return Math.floor(init)
+        return init
       }
       let unassignedPhotonsWidth = function(){
         let init = 100
@@ -35,7 +35,7 @@ new Vue({
       }
       return {
         bar:{
-          text: "Lights: " + Math.floor(player.lights.amount),
+          text: "Lights: " + numToSci(player.lights.amount, 0, 2),
           width: 100,
           color: "#4c4"
         },
@@ -51,7 +51,7 @@ new Vue({
           disabled: player.lights.amount < 1
         },
         double:{
-          text: "x2 Photon gain speed. Cost: " + 2**(player.lights.photons.multi) + " Light" + (player.lights.photons.multi == 0 ? "" : "s"),
+          text: "x2 Photon gain speed. Cost: " + numToSci(2**(player.lights.photons.multi), 0, 2) + " Light" + (player.lights.photons.multi == 0 ? "" : "s"),
           onclick: function(){
             if(player.lights.amount >= 2**(player.lights.photons.multi)){
               player.lights.amount -= 2**(player.lights.photons.multi)
@@ -62,7 +62,7 @@ new Vue({
           disabled: player.lights.amount < 2**(player.lights.photons.multi)
         },
         normalPhotons:{
-          text: "Photons: " + Math.floor(player.lights.photons.amount) + " (+" + gainRateLights().photons + "/s)",
+          text: "Photons: " + numToSci(player.lights.photons.amount, 0, 2) + " (+" + gainRateLights().photons + "/s)",
           width: 100,
           color: "#ccc",
           textStyle:{
@@ -71,7 +71,7 @@ new Vue({
         },
         colorPhotons:["red", "green", "blue"],
         unassignedPhotons:{
-          text: "Unassigned&nbspPhotons:&nbsp" + unassignedPhotonsAmount(),
+          text: "Unassigned&nbspPhotons:&nbsp" + numToSci(unassignedPhotonsAmount()),
           width: unassignedPhotonsWidth(),
           color: "#888",
         }

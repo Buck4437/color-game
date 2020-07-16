@@ -16,7 +16,7 @@ Vue.component('photons-rgb',{
   computed:{
     barParsed: function(){
       return{
-        text: capitalizeFirstLetter(this.colorName) + "&nbspPhotons:&nbsp" + Math.floor(player.lights.photons.percentage[this.colorName]/100*player.lights.photons.amount),
+        text: capitalizeFirstLetter(this.colorName) + "&nbspPhotons:&nbsp" + numToSci(player.lights.photons.percentage[this.colorName]/100*player.lights.photons.amount, 0, 2),
         width: player.lights.photons.percentage[this.colorName],
         color: this.colorName
       }
@@ -83,7 +83,7 @@ Vue.component('photons-rgb',{
       }
     },
     effect: function(){
-      return "=> x<span style='font-size: 25px; color: " + this.colorName +  "'> " + photonEffect()[this.colorName] + "</span> multiplier to "  + capitalizeFirstLetter(this.colorName) + "</span> gain"
+      return "=> x<span style='font-size: 25px; color: " + this.colorName +  "'> " + numToSci(photonEffect()[this.colorName], 2, 2) + "</span> multiplier to "  + capitalizeFirstLetter(this.colorName) + "</span> gain"
     }
   }
 })

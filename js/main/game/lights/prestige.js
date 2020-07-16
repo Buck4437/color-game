@@ -26,10 +26,11 @@ new Vue({
 })
 
 function canPrestigeLights(){
-  return (player.colors.red.amount >= 255 && player.colors.green.amount >= 255) && player.colors.blue.amount >= 255
+  return player.colors.blue.amount >= 255
 }
 
 function prestigeLights(){
+  gainLights()
   resetColor("red", "green", "blue")
   let colors = ["red", "green", 'blue']
   let types = ["auto", 'multi']
@@ -45,7 +46,6 @@ function prestigeLights(){
     }
   }
   player.lights.photons.amount = 0
-  gainLights()
 }
 
 function resetColorUpgrades(color, type){
