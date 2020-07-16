@@ -46,7 +46,21 @@ const defaultSave = {
       }
     },
     upgrades: {
-      isUnlocked: false
+      isUnlocked: false,
+      keep:{
+        red:{
+          auto: false,
+          multi: false
+        },
+        green:{
+          auto: false,
+          multi: false
+        },
+        blue:{
+          auto: false,
+          multi: false
+        }
+      }
     }
   },
   options:{
@@ -77,6 +91,12 @@ const defaultGame = {
     blue:{
       auto: [null, {blue: 10}, {blue: 100}],
       multi:[null, {blue: 50}],
+    }
+  },
+  lightsUpgradesCost:{
+    red:{
+      keepAuto: 1,
+      keepMulti: 1
     }
   },
   selectedTab:{

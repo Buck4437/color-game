@@ -59,7 +59,12 @@
           </div>
         </div>
         <div id="lightsTabUpgrades" style="display: none">
-          WIP
+          <div style="width: 210px; display: inline-block">
+            <button-light-upgrades-one-time v-for="keepAuto in keepAutos" :name="keepAuto" :key="keepAuto.key"></button-light-upgrades-one-time>
+          </div>
+          <div style="width: 210px; display: inline-block">
+            <button-light-upgrades-one-time v-for="keepMulti in keepMultis" :name="keepMulti" :key="keepMulti.key"></button-light-upgrades-one-time>
+          </div>
         </div>
       </div>
       <div id="tabOptions" class="tabs" style="display: none">
@@ -83,9 +88,10 @@
   <script src="js/libraries/vue.js"></script>
   <script src="js/libraries/custom-functions.js"></script>
   <script src="js/components/others/buttons/button-custom.js"></script>
-  <script src="js/components/others/buttons/colorUpgrades/button-color-upgrades-auto.js"></script>
   <script src="js/components/others/buttons/button-tab-bar.js"></script>
+  <script src="js/components/others/buttons/colorUpgrades/button-color-upgrades-auto.js"></script>
   <script src="js/components/others/buttons/colorUpgrades/button-color-upgrades-multi.js"></script>
+  <script src="js/components/others/buttons/lightUpgrades/button-light-upgrades-oneTime.js"></script>
   <script src="js/components/others/color-bar/color-bar.js"></script>
   <script src="js/components/main/player-rgb.js"></script>
   <script src="js/components/main/photons-rgb.js"></script>
@@ -97,6 +103,7 @@
   <script src="js/main/game/lights/prestige.js"></script>
   <script src="js/main/game/lights/sub-tabs.js"></script>
   <script src="js/main/game/lights/photons.js"></script>
+  <script src="js/main/game/lights/lightUpgrades.js"></script>
   <script src="js/main/game/generateThings.js"></script>
   <script src="js/main/top/currencybar.js"></script>
   <script src="js/main/top/topbar.js"></script>

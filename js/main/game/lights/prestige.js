@@ -35,10 +35,14 @@ function prestigeLights(){
   let types = ["auto", 'multi']
   for (let color of colors){
     for (let type of types){
-      resetColorUpgrades(color, type)
+      if(!player.lights.upgrades.keep[color][type]){
+        resetColorUpgrades(color, type)
+      }
     }
-    clearInterval(game.autobuyersInterval[color])
-    player.colors[color].auto = 0
+    if(!player.lights.upgrades.keep[color].auto){
+      clearInterval(game.autobuyersInterval[color])
+      player.colors[color].auto = false
+    }
   }
   player.lights.photons.amount = 0
   gainLights()
