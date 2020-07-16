@@ -60,6 +60,26 @@ new Vue({
         })
       }
       return array
+    },
+    fasterAutos: function(){
+      let array = []
+      let colors = ["red", "green", "blue"]
+      for (let color of colors){
+        array.push({
+          key: color + "FasterAuto",
+          text: capitalizeFirstLetter(color) +" autoclicker speed x2" + (player.lights.upgrades.fasterAuto[color] ? " (Bought!)" : "<br><br>Cost: 1 Light"),
+          onclick: function(){
+            if(player.lights.upgrades.fasterAuto[color] != true && player.lights.amount >= 1){
+              player.lights.upgrades.fasterAuto[color] = true
+              player.lights.amount --
+            }
+          },
+          style: player.lights.upgrades.fasterAuto[color] ? this.styles.max
+                :player.lights.amount >= 1 ? this.styles.canBuy : this.styles.cannotBuy,
+          disabled: player.lights.upgrades.fasterAuto[color] || player.lights.amount < 1
+        })
+      }
+      return array
     }
   }
 })

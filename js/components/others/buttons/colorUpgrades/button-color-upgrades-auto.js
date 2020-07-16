@@ -26,8 +26,8 @@ Vue.component('button-color-upgrades-auto',{
       let noun = capitalizeFirstLetter(this.name.color)
       return {
         locked: "Unlock " + noun + " Autoclicker<br><br>Cost: " + costStringify(game.upgradesCost[this.name.color].auto[1]),
-        unlocked: "Upgrade " + noun + " Autoclicker <br><br>" + player.colors[this.name.color].upgrades.auto + " CPS => " + (player.colors[this.name.color].upgrades.auto + 1) + " CPS<br><br>Cost: " + costStringify(game.upgradesCost[this.name.color].auto[player.colors[this.name.color].upgrades.auto + 1]),
-        maxed: "Upgrade " + noun + " Autoclicker<br><br>"+ player.colors[this.name.color].upgrades.auto + " CPS (Maxed!)"
+        unlocked: "Upgrade " + noun + " Autoclicker <br><br>" + player.colors[this.name.color].upgrades.auto*(player.lights.upgrades.fasterAuto[this.name.color] ? 2 : 1) + " CPS => " + (player.colors[this.name.color].upgrades.auto + 1)*(player.lights.upgrades.fasterAuto[this.name.color] ? 2 : 1) + " CPS<br><br>Cost: " + costStringify(game.upgradesCost[this.name.color].auto[player.colors[this.name.color].upgrades.auto + 1]),
+        maxed: "Upgrade " + noun + " Autoclicker<br><br>"+ player.colors[this.name.color].upgrades.auto*(player.lights.upgrades.fasterAuto[this.name.color] ? 2 : 1) + " CPS (Maxed!)"
       }
     },
     currentText: function(){

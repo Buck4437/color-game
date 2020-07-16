@@ -60,6 +60,11 @@ const defaultSave = {
           auto: false,
           multi: false
         }
+      },
+      fasterAuto:{
+        red: false,
+        green: false,
+        blue: false
       }
     }
   },

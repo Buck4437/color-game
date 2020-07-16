@@ -104,6 +104,10 @@ function setAutoBuyColor(color, boolean, interval){
 function updateAutobuyers(){
   let colors = Object.keys(game.autobuyersInterval)
   for (let color of colors){
-    setAutoBuyColor(color, player.colors[color].auto, 1000/Math.max(1,player.colors[color].upgrades.auto||1))
+    let interval = 1000/Math.max(1,player.colors[color].upgrades.auto||1)
+    if(player.lights.upgrades.fasterAuto[color]){
+      interval /= 2
+    }
+    setAutoBuyColor(color, player.colors[color].auto, interval)
   }
 }
