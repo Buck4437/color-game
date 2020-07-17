@@ -34,10 +34,6 @@ const defaultSave = {
   lights:{
     isUnlocked: false,
     amount: 0,
-    prestigeTime:{
-      current: 0,
-      fastest: 1e10
-    },
     photons:{
       isInitiated: false,
       amount: 0,
@@ -75,6 +71,15 @@ const defaultSave = {
   options:{
     confirmation:{
       lights: true
+    }
+  },
+  stats:{
+    playTime: 0,
+    prestigeTime:{
+      lights:{
+        current: 0,
+        fastest: 1e10
+      }
     }
   },
   version: [0,1,2,1]
