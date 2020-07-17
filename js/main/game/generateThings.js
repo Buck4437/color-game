@@ -3,4 +3,5 @@ function generateThings(ticks){
   if(player.lights.photons.isInitiated){
     player.lights.photons.amount += gainRateLights().photons * seconds
   }
+  player.lights.prestigeTime.current += seconds
 }

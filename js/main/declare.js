@@ -34,6 +34,10 @@ const defaultSave = {
   lights:{
     isUnlocked: false,
     amount: 0,
+    prestigeTime:{
+      current: 0,
+      fastest: 1e10
+    },
     photons:{
       isInitiated: false,
       amount: 0,
