@@ -9,13 +9,13 @@
     <title>Trichromacy</title>
   </head>
   <body style="background-color:black">
-    <div id="currency-bar">
+    <div id="currency-bar" style="margin-bottom: 20px">
       <div class="currencyBarCurrencies" style="color:red">Red:&nbsp{{red}}</div>
       <div class="currencyBarCurrencies" style="color:green">Green:&nbsp{{green}}</div>
       <div class="currencyBarCurrencies" style="color:blue;" v-if="player.colors.blue.isUnlocked">Blue:&nbsp{{blue}}</div>
       <div class="currencyBarCurrencies"  style="color:#0f0;" v-if="player.lights.isUnlocked">
         Lights:&nbsp{{lights}}<br>
-        <button-custom :name="lightsPrestige" style="padding: 5px 15px; margin-top: 5px"></button-custom>
+        <button-custom :name="lightsPrestige" style="padding: 5px 15px; margin-top: 10px"></button-custom>
       </div>
     </div>
     <br>
@@ -72,7 +72,7 @@
         </div>
       </div>
       <div id="tabOptions" class="tabs" style="display: none">
-        <div style="width: 350px; display: inline-block; margin-right: 150px">
+        <div style="width: 350px; display: inline-block; margin-right: 150px; margin-bottom: 50px">
           <div style="width: 310px; padding-bottom: 30px; text-align: center; color: #f00">
             Save file management
           </div>
@@ -82,11 +82,21 @@
           <button-custom :name="importGame"></button-custom>
           <button-custom :name="reset" style="border-color: red; color: red"></button-custom>
         </div>
-        <div style="width: 170px; display: inline-block; vertical-align:top" v-if="player.lights.isUnlocked">
+        <div style="width: 160px; display: inline-block; margin-right: 150px; vertical-align:top; margin-bottom: 50px"  v-if="player.lights.isUnlocked">
           <div style="width: 160px; padding-bottom: 30px; text-align: center; color: #0f0">
             Confirmations
           </div>
           <button-custom :name="confirmation.lights" style="border-color: #0f0; color: #0a0"></button-custom>
+        </div>
+        <div style="width: 350px; display: inline-block; margin-right: 150px; vertical-align:top; margin-bottom: 50px"  v-if="player.lights.isUnlocked">
+          <div style="width: 350px; padding-bottom: 30px; text-align: center; color: #00f">
+            Stats
+          </div>
+          <div style="text-align:center">
+            Total Play Time: {{time.total}}<br><br>
+            Current Light Prestige Time: {{time.currentLight}}<br><br>
+            Fastest Light Prestige Time: {{time.fastestLight}}
+          </div>
         </div>
         <br>
         <br>

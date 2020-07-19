@@ -8,6 +8,7 @@ IsJsonString(str): true if it is valid, false otherwise
 capitalizeFirstLetter(string): Capitalize First Letter of the string
 isNumber(thing): return whether the thing is a finite number
 numToSci(Number to convert, decimal places, dp used in sci notation, use full number if smaller than this (def 1000))
+secondToTime(ms) convert milliseconds to a readable form
 
 PART B: SPECFIC
 topBarButtonsProperties(id, elementID, text, isHidden, variable, tabID, tabs, style):
@@ -74,6 +75,32 @@ function numToSci(num, dp, scidp, showFullIfSmallerThanThis){
     return mantissa + "e" + exponent
   }
 }
+
+function secondToTime(s){
+  let original = s
+  let string = ""
+  let units = [["year", 31536000], ["day",86400], ["hour", 3600], ["minute", 60]]
+  for (let [unit, toS] of units){
+    if (s > toS){
+      string += Math.floor(s/toS) + " " + unit + (Math.floor(s/toS) == 1 ? "s, " : ", ")
+      s -= Math.floor(s/toS)* toS
+    }
+  }
+  return string + (original > 1 ? Math.floor(s) : numToSci(s, 3, 0, 10000)) + " seconds"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function topBarButtonsProperties(id, elementID, text, isHidden, variable, tabID, tabs, style){

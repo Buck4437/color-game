@@ -33,6 +33,7 @@ function prestigeLights(){
   if(player.stats.prestigeTime.lights.current < player.stats.prestigeTime.lights.fastest){
     player.stats.prestigeTime.lights.fastest = player.stats.prestigeTime.lights.current
   }
+  player.stats.prestigeTime.lights.current = 0
   gainLights()
   resetColor("red", "green", "blue")
   let colors = ["red", "green", 'blue']

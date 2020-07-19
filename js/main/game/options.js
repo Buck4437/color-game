@@ -60,6 +60,13 @@ new Vue ({
           }
         }
       }
+    },
+    time: function(){
+      return {
+        total: secondToTime(player.stats.playTime),
+        currentLight: secondToTime(player.stats.prestigeTime.lights.current),
+        fastestLight: secondToTime(player.stats.prestigeTime.lights.fastest)
+      }
     }
   }
 })
