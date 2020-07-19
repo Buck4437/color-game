@@ -86,7 +86,7 @@ function secondToTime(s){
       s -= Math.floor(s/toS)* toS
     }
   }
-  return string + (original > 1 ? Math.floor(s) : numToSci(s, 3, 0, 10000)) + " seconds"
+  return string + (original > 10 ? Math.floor(s) : numToSci(s, 3, 0, 10000)) + " seconds"
 }
 
 

@@ -88,14 +88,14 @@
           </div>
           <button-custom :name="confirmation.lights" style="border-color: #0f0; color: #0a0"></button-custom>
         </div>
-        <div style="width: 350px; display: inline-block; margin-right: 150px; vertical-align:top; margin-bottom: 50px"  v-if="player.lights.isUnlocked">
+        <div style="width: 350px; display: inline-block; margin-right: 150px; vertical-align:top; margin-bottom: 50px">
           <div style="width: 350px; padding-bottom: 30px; text-align: center; color: #00f">
             Stats
           </div>
-          <div style="text-align:center">
-            Total Play Time: {{time.total}}<br><br>
-            Current Light Prestige Time: {{time.currentLight}}<br><br>
-            Fastest Light Prestige Time: {{time.fastestLight}}
+          <div style="text-align: center">
+            <span>Total Play Time: {{time.total}}</span><br><br>
+            <span v-if="player.lights.isUnlocked">Current Light Prestige Time: {{time.currentLight}}</span><br><br>
+            <span v-if="player.lights.isUnlocked">Fastest Light Prestige Time: {{time.fastestLight}}</span>
           </div>
         </div>
         <br>
