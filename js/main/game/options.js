@@ -3,30 +3,26 @@ new Vue ({
   data: {
     player: player,
     save: {
-      text: "Save",
       onclick: function(){
         save();
       }
     },
     load: {
-      text: "Load",
       onclick: function(){
         if(loadSave(localStorage.getItem("player"))){
           alert("Game loaded!")
+          save()
           return
         }
         alert("Game failed to load!")
       }
     },
     exportGame: {
-      text: "Export",
       onclick: function(){
         exportSave()
       }
     },
     importGame: {
-      text: "Import",
-      seen: true,
       onclick: function(){
         try{
           let importedSave =  window.atob(prompt("Enter your save:"))
@@ -41,8 +37,6 @@ new Vue ({
       }
     },
     reset: {
-      text: "RESET",
-      seen: true,
       onclick: function(){
         if(prompt("Enter 'RESET' in ALL CAPS to reset the game. THIS ACTION CANNOT BE UNDONE.") === 'RESET'){
           resetGame()

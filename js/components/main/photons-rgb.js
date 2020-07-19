@@ -2,11 +2,11 @@ Vue.component('photons-rgb',{
   template: `
     <div>
       <color-bar :bar="barParsed"></color-bar>
-      <button-custom :name="buttons.minus10"></button-custom>
-      <button-custom :name="buttons.minus1"></button-custom>
+      <button @click="buttons.minus10.onclick()" :style="buttons.minus10.style">\<\<</button>
+      <button @click="buttons.minus1.onclick()" :style="buttons.minus1.style">\<</button>
       <span style="display: inline-block; width: 40px; text-align: center; margin-right: 10px">{{text}}</span>
-      <button-custom :name="buttons.add1"></button-custom>
-      <button-custom :name="buttons.add10"></button-custom>
+      <button @click="buttons.add1.onclick()" :style="buttons.add1.style">\></button>
+      <button @click="buttons.add10.onclick()" :style="buttons.add10.style">\>\></button>
       <span style="display: inline-block; margin-right: 10px" v-html="effect"></span>
     </div>
   `,
@@ -71,8 +71,7 @@ Vue.component('photons-rgb',{
           onclick: function(){
             tryAdd(num)
           },
-          style: canAdd(num) ? addSubButtonStyles.enabled : addSubButtonStyles.disabled ,
-          disabled: !canAdd(num)
+          style: canAdd(num) ? addSubButtonStyles.enabled : addSubButtonStyles.disabled
         }
       }
       return {

@@ -81,11 +81,11 @@
           <div style="width: 310px; padding-bottom: 30px; text-align: center; color: #f00">
             Save file management
           </div>
-          <button-custom :name="save"></button-custom>
-          <button-custom :name="load"></button-custom>
-          <button-custom :name="exportGame"></button-custom>
-          <button-custom :name="importGame"></button-custom>
-          <button-custom :name="reset" style="border-color: red; color: red"></button-custom>
+          <button @click="save.onclick()">Save</button>
+          <button @click="load.onclick()">Load</button>
+          <button @click="exportGame.onclick()">Export</button>
+          <button @click="importGame.onclick()">Import</button>
+          <button @click="reset.onclick()" style="border-color: red; color: red">RESET</button>
         </div>
         <div style="width: 160px; display: inline-block; margin-right: 150px; vertical-align:top; margin-bottom: 50px"  v-if="player.lights.isUnlocked">
           <div style="width: 160px; padding-bottom: 30px; text-align: center; color: #0f0">
