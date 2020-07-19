@@ -1,9 +1,9 @@
 Vue.component('player-rgb',{
   template: `
     <div>
-      <color-bar :bar="barParsed" v-if="seen"></color-bar>
-      <button-custom :name="autoParsed"></button-custom>
-      <button-custom :name="addsubParsed"></button-custom>
+      <color-bar :bar="barParsed" v-if="!this.bar.isHidden"></color-bar>
+      <button v-if="autoParsed.isSeen" @click="toggleAuto">Auto: {{autoParsed.text}}</button>
+      <button v-if="!addsub.isHidden" :style="add.style" @click="add.onclick" :id="addsub.elementID">{{addsub.text}}</button>
     </div>
   `,
   props:{
@@ -24,8 +24,8 @@ Vue.component('player-rgb',{
     }
   },
   methods:{
-    add: function(){
-      this.addsubParsed.onclick()
+    toggleAuto: function(){
+      setAutoBuyColor(this.global.color, !player.colors[this.global.color].auto, 1000/Math.max(1,player.colors[this.global.color].upgrades.auto||1))
     }
   },
   computed:{
@@ -40,30 +40,25 @@ Vue.component('player-rgb',{
     autoParsed: function(){
       let color = this.global.name
       return {
-        text: "Auto: " + (player.colors[color].auto ? "On" : "Off"),
-        isHidden: player.colors[color].upgrades.auto == 0,
-        onclick: function(){
-          setAutoBuyColor(color, !player.colors[color].auto, 1000/Math.max(1,player.colors[color].upgrades.auto||1))
-        }
+        text: player.colors[color].auto ? "On" : "Off",
+        isSeen: player.colors[color].upgrades.auto != 0
       }
     },
-    addsubParsed: function(){
+    addStyle: function(){
+      return canGainColor()[this.global.color] ? this.addsub.style.enabled : this.addsub.style.disabled
+    },
+    add: function(){
       let color = this.global.name
       let unlocks = this.addsub.unlocks||function(){}
       return {
-        text: this.addsub.text,
-        isHidden: this.addsub.isHidden,
-        onclick: function(){
-          gainColor(color)
-          unlocks()
-        },
         style: canGainColor()[color] ? this.addsub.style.enabled : this.addsub.style.disabled,
-        disabled: !canGainColor()[color],
-        elementID: this.addsub.elementID
+        onclick: function(){
+          if(canGainColor()[color]){
+            gainColor(color)
+            unlocks()
+          }
+        }
       }
-    },
-    seen: function(){
-      return !this.barParsed.isHidden
     }
   }
 })

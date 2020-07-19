@@ -6,8 +6,7 @@ Vue.component('button-light-upgrades-one-time',{
       cost: Number,
       isHidden: Boolean,
       onclick: Function,
-      style: Object,
-      disabled: Boolean
+      style: Object
     }
   },
   methods:{

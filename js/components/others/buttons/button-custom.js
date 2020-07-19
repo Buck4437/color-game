@@ -7,8 +7,7 @@ Vue.component('button-custom',{
       currentText: String,
       isHidden: Boolean,
       onclick: Function,
-      style: Object,
-      disabled: Boolean
+      style: Object
     }
   },
   methods:{

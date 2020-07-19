@@ -91,6 +91,23 @@ function saveTimerCountdown(){
 
 setInterval(saveTimerCountdown, 50)
 
+function importSave(string){
+   let save = JSON.parse(string)
+   if(importSaveVersionChecker(save)){
+     // importToGame(save)
+     for (let prop in defaultSave){
+       ImportAndSaveFixer(prop, save)
+     }
+     updateSaveVersion()
+     updateAutobuyers()
+     for (let prop in defaultGame){
+       game.selectedTab[prop] = defaultGame.selectedTab[prop]
+     }
+     return true
+   }
+   return false
+}
+
 function ImportAndSaveFixer(property, save){
   if(save[property] === undefined){
     player[property] = JSON.parse(JSON.stringify(defaultSave[property]))
@@ -111,23 +128,6 @@ function importSaveVersionChecker(save){
   //   return false
   // }
   return true
-}
-
-function importSave(string){
-   let save = JSON.parse(string)
-   if(importSaveVersionChecker(save)){
-     // importToGame(save)
-     for (let prop in defaultSave){
-       ImportAndSaveFixer(prop, save)
-     }
-     updateSaveVersion()
-     updateAutobuyers()
-     for (let prop in defaultGame){
-       game.selectedTab[prop] = defaultGame.selectedTab[prop]
-     }
-     return true
-   }
-   return false
 }
 
 function loadSave(string){

@@ -1,24 +1,3 @@
-function playerMainProperty(id, name, isBarHidden, text, styles, unlockFunction){
-  return {
-    id: id,
-    global:{
-      name: name,
-      color: name
-    },
-    bar:{
-      max: 255,
-      isHidden: isBarHidden
-    },
-    addsub: {
-      text: text,
-      isHidden: isBarHidden,
-      style: styles,
-      unlocks: unlockFunction,
-      elementID: "colors" + capitalizeFirstLetter(name) + "Add"
-    },
-  }
-}
-
 new Vue ({
   el: "#playerMain",
   data: {
@@ -46,6 +25,27 @@ new Vue ({
     }
   }
 })
+
+function playerMainProperty(id, name, isBarHidden, text, styles, unlockFunction){
+  return {
+    id: id,
+    global:{
+      name: name,
+      color: name
+    },
+    bar:{
+      max: 255,
+      isHidden: isBarHidden
+    },
+    addsub: {
+      text: text,
+      isHidden: isBarHidden,
+      style: styles,
+      unlocks: unlockFunction,
+      elementID: "colors" + capitalizeFirstLetter(name) + "Add"
+    },
+  }
+}
 
 function firstTimeUnlockColor(){
   return{

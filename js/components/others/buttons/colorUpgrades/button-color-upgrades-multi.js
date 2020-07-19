@@ -9,8 +9,7 @@ Vue.component('button-color-upgrades-multi',{
         max: Object,
         canBuy: Object,
         cannotBuy: Object
-      },
-      disabled: Boolean
+      }
     }
   },
   methods:{

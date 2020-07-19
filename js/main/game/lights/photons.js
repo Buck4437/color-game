@@ -20,8 +20,7 @@ new Vue({
       }
       let unassignedPhotonsAmount = function(){
         let init = player.lights.photons.amount
-        let colors = ["red", "green", "blue"]
-        for (color of colors){
+        for (color of ["red", "green", "blue"]){
           init -= Math.floor(player.lights.photons.percentage[color] * player.lights.photons.amount/100)
         }
         return init
