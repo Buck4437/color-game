@@ -99,10 +99,6 @@ function secondToTime(s){
 
 
 
-
-
-
-
 function topBarButtonsProperties(id, elementID, text, isHidden, variable, tabID, tabs, style){
   return{
     id: id,

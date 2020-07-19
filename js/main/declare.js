@@ -35,7 +35,6 @@ const defaultSave = {
     isUnlocked: false,
     amount: 0,
     photons:{
-      isInitiated: false,
       amount: 0,
       auto: false,
       multi: 0,
@@ -46,7 +45,6 @@ const defaultSave = {
       }
     },
     upgrades: {
-      isUnlocked: false,
       keep:{
         red:{
           auto: false,
@@ -62,6 +60,11 @@ const defaultSave = {
         }
       },
       fasterAuto:{
+        red: false,
+        green: false,
+        blue: false
+      },
+      boostPhotons:{
         red: false,
         green: false,
         blue: false
@@ -108,10 +111,6 @@ const defaultGame = {
     }
   },
   lightsUpgradesCost:{
-    red:{
-      keepAuto: 1,
-      keepMulti: 1
-    }
   },
   selectedTab:{
     mainTab: "tabMain",

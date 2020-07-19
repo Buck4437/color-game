@@ -18,7 +18,7 @@ new Vue ({
       }
       return [
         topBarButtonsProperties(0, null, "Photons", false, location, tabs[0], tabs, style),
-        topBarButtonsProperties(1, null, "Light Upgrades", !player.lights.upgrades.isUnlocked, location, tabs[1], tabs, style),
+        topBarButtonsProperties(1, null, "Light Upgrades", false, location, tabs[1], tabs, style),
       ]
     }
   }

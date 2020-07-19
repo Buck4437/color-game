@@ -39,15 +39,6 @@ new Vue({
           width: 100,
           color: "#4c4"
         },
-        initiate:{
-          text: "Initiate Photon Emission.",
-          isHidden: player.lights.photons.isInitiated,
-          onclick: function(){
-            player.lights.photons.isInitiated = true
-            player.lights.upgrades.isUnlocked = true
-          },
-          style: buttonStyles.enabled,
-        },
         double:{
           text: "x2 Photon gain speed. Cost: " + numToSci(2**(player.lights.photons.multi), 0, 2) + " Light" + (player.lights.photons.multi == 0 ? "" : "s"),
           onclick: function(){
@@ -59,7 +50,7 @@ new Vue({
           style: (player.lights.amount >= 2**(player.lights.photons.multi)) ? buttonStyles.enabled : buttonStyles.disabled,
         },
         normalPhotons:{
-          text: "Photons: " + numToSci(player.lights.photons.amount, 0, 2) + " (+" + gainRateLights().photons + "/s)",
+          text: "Photons: " + numToSci(player.lights.photons.amount, 0, 2) + " (+" + numToSci(gainRateLights().photons, 0, 2) + "/s)",
           width: 100,
           color: "#ccc",
           textStyle:{

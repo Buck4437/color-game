@@ -116,6 +116,26 @@ new Vue({
         })
       }
       return array
+    },
+    boostPhotons: function(){
+      let array = []
+      let colors = [["red", 3], ["green", 5], ["blue", 10]]
+      for (let [color, cost] of colors){
+        array.push({
+          key: color + "boostPhotons",
+          text: capitalizeFirstLetter(color) +" multiplier based on PLACEHODELRFNNIF" + (player.lights.upgrades.boostPhotons[color] ? " (Bought!)" : "") + "<br><br>Currently: x" + numToSci(lightUpgradesEffect().boostPhotons[color], 2) + (player.lights.upgrades.boostPhotons[color] ? "" : "<br><br>Cost: " + cost + " Light"),
+          onclick: function(){
+            if(player.lights.upgrades.boostPhotons[color] != true && player.lights.amount >= cost){
+              player.lights.upgrades.boostPhotons[color] = true
+              player.lights.amount -= cost
+            }
+          },
+          style: player.lights.upgrades.boostPhotons[color] ? this.styles[color].max
+                :player.lights.amount >= cost ? this.styles[color].canBuy : this.styles[color].cannotBuy,
+          disabled: player.lights.upgrades.boostPhotons[color] || player.lights.amount < cost
+        })
+      }
+      return array
     }
   }
 })

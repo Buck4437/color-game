@@ -9,7 +9,7 @@
     <title>Trichromacy</title>
   </head>
   <body style="background-color:black">
-    <div id="currency-bar" style="margin-bottom: 20px">
+    <div id="currency-bar" style="margin-bottom: 10px">
       <div class="currencyBarCurrencies" style="color:red">Red:&nbsp{{red}}</div>
       <div class="currencyBarCurrencies" style="color:green">Green:&nbsp{{green}}</div>
       <div class="currencyBarCurrencies" style="color:blue;" v-if="player.colors.blue.isUnlocked">Blue:&nbsp{{blue}}</div>
@@ -47,8 +47,7 @@
           <div>
             <color-bar :bar="lights.bar"></color-bar>
           </div>
-          <button-custom :name="lights.initiate"></button-custom>
-          <div v-if="player.lights.photons.isInitiated">
+          <div>
             <div>
               <color-bar :bar="lights.normalPhotons"></color-bar>
               <button-custom :name="lights.double"></button-customs>
@@ -68,6 +67,9 @@
           </div>
           <div style="width: 210px; display: inline-block">
             <button-light-upgrades-one-time v-for="fasterAuto in fasterAutos" :name="fasterAuto" :key="fasterAuto.key"></button-light-upgrades-one-time>
+          </div>
+          <div style="width: 210px; display: inline-block">
+            <button-light-upgrades-one-time v-for="boostPhoton in boostPhotons" :name="boostPhoton" :key="boostPhoton.key"></button-light-upgrades-one-time>
           </div>
         </div>
       </div>
@@ -93,9 +95,9 @@
             Stats
           </div>
           <div style="text-align: center">
-            <span>Total Play Time: {{time.total}}</span><br><br>
-            <span v-if="player.lights.isUnlocked">Current Light Prestige Time: {{time.currentLight}}</span><br><br>
-            <span v-if="player.lights.isUnlocked">Fastest Light Prestige Time: {{time.fastestLight}}</span>
+            <span>Total play time: {{time.total}}</span><br><br>
+            <span v-if="player.lights.isUnlocked">Current Light Prestige time: {{time.currentLight}}</span><br><br>
+            <span v-if="player.lights.isUnlocked">Fastest Light Prestige time: {{time.fastestLight}}</span>
           </div>
         </div>
         <br>
@@ -140,5 +142,6 @@
   <script src="js/main/top/currencybar.js"></script>
   <script src="js/main/top/topbar.js"></script>
   <script src="js/main/utilities/savefixer.js"></script>
+  <script src="js/main/utilities/testing-tools.js"></script>
   <script src="js/main/initiate.js"></script>
 </html>
