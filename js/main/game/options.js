@@ -93,17 +93,6 @@ function ImportAndSaveFixer(property, save){
   return
 }
 
-function playerVersionFixer(){
-  let versionNo = player.version
-  if(versionNo == [0,1,2,1]){
-    //placeholder
-  }
-  if(versionNo != [0,1,2,1]){
-    player.version = [0,1,2,1]
-  }
-  return
-}
-
 function importSaveVersionChecker(save){
   if(save.version == "0.0.0"){
     resetGame()
@@ -120,14 +109,11 @@ function importSaveVersionChecker(save){
 function importSave(string){
    let save = JSON.parse(string)
    if(importSaveVersionChecker(save)){
-     // saveFixer(save)
-
-
-
+     // importToGame(save)
      for (let prop in defaultSave){
        ImportAndSaveFixer(prop, save)
      }
-     playerVersionFixer()
+     updateSaveVersion()
      updateAutobuyers()
      for (let prop in defaultGame){
        game.selectedTab[prop] = defaultGame.selectedTab[prop]
