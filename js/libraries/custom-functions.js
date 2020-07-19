@@ -14,9 +14,9 @@ topBarButtonsProperties(id, elementID, text, isHidden, variable, tabID, tabs, st
 Use to declare properties
 */
 
-function locateVar(input){
-  let array = input.split('.')
-  let target = window.top[array[0]]
+function locateProperty(root, property){
+  let array = property.split('.')
+  let target = root[array[0]]
   for (let i=1;i<array.length;i++){
     target = target[array[i]]
   }

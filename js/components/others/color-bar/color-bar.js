@@ -30,12 +30,6 @@ let colorBarAmountComponent = {
     },
   },
   computed:{
-    count: function(){
-        if(Number.isFinite(this.bar.counter)){
-          return this.bar.counter
-        }
-        return locateVar(this.bar.counter)
-    },
     style: function(){
       let width = ""
       if (isNumber(this.bar.width)){

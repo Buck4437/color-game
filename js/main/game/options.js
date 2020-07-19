@@ -120,6 +120,10 @@ function importSaveVersionChecker(save){
 function importSave(string){
    let save = JSON.parse(string)
    if(importSaveVersionChecker(save)){
+     // saveFixer(save)
+
+
+
      for (let prop in defaultSave){
        ImportAndSaveFixer(prop, save)
      }
