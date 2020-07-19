@@ -46,6 +46,7 @@
         <div id="lightsTabPhotons">
           <div>
             <color-bar :bar="lights.bar"></color-bar>
+            <button-custom :name="lights.toggleAuto"></button-custom>
           </div>
           <div>
             <div>
@@ -59,17 +60,19 @@
           </div>
         </div>
         <div id="lightsTabUpgrades" style="display: none">
-          <div style="width: 210px; display: inline-block">
-            <button-light-upgrades-one-time v-for="keepAuto in keepAutos" :name="keepAuto" :key="keepAuto.key"></button-light-upgrades-one-time>
-          </div>
-          <div style="width: 210px; display: inline-block">
-            <button-light-upgrades-one-time v-for="keepMulti in keepMultis" :name="keepMulti" :key="keepMulti.key"></button-light-upgrades-one-time>
-          </div>
-          <div style="width: 210px; display: inline-block">
-            <button-light-upgrades-one-time v-for="fasterAuto in fasterAutos" :name="fasterAuto" :key="fasterAuto.key"></button-light-upgrades-one-time>
-          </div>
-          <div style="width: 210px; display: inline-block">
-            <button-light-upgrades-one-time v-for="boostPhoton in boostPhotons" :name="boostPhoton" :key="boostPhoton.key"></button-light-upgrades-one-time>
+          <div style="width: 890px">
+            <div style="width: 210px; display: inline-block">
+              <button-light-upgrades-one-time v-for="upgrade in column1" :name="upgrade" :key="upgrade.key"></button-light-upgrades-one-time>
+            </div>
+            <div style="width: 210px; display: inline-block">
+              <button-light-upgrades-one-time v-for="upgrade in column2" :name="upgrade" :key="upgrade.key"></button-light-upgrades-one-time>
+            </div>
+            <div style="width: 210px; display: inline-block">
+              <button-light-upgrades-one-time v-for="upgrade in column3" :name="upgrade" :key="upgrade.key"></button-light-upgrades-one-time>
+            </div>
+            <div style="width: 210px; display: inline-block">
+              <button-light-upgrades-one-time v-for="upgrade in column4" :name="upgrade" :key="upgrade.key"></button-light-upgrades-one-time>
+            </div>
           </div>
         </div>
       </div>
@@ -138,6 +141,7 @@
   <script src="js/main/game/lights/photons.js"></script>
   <script src="js/main/game/lights/lightUpgrades.js"></script>
   <script src="js/main/game/generateThings.js"></script>
+  <script src="js/main/game/automation.js"></script>
   <script src="js/main/game/hotkeys.js"></script>
   <script src="js/main/top/currencybar.js"></script>
   <script src="js/main/top/topbar.js"></script>
