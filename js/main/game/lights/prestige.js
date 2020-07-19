@@ -36,12 +36,17 @@ function prestigeLights(){
   player.stats.prestigeTime.lights.current = 0
   gainLights()
   resetColor("red", "green", "blue")
+  resetColorUpgrades()
+  player.lights.photons.amount = 0
+}
+
+function resetColorUpgrades(){
   let colors = ["red", "green", 'blue']
   let types = ["auto", 'multi']
   for (let color of colors){
     for (let type of types){
       if(!player.lights.upgrades.keep[color][type]){
-        resetColorUpgrades(color, type)
+        player.colors[color].upgrades[type] = 0
       }
     }
     if(!player.lights.upgrades.keep[color].auto){
@@ -49,12 +54,8 @@ function prestigeLights(){
       player.colors[color].auto = false
     }
   }
-  player.lights.photons.amount = 0
 }
 
-function resetColorUpgrades(color, type){
-  player.colors[color].upgrades[type] = 0
-}
 
 function gainLights(){
   player.lights.amount += gainRateLights().lights
