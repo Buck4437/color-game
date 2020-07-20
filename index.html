@@ -58,22 +58,8 @@
         </div>
         <div id="lightsTabUpgrades" style="display: none">
           <div>
-            <div style="width: 890px">
-              <button-light-upgrades-one-time v-for="upgrade in row1" :name="upgrade" :key="upgrade.key" style="margin-right: 10px"></button-light-upgrades-one-time>
-            </div>
-          </div>
-          <div style="width: 890px">
-            <div style="width: 210px; display: inline-block">
-              <button-light-upgrades-one-time v-for="upgrade in column1" :name="upgrade" :key="upgrade.key"></button-light-upgrades-one-time>
-            </div>
-            <div style="width: 210px; display: inline-block">
-              <button-light-upgrades-one-time v-for="upgrade in column2" :name="upgrade" :key="upgrade.key"></button-light-upgrades-one-time>
-            </div>
-            <div style="width: 210px; display: inline-block">
-              <button-light-upgrades-one-time v-for="upgrade in column3" :name="upgrade" :key="upgrade.key"></button-light-upgrades-one-time>
-            </div>
-            <div style="width: 210px; display: inline-block">
-              <button-light-upgrades-one-time v-for="upgrade in column4" :name="upgrade" :key="upgrade.key"></button-light-upgrades-one-time>
+            <div v-for="row in rows" :key="row.id" style="width: 890px">
+              <button-light-upgrades-one-time v-for="upgrade in row.items" :name="upgrade" :key="upgrade.key" style="margin-right: 8px"></button-light-upgrades-one-time>
             </div>
           </div>
         </div>
@@ -130,6 +116,7 @@
   <script src="js/components/main/photons-rgb.js"></script>
   <script src="js/main/declare.js"></script>
   <script src="js/main/gainRates.js"></script>
+  <script src="js/main/gameData/lightUpgrades.js"></script>
   <script src="js/main/gameData/gameDataUpdate.js"></script>
   <script src="js/main/game/playerMain.js"></script>
   <script src="js/main/game/upgrades.js"></script>
@@ -145,6 +132,5 @@
   <script src="js/main/top/topbar.js"></script>
   <script src="js/main/utilities/savefixer.js"></script>
   <script src="js/main/utilities/testing-tools.js"></script>
-
   <script src="js/main/initiate.js"></script>
 </html>
