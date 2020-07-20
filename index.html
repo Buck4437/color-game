@@ -15,7 +15,7 @@
       <div class="currencyBarCurrencies" style="color:blue;" v-if="player.colors.blue.isUnlocked">Blue:&nbsp{{blue}}</div>
       <div class="currencyBarCurrencies"  style="color:#0f0;" v-if="player.lights.isUnlocked">
         Lights:&nbsp{{lights}}<br>
-        <button-custom :name="lightsPrestige" style="padding: 5px 15px; margin-top: 10px"></button-custom>
+        <button @click="lightsPrestige.click" :style="lightsPrestige.style" style="padding: 5px 15px; margin-top: 10px; background-color: black;" v-html="lightsPrestige.text"></button>
       </div>
     </div>
     <br>
@@ -29,14 +29,13 @@
           <player-rgb v-for="color in colors" :global="color.global" :bar="color.bar" :addsub="color.addsub" :auto="color.auto" :key="color.id"></player-rgb>
         </div>
         <div id="unlockLights">
-          <button-custom :name="gainLights"></button-custom>
+          <button v-if="!gainLights.isHidden" @click="gainLights.click" :style="gainLights.style">{{gainLights.text}}</button>
         </div>
       </div>
       <div id="tabUpgrades" class="tabs" style="display: none">
-        <div v-for="upgrade in upgrades" :name="upgrade" :key="upgrade.id">
+        <div v-for="upgrade in upgrades" :name="upgrade" :key="upgrade.id" style="width: 450px">
           <button-color-upgrades-auto :name="upgrade.auto"></button-color-upgrades-auto>
           <button-color-upgrades-multi :name="upgrade.multi"></button-color-upgrades-multi>
-          <br>
         </div>
       </div>
       <div id="tabLights" class="tabs" style="display: none">
@@ -46,20 +45,23 @@
         <div id="lightsTabPhotons">
           <div>
             <color-bar :bar="lights.bar"></color-bar>
-            <button-custom :name="lights.toggleAuto"></button-custom>
+            <button @click="lights.toggleAuto.click" :style="lights.toggleAuto.style">{{lights.toggleAuto.text}}</button>
           </div>
           <div>
-            <div>
-              <color-bar :bar="lights.normalPhotons"></color-bar>
-              <button-custom :name="lights.double"></button-customs>
-            </div>
-            <div>
-              <photons-rgb v-for="bar in lights.colorPhotons" :color-name="bar" :key="bar"></photons-rgb>
-              <color-bar :bar="lights.unassignedPhotons"></color-bar>
-            </div>
+            <color-bar :bar="lights.normalPhotons"></color-bar>
+            <button @click="lights.double.click" :style="lights.double.style">{{lights.double.text}}</button>
+          </div>
+          <div>
+            <photons-rgb v-for="bar in lights.colorPhotons" :color-name="bar" :key="bar"></photons-rgb>
+            <color-bar :bar="lights.unassignedPhotons"></color-bar>
           </div>
         </div>
         <div id="lightsTabUpgrades" style="display: none">
+          <div>
+            <div style="width: 890px">
+              <button-light-upgrades-one-time v-for="upgrade in row1" :name="upgrade" :key="upgrade.key" style="margin-right: 10px"></button-light-upgrades-one-time>
+            </div>
+          </div>
           <div style="width: 890px">
             <div style="width: 210px; display: inline-block">
               <button-light-upgrades-one-time v-for="upgrade in column1" :name="upgrade" :key="upgrade.key"></button-light-upgrades-one-time>
@@ -81,17 +83,13 @@
           <div style="width: 310px; padding-bottom: 30px; text-align: center; color: #f00">
             Save file management
           </div>
-          <button @click="save.onclick()">Save</button>
-          <button @click="load.onclick()">Load</button>
-          <button @click="exportGame.onclick()">Export</button>
-          <button @click="importGame.onclick()">Import</button>
-          <button @click="reset.onclick()" style="border-color: red; color: red">RESET</button>
+          <button v-for="option in options" @click="option.click" :style="option.style">{{option.text}}</button>
         </div>
         <div style="width: 160px; display: inline-block; margin-right: 150px; vertical-align:top; margin-bottom: 50px"  v-if="player.lights.isUnlocked">
           <div style="width: 160px; padding-bottom: 30px; text-align: center; color: #0f0">
             Confirmations
           </div>
-          <button-custom :name="confirmation.lights" style="border-color: #0f0; color: #0a0"></button-custom>
+          <button v-for="button of confirmations" @click="button.click" :style="button.style">{{button.text}}</button>
         </div>
         <div style="width: 350px; display: inline-block; margin-right: 150px; vertical-align:top; margin-bottom: 50px">
           <div style="width: 350px; padding-bottom: 30px; text-align: center; color: #00f">
@@ -123,7 +121,6 @@
   <script type="text/javascript" src="js/libraries/jquery-3.4.1.js"></script>
   <script src="js/libraries/vue.js"></script>
   <script src="js/libraries/custom-functions.js"></script>
-  <script src="js/components/others/buttons/button-custom.js"></script>
   <script src="js/components/others/buttons/button-tab-bar.js"></script>
   <script src="js/components/others/buttons/colorUpgrades/button-color-upgrades-auto.js"></script>
   <script src="js/components/others/buttons/colorUpgrades/button-color-upgrades-multi.js"></script>
@@ -133,6 +130,7 @@
   <script src="js/components/main/photons-rgb.js"></script>
   <script src="js/main/declare.js"></script>
   <script src="js/main/gainRates.js"></script>
+  <script src="js/main/gameData/gameDataUpdate.js"></script>
   <script src="js/main/game/playerMain.js"></script>
   <script src="js/main/game/upgrades.js"></script>
   <script src="js/main/game/options.js"></script>
@@ -147,5 +145,6 @@
   <script src="js/main/top/topbar.js"></script>
   <script src="js/main/utilities/savefixer.js"></script>
   <script src="js/main/utilities/testing-tools.js"></script>
+
   <script src="js/main/initiate.js"></script>
 </html>

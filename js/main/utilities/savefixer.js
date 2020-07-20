@@ -4,7 +4,7 @@
 //   updateSaveVersion()
 // }
 
-function updateSaveVersion(){
+function updateSave(){
   let versionNo = player.version
   if(versionNo == [0,1,2,1]){
     //placeholder

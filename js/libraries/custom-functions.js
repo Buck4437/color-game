@@ -4,7 +4,6 @@ Custom functions list:
 
 PART A: BROAD
 locateVar("varName"): return the value of var inputted (support properties in dot notations, global only)
-IsJsonString(str): true if it is valid, false otherwise
 capitalizeFirstLetter(string): Capitalize First Letter of the string
 isNumber(thing): return whether the thing is a finite number
 numToSci(Number to convert, decimal places, dp used in sci notation, use full number if smaller than this (def 1000))
@@ -22,15 +21,6 @@ function locateProperty(root, property){
     target = target[array[i]]
   }
   return target
-}
-
-function IsJsonString(str) {
-    try {
-        JSON.parse(str);
-    } catch (e) {
-        return false;
-    }
-    return true;
 }
 
 function capitalizeFirstLetter(input) {

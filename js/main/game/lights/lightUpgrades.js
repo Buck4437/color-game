@@ -2,7 +2,8 @@ new Vue({
   el: "#lightsTabUpgrades",
   data:{
     player: player,
-    colors: [["red", "#f00", "#800"], ["green", "#0f0", "#080"], ["blue", "#00f", "#008"]]
+    game: game,
+    colors: [["red", "#f00", "#800"], ["green", "#0f0", "#080"], ["blue", "#00f", "#008"]],
   },
   computed:{
     styles: function (){
@@ -25,6 +26,13 @@ new Vue({
           }
         }
       }
+    },
+    row1: function(){
+      let array = []
+      for (let upgrade in game.lightUpgrades.row1){
+        array.push(game.lightUpgrades.row1[upgrade])
+      }
+      return array
     },
     column1: function(){
       let array = []

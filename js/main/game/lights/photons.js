@@ -41,7 +41,7 @@ new Vue({
         },
         toggleAuto:{
           text: "Placeholder",
-          onclick: function(){
+          click: function(){
           },
           style: buttonStyles.enabled
         },
@@ -55,7 +55,7 @@ new Vue({
         },
         double:{
           text: "x2 Photon gain speed. Cost: " + numToSci(2**(player.lights.photons.multi), 0, 2) + " Light" + (player.lights.photons.multi == 0 ? "" : "s"),
-          onclick: function(){
+          click: function(){
             if(player.lights.amount >= 2**(player.lights.photons.multi)){
               player.lights.amount -= 2**(player.lights.photons.multi)
               player.lights.photons.multi ++

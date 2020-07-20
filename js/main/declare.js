@@ -110,8 +110,9 @@ const defaultGame = {
       multi:[null, {blue: 50}],
     }
   },
-  lightsUpgradesCost:{
-  },
+  lightsUpgrades:[
+
+  ],
   selectedTab:{
     mainTab: "tabMain",
     lights: "lightsTabRGBLights"

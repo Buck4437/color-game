@@ -8,7 +8,7 @@ new Vue({
       return{
         text: "Reset all progress to unlock new prestige layer.",
         isHidden: !((player.colors.red.amount >= 255 && player.colors.green.amount >= 255) && (player.colors.blue.amount >= 255 && !player.lights.isUnlocked)),
-        onclick: function(){
+        click: function(){
           if(confirm("This will reset all colors and upgrades, in exchange for new currencies. Proceed?")){
             player.lights.isUnlocked = true
             prestigeLights()

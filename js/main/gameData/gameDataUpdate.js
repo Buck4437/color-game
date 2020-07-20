@@ -1,0 +1,5 @@
+function updateGameData(){
+  updateGameDataLightUpgrades()
+}
+
+updateGameData()

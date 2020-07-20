@@ -32,9 +32,8 @@ new Vue({
     },
     lightsPrestige: function(){
       return {
-        elementID: "buttonPrestigeLights",
         text: "+" + numToSci(gainRateLights().lights, 0, 2) + " <u style='color:" + (canPrestigeLights() ? this.buttonStyles.lights.enabled.color : this.buttonStyles.lights.disabled.color) + "'>L</u>ight" + (gainRateLights().lights != 1 ? "s" : ""),
-        onclick: function(){
+        click: function(){
           if((player.colors.red.amount >= 255 && player.colors.green.amount >= 255) && player.colors.blue.amount >= 255){
             if(player.options.confirmation.lights){
               if(confirm("This will reset all colors, upgrades, AND photons in exchanging for lights. Proceed? (You can turn this off in Settings)")){
