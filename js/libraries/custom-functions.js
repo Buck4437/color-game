@@ -2,16 +2,11 @@
 
 Custom functions list:
 
-PART A: BROAD
-locateVar("varName"): return the value of var inputted (support properties in dot notations, global only)
+locateProperty(object, property): you can get the property of an object using string(in dot notation)
 capitalizeFirstLetter(string): Capitalize First Letter of the string
 isNumber(thing): return whether the thing is a finite number
 numToSci(Number to convert, decimal places, dp used in sci notation, use full number if smaller than this (def 1000))
 secondToTime(ms) convert milliseconds to a readable form
-
-PART B: SPECFIC
-topBarButtonsProperties(id, elementID, text, isHidden, variable, tabID, tabs, style):
-Use to declare properties
 */
 
 function locateProperty(root, property){
@@ -77,29 +72,4 @@ function secondToTime(s){
     }
   }
   return string + (original > 10 ? Math.floor(s) : numToSci(s, 3, 0, 10000)) + " seconds"
-}
-
-
-
-
-
-
-
-
-
-
-
-function topBarButtonsProperties(id, elementID, text, isHidden, variable, tabID, tabs, style){
-  return{
-    id: id,
-    tab:{
-      elementID: elementID,
-      text: text,
-      style: style,
-      isHidden: isHidden,
-      selectedTabVariable: variable,
-      correspondingTabID: tabID,
-      listOfTabs: tabs
-    }
-  }
 }
