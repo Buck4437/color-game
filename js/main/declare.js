@@ -110,12 +110,10 @@ const defaultGame = {
       multi:[null, {blue: 50}],
     }
   },
-  lightsUpgrades:[
-
-  ],
+  lightsUpgrades:{},
   selectedTab:{
     mainTab: "tabMain",
-    lights: "lightsTabRGBLights"
+    lights: "lightsTabPhotons"
   },
   saveTimer: 10
 }

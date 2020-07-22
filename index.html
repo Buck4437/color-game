@@ -20,7 +20,8 @@
     </div>
     <br>
     <div id="top-bar">
-      <button-tab-bar v-for="button in buttons" :name="button.tab" :key="button.id"></button-tab-bar>
+      <button-tab-bar-3 :tabs="tabs" :selected-tab="selectedTab" @select-tab="selectTab"></button-tab-bar-3>
+      <button-tab-bar v-for="button in buttons" :name="button.tab" :key="button.tab.id"></button-tab-bar>
     </div>
     <br>
     <div id="tabs">
@@ -40,7 +41,7 @@
       </div>
       <div id="tabLights" class="tabs" style="display: none">
         <div id="lights-top-bar" style="margin-bottom: 20px">
-          <button-tab-bar v-for="button in buttons" :name="button.tab" :key="button.id"></button-tab-bar>
+          <button-tab-bar-3 :tabs="tabs" :selected-tab="selectedTab" @select-tab="selectTab"></button-tab-bar-3>
         </div>
         <div id="lightsTabPhotons">
           <div>
@@ -120,7 +121,7 @@
   <script src="js/main/gameData/gameDataUpdate.js"></script>
   <script src="js/main/game/playerMain.js"></script>
   <script src="js/main/game/upgrades.js"></script>
-  <script src="js/main/game/options.js"></script>
+  <script src="js/main/game/settings.js"></script>
   <script src="js/main/game/lights/prestige.js"></script>
   <script src="js/main/game/lights/sub-tabs.js"></script>
   <script src="js/main/game/lights/photons.js"></script>

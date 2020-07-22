@@ -74,6 +74,7 @@ function updateGameDataLightUpgrades(){
             :player.lights.amount >= cost ? lightUpgradesStyles(colorHex, colorHexGrey).canBuy : lightUpgradesStyles(colorHex, colorHexGrey).cannotBuy
     }
   }
+  // let placeholder = function (color, colorHex, colorHexGrey, cost, unlockReq){}
   game.lightUpgrades = {
     row1:{
       upgrade1: keepAutoProp("red", "#f00", "#800", 1),

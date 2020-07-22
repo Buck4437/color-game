@@ -60,7 +60,7 @@ Vue.component('photons-rgb',{
         }
         return false
       }
-      function tryAdd(num){
+      function add(num){
         if (canAdd(num)){
           player.lights.photons.percentage[name] += num
         }
@@ -69,7 +69,7 @@ Vue.component('photons-rgb',{
         return{
           text: text,
           onclick: function(){
-            tryAdd(num)
+            add(num)
           },
           style: canAdd(num) ? addSubButtonStyles.enabled : addSubButtonStyles.disabled
         }

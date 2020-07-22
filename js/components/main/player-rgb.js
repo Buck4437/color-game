@@ -44,9 +44,6 @@ Vue.component('player-rgb',{
         isSeen: player.colors[color].upgrades.auto != 0
       }
     },
-    addStyle: function(){
-      return canGainColor()[this.global.color] ? this.addsub.style.enabled : this.addsub.style.disabled
-    },
     add: function(){
       let color = this.global.name
       let unlocks = this.addsub.unlocks||function(){}

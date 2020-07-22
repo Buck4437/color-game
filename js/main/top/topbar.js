@@ -1,59 +1,61 @@
 new Vue ({
   el: "#top-bar",
-  data: {
-    selectedTab: game.selectedTab
+  data:{
+    game: game
   },
   computed:{
     tabs: function(){
+      let styles = color => ({
+        selected:{
+          backgroundColor: color,
+          color: "black",
+          border: "3px solid " + color
+        },
+        deselected: {
+          backgroundColor: "black",
+          color: color,
+          border: "3px solid " + color
+        }
+      })
       return [
         {
-          id: "tabMain",
           name: "Colors",
-          color: "white",
-          isHidden: false
+          tabID: "tabMain",
+          styles: styles("white")
         },
         {
-          id: "tabUpgrades",
           name: "Upgrades",
-          color: "white",
-          isHidden: false
+          tabID: "tabUpgrades",
+          styles: styles("white")
         },
         {
-          id: "tabLights",
           name: "Lights",
-          color: "#0f0",
+          tabID: "tabLights",
+          styles: styles("#0f0"),
           isHidden: !player.lights.isUnlocked
         },
         {
-          id: "tabOptions",
           name: "Options",
-          color: "grey",
-          isHidden: false
+          tabID: "tabOptions",
+          styles: styles("grey")
         }
       ]
     },
-    buttons: function(){
-      let tabID = ["tabMain", "tabUpgrades", "tabLights", "tabOptions"]
-      let location = "mainTab"
-      function style(input, color){
-        return (game.selectedTab.mainTab != input ?
-          {
-            backgroundColor: "black",
-            color: color,
-            border: "3px solid " + color
-          }:
-          {
-            backgroundColor: color,
-            color: "black",
-            border: "3px solid " + color
-          }
-        )
+    selectedTab: function(){
+      return game.selectedTab.mainTab
+    }
+  },
+  methods:{
+    selectTab: function(tab, id){
+      let tabIDs = []
+      for (let tab of this.tabs){
+        tabIDs.push(tab.tabID)
       }
-      let array = []
-      for (tab of this.tabs){
-        array.push(topBarButtonsProperties(tab.id, "topBarButtons" + tab.id, tab.name, tab.isHidden, location, tab.id, tabID, style(tab.id, tab.color)),)
+      for(let i=0; i < tabIDs.length; i++){
+        $("#"+tabIDs[i]).css("display", "none")
       }
-      return array
+      $("#"+ id).css("display", "block")
+      game.selectedTab.mainTab = id
     }
   }
 })

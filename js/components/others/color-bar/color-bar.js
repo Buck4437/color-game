@@ -18,10 +18,10 @@ let colorBarAmountComponent = {
     style: function(){
       let width = ""
       if (isNumber(this.bar.width)){
-        width = Math.min(100, Math.max(0, this.bar.width))*0.965 + "%"
+        width = Math.min(100, Math.max(0, this.bar.width))*0.96 + "%"
       }
       else{
-        width = "96.5%"
+        width = "96%"
       }
       return {
         backgroundColor: this.bar.color,
