@@ -1,5 +1,5 @@
 new Vue ({
-  el: "#tabOptions",
+  el: "#tabSettings",
   data: {
     player: player,
     options: [
@@ -43,13 +43,13 @@ new Vue ({
     confirmations: function(){
       return [
         {
-          text: "Lights: " + (player.options.confirmation.lights ? "On" : "Off"),
+          text: "Lights: " + (player.settings.confirmation.lights ? "On" : "Off"),
           style: {
             borderColor: "#0f0",
             color: "#0a0"
           },
           click: function(){
-            player.options.confirmation.lights = !player.options.confirmation.lights
+            player.settings.confirmation.lights = !player.settings.confirmation.lights
           }
         }
       ]

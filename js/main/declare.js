@@ -71,7 +71,7 @@ const defaultSave = {
       }
     }
   },
-  options:{
+  settings:{
     confirmation:{
       lights: true
     }

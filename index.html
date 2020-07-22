@@ -20,8 +20,7 @@
     </div>
     <br>
     <div id="top-bar">
-      <button-tab-bar-3 :tabs="tabs" :selected-tab="selectedTab" @select-tab="selectTab"></button-tab-bar-3>
-      <button-tab-bar v-for="button in buttons" :name="button.tab" :key="button.tab.id"></button-tab-bar>
+      <button-tab-bar :tabs="tabs" :selected-tab="selectedTab" @select-tab="selectTab"></button-tab-bar>
     </div>
     <br>
     <div id="tabs">
@@ -41,7 +40,7 @@
       </div>
       <div id="tabLights" class="tabs" style="display: none">
         <div id="lights-top-bar" style="margin-bottom: 20px">
-          <button-tab-bar-3 :tabs="tabs" :selected-tab="selectedTab" @select-tab="selectTab"></button-tab-bar-3>
+          <button-tab-bar :tabs="tabs" :selected-tab="selectedTab" @select-tab="selectTab"></button-tab-bar>
         </div>
         <div id="lightsTabPhotons">
           <div>
@@ -65,7 +64,7 @@
           </div>
         </div>
       </div>
-      <div id="tabOptions" class="tabs" style="display: none">
+      <div id="tabSettings" class="tabs" style="display: none">
         <div style="width: 350px; display: inline-block; margin-right: 150px; margin-bottom: 50px">
           <div style="width: 310px; padding-bottom: 30px; text-align: center; color: #f00">
             Save file management

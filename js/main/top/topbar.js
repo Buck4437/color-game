@@ -35,8 +35,8 @@ new Vue ({
           isHidden: !player.lights.isUnlocked
         },
         {
-          name: "Options",
-          tabID: "tabOptions",
+          name: "Settings",
+          tabID: "tabSettings",
           styles: styles("grey")
         }
       ]
@@ -61,7 +61,7 @@ new Vue ({
 })
 
 function updateMainTab(){
-  let tabs = ["tabMain", "tabUpgrades",  "tabOptions", "tabLights"]
+  let tabs = ["tabMain", "tabUpgrades",  "tabSettings", "tabLights"]
   for(let i=0;i<tabs.length;i++){
     $("#"+tabs[i]).css("display", "none")
   }
