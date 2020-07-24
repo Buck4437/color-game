@@ -43,13 +43,13 @@ function prestigeLights(){
 function resetColorUpgrades(){
   let colors = ["red", "green", 'blue']
   let types = ["auto", 'multi']
-  for (let color of colors){
-    for (let type of types){
-      if(!player.lights.upgrades.keep[color][type]){
+  for (let [cIndex, color] of colors.entries()){
+    for (let [tIndex, type] of types.entries()){
+      if(!containBit(player.lights.upgradesBit, (16**cIndex)*(2**tIndex))){
         player.colors[color].upgrades[type] = 0
       }
     }
-    if(!player.lights.upgrades.keep[color].auto){
+    if(!containBit(player.lights.upgradesBit, (16**cIndex))){
       clearInterval(game.autobuyersInterval[color])
       player.colors[color].auto = false
     }

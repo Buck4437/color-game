@@ -1,8 +1,8 @@
 function updateAutobuyers(){
-  let colors = Object.keys(game.autobuyersInterval)
-  for (let color of colors){
+  let colors = ["red", "green", "blue"]
+  for (let [index, color] of colors.entries()){
     let interval = 1000/Math.max(1,player.colors[color].upgrades.auto||1)
-    if(player.lights.upgrades.fasterAuto[color]){
+    if(containBit(player.lights.upgradesBit, 4*16**index)){
       interval /= 2
     }
     setAutoBuyColor(color, player.colors[color].auto, interval)

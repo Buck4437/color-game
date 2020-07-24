@@ -7,6 +7,7 @@ capitalizeFirstLetter(string): Capitalize First Letter of the string
 isNumber(thing): return whether the thing is a finite number
 numToSci(Number to convert, decimal places, dp used in sci notation, use full number if smaller than this (def 1000))
 secondToTime(ms) convert milliseconds to a readable form
+containBit(number, bit): find if a number converted to a bin contains a certain bit
 */
 
 function locateProperty(root, property){
@@ -72,4 +73,9 @@ function secondToTime(s){
     }
   }
   return string + (original > 10 ? Math.floor(s) : numToSci(s, 3, 0, 10000)) + " seconds"
+}
+
+function containBit(num, bit){
+  let quotient = Math.floor(num / bit)
+  return quotient % 2 == 1
 }
