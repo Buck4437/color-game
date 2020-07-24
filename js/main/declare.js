@@ -44,33 +44,7 @@ const defaultSave = {
         blue: 0
       }
     },
-    upgradesBit: 0,
-    // upgrades: {
-    //   keep:{
-    //     red:{
-    //       auto: false,
-    //       multi: false
-    //     },
-    //     green:{
-    //       auto: false,
-    //       multi: false
-    //     },
-    //     blue:{
-    //       auto: false,
-    //       multi: false
-    //     }
-    //   },
-    //   fasterAuto:{
-    //     red: false,
-    //     green: false,
-    //     blue: false
-    //   },
-    //   boostPhotons:{
-    //     red: false,
-    //     green: false,
-    //     blue: false
-    //   }
-    // }
+    upgradesBit: 0
   },
   settings:{
     confirmation:{
