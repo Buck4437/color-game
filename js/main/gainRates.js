@@ -1,35 +1,34 @@
 function gainRateColor(){
-  let redRate = 1
-  let greenRate = 1
-  let blueRate = 1
-  let redMultis = [
-    player.colors.green.amount+1,
-    player.colors.blue.amount+1,
-    2**player.colors.red.upgrades.multi,
-    photonEffect().red
+  let rates = [1,1,1]
+  let multis = [
+    [
+      player.colors.green.amount+1,
+      player.colors.blue.amount+1,
+      2**player.colors.red.upgrades.multi,
+      photonEffect().red,
+      containBit(player.lights.upgradesBit, 8) ? 8 : 1
+    ],
+    [
+      player.colors.blue.amount+1,
+      2**player.colors.green.upgrades.multi,
+      photonEffect().green,
+      containBit(player.lights.upgradesBit, 256) ? 4 : 1
+    ],
+    [
+      2**player.colors.blue.upgrades.multi,
+      photonEffect().blue,
+      containBit(player.lights.upgradesBit, 4096) ? 2 : 1
+    ]
   ]
-  let greenMultis = [
-    player.colors.blue.amount+1,
-    2**player.colors.green.upgrades.multi,
-    photonEffect().green
-  ]
-  let blueMultis = [
-    2**player.colors.blue.upgrades.multi,
-    photonEffect().blue
-  ]
-  for (let redmulti of redMultis){
-    redRate *= redmulti
-  }
-  for (let greenmulti of greenMultis){
-    greenRate *= greenmulti
-  }
-  for (let bluemulti of blueMultis){
-    blueRate *= bluemulti
+  for (let [index, multipliers] of multis.entries()){
+    for (let multiplier of multipliers){
+      rates[index] *= multiplier
+    }
   }
   return {
-    red: Math.min(255, redRate),
-    green: Math.min(255, greenRate),
-    blue: Math.min(255, blueRate)
+    red: Math.min(255, rates[0]),
+    green: Math.min(255, rates[1]),
+    blue: Math.min(255, rates[2])
   }
 }
 

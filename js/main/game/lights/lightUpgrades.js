@@ -14,7 +14,7 @@ new Vue({
         return array
       }
       let rows = []
-      for (let i=1;i<=3;i++){
+      for (let i=1;i<= Object.keys(game.lightUpgrades).length;i++){
         rows.push({
           id: i,
           items: rowItems(i)

@@ -1,4 +1,3 @@
-
 new Vue({
   el:"#lightsTabPhotons",
   data:{
@@ -16,6 +15,33 @@ new Vue({
           color: "grey",
           border: "4px solid #888888",
           cursor: "default"
+        },
+        color: function(color){
+          return {
+            color: color,
+            border: "4px solid " + color,
+            cursor: "pointer"
+          }
+        }
+      }
+      let inputStyles = {
+        color: function(color){
+          return {
+            borderBottom: "1px solid " + color,
+            borderTop: "none",
+            borderLeft: "none",
+            borderRight: "none",
+            backgroundColor: "black",
+            color: color,
+            height: "15px",
+            cursor: "text",
+            paddingLeft: "10px",
+            paddingBottom: "none",
+            textAlign: "center",
+            width: "75px",
+            marginLeft: "10px",
+            marginRight: "10px"
+          }
         }
       }
       let unassignedPhotonsAmount = function(){
@@ -40,10 +66,27 @@ new Vue({
           color: "#4c4"
         },
         toggleAuto:{
-          text: "Placeholder",
+          text: player.lights.auto.isEnabled ? "Auto: On" : "Auto: Off",
           click: function(){
+            player.lights.auto.isEnabled = !player.lights.auto.isEnabled
+            updateAutobuyersLights()
           },
-          style: buttonStyles.enabled
+          isSeen: containBit(player.lights.upgradesBit, 4096),
+          style: player.lights.auto.isEnabled ? buttonStyles.color("#0f0") : buttonStyles.color("#c00")
+        },
+        toggleMode:{
+          text: player.lights.auto.mode == 0 ? "Mode: Amount" : "Mode: Time",
+          click: function(){
+            player.lights.auto.mode = (player.lights.auto.mode + 1) % 2
+            if(isNaN(player.lights.auto.mode)){
+              player.lights.auto.mode = 0
+            }
+          },
+          style: buttonStyles.enabled,
+          protext: player.lights.auto.mode == 0 ? "Light(s)" : "second(s)"
+        },
+        input:{
+          style: isNaN(parseFloat($("#lightsAutoInput").val())) ? inputStyles.color("red") : inputStyles.color("white")
         },
         normalPhotons:{
           text: "Photons: " + numToSci(player.lights.photons.amount, 0, 2) + " (+" + numToSci(gainRateLights().photons, 0, 2) + "/s)",
@@ -73,3 +116,12 @@ new Vue({
     }
   }
 })
+
+$(function() {
+  $("#lightsAutoInput").on("input", function(){
+    let parsedNum = parseFloat($("#lightsAutoInput").val())
+    if (!isNaN(parsedNum)){
+      player.lights.auto.value = parsedNum
+    }
+  })
+});

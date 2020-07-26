@@ -2,7 +2,7 @@ Vue.component('player-rgb',{
   template: `
     <div>
       <color-bar :bar="barParsed" v-if="!this.bar.isHidden"></color-bar>
-      <button v-if="autoParsed.isSeen" @click="toggleAuto">Auto: {{autoParsed.text}}</button>
+      <button v-if="autoParsed.isSeen" @click="toggleAuto" :style="autoParsed.style">Auto: {{autoParsed.text}}</button>
       <button v-if="!addsub.isHidden" :style="add.style" @click="add.onclick" :id="addsub.elementID">{{addsub.text}}</button>
     </div>
   `,
@@ -39,9 +39,17 @@ Vue.component('player-rgb',{
     },
     autoParsed: function(){
       let color = this.global.name
+      let styles = function(color){
+          return {
+            color: color,
+            border: "4px solid " + color,
+            cursor: "pointer"
+          }
+      }
       return {
         text: player.colors[color].auto ? "On" : "Off",
-        isSeen: player.colors[color].upgrades.auto != 0
+        isSeen: player.colors[color].upgrades.auto != 0,
+        style: player.colors[color].auto ? styles("#0f0") : styles("#c00")
       }
     },
     add: function(){

@@ -34,6 +34,11 @@ const defaultSave = {
   lights:{
     isUnlocked: false,
     amount: 0,
+    auto:{
+      isEnabled: false,
+      mode: 0,
+      value: 1e10
+    },
     photons:{
       amount: 0,
       auto: false,
@@ -69,7 +74,8 @@ const defaultGame = {
   autobuyersInterval:{
     red: null,
     green: null,
-    blue: null
+    blue: null,
+    lights: null
   },
   upgradesCost:{
     red:{

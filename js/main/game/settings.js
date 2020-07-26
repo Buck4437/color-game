@@ -121,19 +121,20 @@ function isValidSave(str){
 }
 
 function importSave(string){
-   let save = JSON.parse(string)
-   if(isValidSaveVersion(save)){
-     // importToGame(save)
-     for (let prop in defaultSave){
-       importProperty(prop, save)
-     }
-     updateSave()
-     updateAutobuyers()
-     for (let prop in defaultGame){
-       game.selectedTab[prop] = defaultGame.selectedTab[prop]
-     }
-     resetTabs()
-   }
+  let save = JSON.parse(string)
+  if(isValidSaveVersion(save)){
+    // importToGame(save)
+    for (let prop in defaultSave){
+      importProperty(prop, save)
+    }
+    updateSave()
+    updateAutobuyers()
+    for (let prop in defaultGame){
+      game.selectedTab[prop] = defaultGame.selectedTab[prop]
+    }
+    resetTabs()
+    updateInputBlanks()
+  }
 }
 
 function importProperty(property, save){

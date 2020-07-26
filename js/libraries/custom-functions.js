@@ -75,7 +75,12 @@ function secondToTime(s){
   return string + (original > 10 ? Math.floor(s) : numToSci(s, 3, 0, 10000)) + " seconds"
 }
 
-function containBit(num, bit){
-  let quotient = Math.floor(num / bit)
-  return quotient % 2 == 1
+function containBit(num, ...args){
+  for (let bit of args){
+    let quotient = Math.floor(num / bit)
+    if(quotient % 2 != 1){
+      return false
+    }
+  }
+  return true
 }
