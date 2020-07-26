@@ -35,8 +35,6 @@ new Vue({
             color: color,
             height: "15px",
             cursor: "text",
-            paddingLeft: "10px",
-            paddingBottom: "none",
             textAlign: "center",
             width: "75px",
             marginLeft: "10px",
@@ -83,7 +81,7 @@ new Vue({
             }
           },
           style: buttonStyles.enabled,
-          protext: player.lights.auto.mode == 0 ? "Light(s)" : "second(s)"
+          protext: player.lights.auto.mode == 0 ? (player.lights.auto.value == 1 ? "Light" : "Lights" ) : (player.lights.auto.value == 1 ? "second" : "seconds" )
         },
         input:{
           style: isNaN(parseFloat($("#lightsAutoInput").val())) ? inputStyles.color("red") : inputStyles.color("white")

@@ -44,11 +44,13 @@
         </div>
         <div id="lightsTabPhotons">
           <div>
-            <color-bar :bar="lights.bar"></color-bar>
-            <button v-if="lights.toggleAuto.isSeen" @click="lights.toggleAuto.click" :style="lights.toggleAuto.style">{{lights.toggleAuto.text}}</button>
-            <button v-if="lights.toggleAuto.isSeen" @click="lights.toggleMode.click" :style="lights.toggleMode.style" style="width: 130px">{{lights.toggleMode.text}}</button>
-            Prestige&nbspat
-            <input id="lightsAutoInput" v-if="lights.toggleAuto.isSeen" :style="lights.input.style"></input>{{lights.toggleMode.protext}}&nbspor&nbspmore
+            <color-bar :bar="lights.bar" style="display: inline-block;"></color-bar>
+            <div v-if="lights.toggleAuto.isSeen" style="display: inline-block;">
+              <button @click="lights.toggleAuto.click" :style="lights.toggleAuto.style">{{lights.toggleAuto.text}}</button>
+              <button @click="lights.toggleMode.click" :style="lights.toggleMode.style" style="width: 130px">{{lights.toggleMode.text}}</button>
+              Prestige&nbspat
+              <input id="lightsAutoInput":style="lights.input.style"></input>{{lights.toggleMode.protext}}&nbspor&nbspmore
+            </div>
           </div>
           <div>
             <color-bar :bar="lights.normalPhotons"></color-bar>
