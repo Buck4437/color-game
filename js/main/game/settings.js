@@ -89,6 +89,7 @@ function load(){
   if(isValidSave(localSave)){
     importSave(localSave)
     save()
+    alert("Game loaded!")
     return
   }
   alert("Game failed to load")
