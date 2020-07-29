@@ -79,15 +79,15 @@ const defaultGame = {
   },
   upgradesCost:{
     red:{
-      auto: [null, {red: 10}, {red: 100}, {green: 3}, {green: 5}, {green: 15}],
-      multi: [null, {red: 10}, {red: 40}, {green: 25}],
+      auto: [null, {red: 5}, {red: 50}, {green: 3}, {green: 5}, {green: 15}],
+      multi: [null, {red: 10}, {red: 50}, {green: 25}],
     },
     green:{
-      auto: [null, {green: 10}, {green: 100}, {blue: 5}, {blue: 20}, {blue: 50}],
+      auto: [null, {green: 5}, {green: 100}, {blue: 5}, {blue: 20}, {blue: 50}],
       multi:[null, {green: 50}, {blue: 5}, {blue: 50}],
     },
     blue:{
-      auto: [null, {blue: 10}, {blue: 100}],
+      auto: [null, {blue: 5}, {blue: 100}],
       multi:[null, {blue: 50}],
     }
   },

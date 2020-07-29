@@ -5,19 +5,16 @@ function gainRateColor(){
       player.colors.green.amount+1,
       player.colors.blue.amount+1,
       2**player.colors.red.upgrades.multi,
-      photonEffect().red,
-      containBit(player.lights.upgradesBit, 8) ? 8 : 1
+      photonEffect().red
     ],
     [
       player.colors.blue.amount+1,
       2**player.colors.green.upgrades.multi,
-      photonEffect().green,
-      containBit(player.lights.upgradesBit, 256) ? 4 : 1
+      photonEffect().green
     ],
     [
       2**player.colors.blue.upgrades.multi,
-      photonEffect().blue,
-      containBit(player.lights.upgradesBit, 4096) ? 2 : 1
+      photonEffect().blue
     ]
   ]
   for (let [index, multipliers] of multis.entries()){
@@ -52,5 +49,10 @@ function photonEffect(){
 
 function lightUpgradesEffect(){
   return {
+    boostPhotons:{
+      red: 1,
+      green: 1,
+      blue: 1,
+    }
   }
 }

@@ -45,7 +45,7 @@
         <div id="lightsTabPhotons">
           <div>
             <color-bar :bar="lights.bar" style="display: inline-block;"></color-bar>
-            <div v-if="lights.toggleAuto.isSeen" style="display: inline-block;">
+            <div :style="{display: lights.auto.display}">
               <button @click="lights.toggleAuto.click" :style="lights.toggleAuto.style">{{lights.toggleAuto.text}}</button>
               <button @click="lights.toggleMode.click" :style="lights.toggleMode.style" style="width: 130px">{{lights.toggleMode.text}}</button>
               Prestige&nbspat

@@ -63,13 +63,15 @@ new Vue({
           width: 100,
           color: "#4c4"
         },
+        auto:{
+          display: containBit(player.lights.upgradesBit, 4096) ? "inline-block" : "none"
+        },
         toggleAuto:{
           text: player.lights.auto.isEnabled ? "Auto: On" : "Auto: Off",
           click: function(){
             player.lights.auto.isEnabled = !player.lights.auto.isEnabled
             updateAutobuyersLights()
           },
-          isSeen: containBit(player.lights.upgradesBit, 4096),
           style: player.lights.auto.isEnabled ? buttonStyles.color("#0f0") : buttonStyles.color("#c00")
         },
         toggleMode:{
