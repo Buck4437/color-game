@@ -31,12 +31,14 @@ function gainRateColor(){
 
 function gainRateLights(){
   let photonRate = 1
+  for (let [index, color] of ["red", "green", "blue"].entries()){
+    photonRate *= (containBit(player.lights.upgradesBit, 8*16**index) ? lightUpgradesEffect().boostPhotons[color] : 1 )
+  }
   return{
-    lights: Math.max(Math.floor((player.colors.blue.amount+1)/16 - 15 ), 1)||1,
+    lights: Math.max(Math.floor((player.colors.blue.amount+1)/16 - 15), 1)||1, //temp formula
     photons: (2 ** player.lights.photons.multi) * photonRate
   }
 }
-//temp formula
 
 function photonEffect(){
   let photons = player.lights.photons.amount
@@ -50,9 +52,9 @@ function photonEffect(){
 function lightUpgradesEffect(){
   return {
     boostPhotons:{
-      red: 1,
-      green: 1,
-      blue: 1,
+      red: (player.colors.red.amount/50)**0.5 + 1,
+      green: (player.colors.green.amount/30)**0.5 + 1,
+      blue: (player.colors.blue.amount/10)**0.5 + 1
     }
   }
 }
