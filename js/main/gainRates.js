@@ -52,9 +52,10 @@ function photonEffect(){
 function lightUpgradesEffect(){
   return {
     boostPhotons:{
-      red: (player.colors.red.amount/50)**0.5 + 1,
-      green: (player.colors.green.amount/30)**0.5 + 1,
-      blue: (player.colors.blue.amount/10)**0.5 + 1
-    }
+      red: (player.colors.red.amount/25)**0.5 + 1,
+      green: (player.colors.green.amount/15)**0.5 + 1,
+      blue: (player.colors.blue.amount/5)**0.5 + 1
+    },
+    unspentMulti: 1
   }
 }
