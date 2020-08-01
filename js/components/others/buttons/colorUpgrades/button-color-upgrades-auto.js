@@ -31,10 +31,15 @@ Vue.component('button-color-upgrades-auto',{
       return {
         locked: "Unlock " + noun + " Autoclicker<br><br>Cost: " + costStringify(game.upgradesCost[this.name.color].auto[1]),
         unlocked: "Upgrade " + noun + " Autoclicker <br><br>" + player.colors[this.name.color].upgrades.auto*(containBit(player.lights.upgradesBit, 4*16**this.colorIndex) ? 2 : 1) + " CPS => " + (player.colors[this.name.color].upgrades.auto + 1)*(containBit(player.lights.upgradesBit, 4*16**this.colorIndex) ? 2 : 1) + " CPS<br><br>Cost: " + costStringify(game.upgradesCost[this.name.color].auto[player.colors[this.name.color].upgrades.auto + 1]),
-        maxed: "Upgrade " + noun + " Autoclicker<br><br>"+ player.colors[this.name.color].upgrades.auto*(containBit(player.lights.upgradesBit, 4*16**this.colorIndex) ? 2 : 1) + " CPS (Maxed!)"
+        maxed: "Upgrade " + noun + " Autoclicker<br><br>"+ player.colors[this.name.color].upgrades.auto*(containBit(player.lights.upgradesBit, 4*16**this.colorIndex) ? 2 : 1) + " CPS (Maxed!)",
+        unlocked20: "Upgrade " + noun + " Autoclicker <br><br>20 CPS => 20 CPS<br><br>Cost: " + costStringify(game.upgradesCost[this.name.color].auto[player.colors[this.name.color].upgrades.auto + 1]),
+        maxed20: "Upgrade " + noun + " Autoclicker<br><br>20 CPS (Maxed!)"
       }
     },
     currentText: function(){
+      if (containBit(player.lights.upgradesBit, 16384)){
+        return game.upgradesCost[this.name.color].auto[player.colors[this.name.color].upgrades.auto + 1] === undefined ? "maxed20" : player.colors[this.name.color].upgrades.auto == 0 ? "locked" : "unlocked20"
+      }
       return game.upgradesCost[this.name.color].auto[player.colors[this.name.color].upgrades.auto + 1] === undefined ? "maxed" : player.colors[this.name.color].upgrades.auto == 0 ? "locked" : "unlocked"
     },
     displayedText: function(){

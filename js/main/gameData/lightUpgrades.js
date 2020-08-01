@@ -58,6 +58,7 @@ function updateGameDataLightUpgrades(){
           player.lights.upgradesBit += correspondingBit
           player.lights.amount -= cost
         }
+        updateAutobuyers()
       },
       style: containBit(upgradesBit, correspondingBit) ? lightUpgradesStyles(colorHex, colorHexGrey).max
             :player.lights.amount >= cost ? lightUpgradesStyles(colorHex, colorHexGrey).canBuy : lightUpgradesStyles(colorHex, colorHexGrey).cannotBuy
@@ -97,7 +98,38 @@ function updateGameDataLightUpgrades(){
     let upgradesBit = player.lights.upgradesBit
     return {
       key: "unspentMulti",
-      text: "(Unbal, No E) Multiplier to all colors based on unspent Light" + (containBit(upgradesBit, correspondingBit) ? " (Bought!)<br><br>Currently: x" + numToSci(lightUpgradesEffect().unspentMulti, 2, 2) : " <br><br>Currently: x"  + numToSci(lightUpgradesEffect().unspentMulti, 2, 2) + "<br><br>Cost: "  + cost + " Light"),
+      text: "Multiplier to all colors based on unspent Light" + (containBit(upgradesBit, correspondingBit) ? " (Bought!)<br><br>Currently: x" + numToSci(lightUpgradesEffect().unspentMulti, 2, 2) : " <br><br>Currently: x"  + numToSci(lightUpgradesEffect().unspentMulti, 2, 2) + "<br><br>Cost: "  + cost + " Light"),
+      onclick: function(){
+        if((!containBit(upgradesBit, correspondingBit) && player.lights.amount >= cost) && unlockReq){
+          player.lights.upgradesBit += correspondingBit
+          player.lights.amount -= cost
+        }
+      },
+      style: containBit(upgradesBit, correspondingBit) ? lightUpgradesStyles(colorHex, colorHexGrey).max
+            :player.lights.amount >= cost && unlockReq ? lightUpgradesStyles(colorHex, colorHexGrey).canBuy : lightUpgradesStyles(colorHex, colorHexGrey).cannotBuy
+    }
+  }
+  let auto20Prop = function (correspondingBit, colorHex, colorHexGrey, cost, unlockReq){
+    let upgradesBit = player.lights.upgradesBit
+    return {
+      key: "auto20",
+      text: "All autoclicker always work at 20 CPS" + (containBit(upgradesBit, correspondingBit) ? " (Bought!)" : "<br><br>Cost: "  + cost + " Light"),
+      onclick: function(){
+        if((!containBit(upgradesBit, correspondingBit) && player.lights.amount >= cost) && unlockReq){
+          player.lights.upgradesBit += correspondingBit
+          player.lights.amount -= cost
+          updateAutobuyers()
+        }
+      },
+      style: containBit(upgradesBit, correspondingBit) ? lightUpgradesStyles(colorHex, colorHexGrey).max
+            :player.lights.amount >= cost && unlockReq ? lightUpgradesStyles(colorHex, colorHexGrey).canBuy : lightUpgradesStyles(colorHex, colorHexGrey).cannotBuy
+    }
+  }
+  let moreLightsProp = function (correspondingBit, colorHex, colorHexGrey, cost, unlockReq){
+    let upgradesBit = player.lights.upgradesBit
+    return {
+      key: "moreLights",
+      text: "Multiplier to Light gain based on unspent Light" + (containBit(upgradesBit, correspondingBit) ? " (Bought!)<br><br>Currently: x" + numToSci(lightUpgradesEffect().moreLights, 2, 2) : " <br><br>Currently: x"  + numToSci(lightUpgradesEffect().moreLights, 2, 2) + "<br><br>Cost: "  + cost + " Light"),
       onclick: function(){
         if((!containBit(upgradesBit, correspondingBit) && player.lights.amount >= cost) && unlockReq){
           player.lights.upgradesBit += correspondingBit
@@ -113,23 +145,25 @@ function updateGameDataLightUpgrades(){
       upgrade1: keepAutoProp(1, "red", "#f00", "#800", 1),
       upgrade2: keepMultiProp(2, "red", "#f00", "#800", 1),
       upgrade3: fasterAutoProp(4, "red", "#f00", "#800", 1),
-      upgrade4: boostPhotonsProp(8, "red", "#aaa", "#555", 4, containBit(player.lights.upgradesBit, 1, 2, 4))
+      upgrade4: boostPhotonsProp(8, "red", "#999", "#555", 4, containBit(player.lights.upgradesBit, 1, 2, 4))
     },
     row2:{
       upgrade1: keepAutoProp(16, "green", "#0f0", "#080", 1),
       upgrade2: keepMultiProp(32, "green", "#0f0", "#080", 1),
       upgrade3: fasterAutoProp(64, "green", "#0f0", "#080", 1),
-      upgrade4: boostPhotonsProp(128, "green", "#aaa", "#555", 20, containBit(player.lights.upgradesBit, 16, 32, 64))
+      upgrade4: boostPhotonsProp(128, "green", "#999", "#555", 20, containBit(player.lights.upgradesBit, 16, 32, 64))
     },
     row3:{
       upgrade1: keepAutoProp(256, "blue", "#00f", "#008", 1),
       upgrade2: keepMultiProp(512, "blue", "#00f", "#008", 1),
       upgrade3: fasterAutoProp(1024, "blue", "#00f", "#008", 1),
-      upgrade4: boostPhotonsProp(2048, "blue", "#aaa", "#555", 100, containBit(player.lights.upgradesBit, 256, 512, 1024))
+      upgrade4: boostPhotonsProp(2048, "blue", "#999", "#555", 100, containBit(player.lights.upgradesBit, 256, 512, 1024))
     },
     row4:{
-      upgrade1: lightAutoProp(4096, "#aaa", "#555", 3, containBit(player.lights.upgradesBit, 1, 16, 256)),
-      upgrade2: unspentMultiProp(8192, "#aaa", "#555", 10, containBit(player.lights.upgradesBit, 2, 32, 512))
+      upgrade1: lightAutoProp(4096, "#999", "#555", 3, containBit(player.lights.upgradesBit, 1, 16, 256)),
+      upgrade2: unspentMultiProp(8192, "#999", "#555", 50, containBit(player.lights.upgradesBit, 2, 32, 512)),
+      upgrade3: auto20Prop(16384, "#999", "#555", 300, containBit(player.lights.upgradesBit, 4, 64, 1024)),
+      upgrade4: moreLightsProp(32768, "#999", "#555", 1000, containBit(player.lights.upgradesBit, 8, 128, 2048, 4096, 8192, 16384))
     }
   }
 }

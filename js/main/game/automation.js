@@ -6,9 +6,15 @@ function updateAutobuyers(){
 function updateAutobuyersColors(){
   let colors = ["red", "green", "blue"]
   for (let [index, color] of colors.entries()){
-    let interval = 1000/Math.max(1,player.colors[color].upgrades.auto||1)
-    if(containBit(player.lights.upgradesBit, 4*16**index)){
-      interval /= 2
+    let interval = 1000
+    if(containBit(player.lights.upgradesBit, 16384)){
+      interval = 50
+    }
+    else{
+      interval /= Math.max(1,player.colors[color].upgrades.auto||1)
+      if(containBit(player.lights.upgradesBit, 4*16**index)){
+        interval /= 2
+      }
     }
     setAutoBuyColor(color, player.colors[color].auto, interval)
   }

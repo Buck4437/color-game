@@ -5,16 +5,19 @@ function gainRateColor(){
       player.colors.green.amount+1,
       player.colors.blue.amount+1,
       2**player.colors.red.upgrades.multi,
-      photonEffect().red
+      photonEffect().red,
+      containBit(player.lights.upgradesBit, 8192) ? lightUpgradesEffect().unspentMulti : 1
     ],
     [
       player.colors.blue.amount+1,
       2**player.colors.green.upgrades.multi,
-      photonEffect().green
+      photonEffect().green,
+      containBit(player.lights.upgradesBit, 8192) ? lightUpgradesEffect().unspentMulti : 1
     ],
     [
       2**player.colors.blue.upgrades.multi,
-      photonEffect().blue
+      photonEffect().blue,
+      containBit(player.lights.upgradesBit, 8192) ? lightUpgradesEffect().unspentMulti : 1
     ]
   ]
   for (let [index, multipliers] of multis.entries()){
@@ -31,11 +34,18 @@ function gainRateColor(){
 
 function gainRateLights(){
   let photonRate = 1
+  let lightRate = Math.max(Math.floor((player.colors.blue.amount+1)/16 - 15), 1)||1 //temp formula
+  let lightMultis = [
+    containBit(player.lights.upgradesBit, 32768) ? lightUpgradesEffect().moreLights : 1
+  ]
   for (let [index, color] of ["red", "green", "blue"].entries()){
     photonRate *= (containBit(player.lights.upgradesBit, 8*16**index) ? lightUpgradesEffect().boostPhotons[color] : 1 )
   }
+  for (let lightMulti of lightMultis){
+    lightRate *= lightMulti
+  }
   return{
-    lights: Math.max(Math.floor((player.colors.blue.amount+1)/16 - 15), 1)||1, //temp formula
+    lights: lightRate,
     photons: (2 ** player.lights.photons.multi) * photonRate
   }
 }
@@ -56,6 +66,7 @@ function lightUpgradesEffect(){
       green: (player.colors.green.amount/15)**0.5 + 1,
       blue: (player.colors.blue.amount/5)**0.5 + 1
     },
-    unspentMulti: 1
+    unspentMulti: Math.log10(player.lights.amount+1)**0.5 + 1,
+    moreLights: 2**Math.log10(player.lights.amount+1)
   }
 }

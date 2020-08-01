@@ -25,7 +25,8 @@ Vue.component('player-rgb',{
   },
   methods:{
     toggleAuto: function(){
-      setAutoBuyColor(this.global.color, !player.colors[this.global.color].auto, 1000/Math.max(1,player.colors[this.global.color].upgrades.auto||1))
+      player.colors[this.global.color].auto = !player.colors[this.global.color].auto
+      updateAutobuyersColors()
     }
   },
   computed:{
