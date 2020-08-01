@@ -1,9 +1,28 @@
 function updateGameDataLightUpgrades(){
-  let lightUpgradesStyles = function(color, colorGrey){
+  let innerLightUpgradesStyles = function(color, colorGrey){
     return{
       max: {
         color: color,
         border: "4px solid " + color,
+        cursor: "default"
+      },
+      canBuy: {
+        color: "white",
+        border: "4px solid " + color,
+        cursor: "pointer"
+      },
+      cannotBuy: {
+        color: "grey",
+        border: "4px solid " + colorGrey,
+        cursor: "default"
+      }
+    }
+  }
+  let outerLightUpgradesStyles = function(color, colorGrey){
+    return{
+      max: {
+        color: color,
+        border: "4px solid #ccc",
         cursor: "default"
       },
       canBuy: {
@@ -29,8 +48,8 @@ function updateGameDataLightUpgrades(){
           player.lights.amount -= cost
         }
       },
-      style: containBit(upgradesBit, correspondingBit) ? lightUpgradesStyles(colorHex, colorHexGrey).max
-            :player.lights.amount >= cost ? lightUpgradesStyles(colorHex, colorHexGrey).canBuy : lightUpgradesStyles(colorHex, colorHexGrey).cannotBuy
+      style: containBit(upgradesBit, correspondingBit) ? innerLightUpgradesStyles(colorHex, colorHexGrey).max
+            :player.lights.amount >= cost ? innerLightUpgradesStyles(colorHex, colorHexGrey).canBuy : innerLightUpgradesStyles(colorHex, colorHexGrey).cannotBuy
     }
   }
   let keepMultiProp = function (correspondingBit, color, colorHex, colorHexGrey, cost){
@@ -44,8 +63,8 @@ function updateGameDataLightUpgrades(){
           player.lights.amount -= cost
         }
       },
-      style: containBit(upgradesBit, correspondingBit) ? lightUpgradesStyles(colorHex, colorHexGrey).max
-            :player.lights.amount >= cost ? lightUpgradesStyles(colorHex, colorHexGrey).canBuy : lightUpgradesStyles(colorHex, colorHexGrey).cannotBuy
+      style: containBit(upgradesBit, correspondingBit) ? innerLightUpgradesStyles(colorHex, colorHexGrey).max
+            :player.lights.amount >= cost ? innerLightUpgradesStyles(colorHex, colorHexGrey).canBuy : innerLightUpgradesStyles(colorHex, colorHexGrey).cannotBuy
     }
   }
   let fasterAutoProp = function (correspondingBit, color, colorHex, colorHexGrey, cost){
@@ -60,8 +79,8 @@ function updateGameDataLightUpgrades(){
         }
         updateAutobuyers()
       },
-      style: containBit(upgradesBit, correspondingBit) ? lightUpgradesStyles(colorHex, colorHexGrey).max
-            :player.lights.amount >= cost ? lightUpgradesStyles(colorHex, colorHexGrey).canBuy : lightUpgradesStyles(colorHex, colorHexGrey).cannotBuy
+      style: containBit(upgradesBit, correspondingBit) ? innerLightUpgradesStyles(colorHex, colorHexGrey).max
+            :player.lights.amount >= cost ? innerLightUpgradesStyles(colorHex, colorHexGrey).canBuy : innerLightUpgradesStyles(colorHex, colorHexGrey).cannotBuy
     }
   }
   let boostPhotonsProp = function (correspondingBit, color, colorHex, colorHexGrey, cost, unlockReq){
@@ -75,8 +94,8 @@ function updateGameDataLightUpgrades(){
           player.lights.amount -= cost
         }
       },
-      style: containBit(upgradesBit, correspondingBit) ? lightUpgradesStyles(colorHex, colorHexGrey).max
-            :player.lights.amount >= cost && unlockReq ? lightUpgradesStyles(colorHex, colorHexGrey).canBuy : lightUpgradesStyles(colorHex, colorHexGrey).cannotBuy
+      style: containBit(upgradesBit, correspondingBit) ? outerLightUpgradesStyles(colorHex, colorHexGrey).max
+            :player.lights.amount >= cost && unlockReq ? outerLightUpgradesStyles(colorHex, colorHexGrey).canBuy : outerLightUpgradesStyles(colorHex, colorHexGrey).cannotBuy
     }
   }
   let lightAutoProp = function (correspondingBit, colorHex, colorHexGrey, cost, unlockReq){
@@ -90,8 +109,8 @@ function updateGameDataLightUpgrades(){
           player.lights.amount -= cost
         }
       },
-      style: containBit(upgradesBit, correspondingBit) ? lightUpgradesStyles(colorHex, colorHexGrey).max
-            :player.lights.amount >= cost && unlockReq ? lightUpgradesStyles(colorHex, colorHexGrey).canBuy : lightUpgradesStyles(colorHex, colorHexGrey).cannotBuy
+      style: containBit(upgradesBit, correspondingBit) ? outerLightUpgradesStyles(colorHex, colorHexGrey).max
+            :player.lights.amount >= cost && unlockReq ? outerLightUpgradesStyles(colorHex, colorHexGrey).canBuy : outerLightUpgradesStyles(colorHex, colorHexGrey).cannotBuy
     }
   }
   let unspentMultiProp = function (correspondingBit, colorHex, colorHexGrey, cost, unlockReq){
@@ -105,8 +124,8 @@ function updateGameDataLightUpgrades(){
           player.lights.amount -= cost
         }
       },
-      style: containBit(upgradesBit, correspondingBit) ? lightUpgradesStyles(colorHex, colorHexGrey).max
-            :player.lights.amount >= cost && unlockReq ? lightUpgradesStyles(colorHex, colorHexGrey).canBuy : lightUpgradesStyles(colorHex, colorHexGrey).cannotBuy
+      style: containBit(upgradesBit, correspondingBit) ? outerLightUpgradesStyles(colorHex, colorHexGrey).max
+            :player.lights.amount >= cost && unlockReq ? outerLightUpgradesStyles(colorHex, colorHexGrey).canBuy : outerLightUpgradesStyles(colorHex, colorHexGrey).cannotBuy
     }
   }
   let auto20Prop = function (correspondingBit, colorHex, colorHexGrey, cost, unlockReq){
@@ -121,8 +140,8 @@ function updateGameDataLightUpgrades(){
           updateAutobuyers()
         }
       },
-      style: containBit(upgradesBit, correspondingBit) ? lightUpgradesStyles(colorHex, colorHexGrey).max
-            :player.lights.amount >= cost && unlockReq ? lightUpgradesStyles(colorHex, colorHexGrey).canBuy : lightUpgradesStyles(colorHex, colorHexGrey).cannotBuy
+      style: containBit(upgradesBit, correspondingBit) ? outerLightUpgradesStyles(colorHex, colorHexGrey).max
+            :player.lights.amount >= cost && unlockReq ? outerLightUpgradesStyles(colorHex, colorHexGrey).canBuy : outerLightUpgradesStyles(colorHex, colorHexGrey).cannotBuy
     }
   }
   let moreLightsProp = function (correspondingBit, colorHex, colorHexGrey, cost, unlockReq){
@@ -136,8 +155,8 @@ function updateGameDataLightUpgrades(){
           player.lights.amount -= cost
         }
       },
-      style: containBit(upgradesBit, correspondingBit) ? lightUpgradesStyles(colorHex, colorHexGrey).max
-            :player.lights.amount >= cost && unlockReq ? lightUpgradesStyles(colorHex, colorHexGrey).canBuy : lightUpgradesStyles(colorHex, colorHexGrey).cannotBuy
+      style: containBit(upgradesBit, correspondingBit) ? outerLightUpgradesStyles(colorHex, colorHexGrey).max
+            :player.lights.amount >= cost && unlockReq ? outerLightUpgradesStyles(colorHex, colorHexGrey).canBuy : outerLightUpgradesStyles(colorHex, colorHexGrey).cannotBuy
     }
   }
   game.lightUpgrades = {
