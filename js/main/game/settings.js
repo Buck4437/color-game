@@ -124,11 +124,11 @@ function isValidSave(str){
 function importSave(string){
   let save = JSON.parse(string)
   if(isValidSaveVersion(save)){
-    // importToGame(save)
-    for (let prop in defaultSave){
-      importProperty(prop, save)
+    let fixedSave = saveFixer(save)
+    for (let prop in fixedSave){
+      player[prop] = JSON.parse(JSON.stringify(fixedSave[prop]))
     }
-    updateSave()
+    // updateSave()
     updateAutobuyers()
     for (let prop in defaultGame){
       game.selectedTab[prop] = defaultGame.selectedTab[prop]
@@ -138,14 +138,14 @@ function importSave(string){
   }
 }
 
-function importProperty(property, save){
-  if(save[property] === undefined){
-    player[property] = JSON.parse(JSON.stringify(defaultSave[property]))
-    return
-  }
-  player[property] = save[property]
-  return
-}
+// function importProperty(property, save){
+//   if(save[property] === undefined){
+//     player[property] = JSON.parse(JSON.stringify(defaultSave[property]))
+//     return
+//   }
+//   player[property] = save[property]
+//   return
+// }
 
 
 function isValidSaveVersion(save){

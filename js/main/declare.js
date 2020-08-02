@@ -15,7 +15,7 @@ const defaultSave = {
       amount: 0,
       auto: false,
       upgrades:{
-        unlocked: false,
+        isUnlocked: false,
         auto: 0,
         multi: 0
       }
@@ -25,7 +25,7 @@ const defaultSave = {
       amount: 0,
       auto: false,
       upgrades:{
-        unlocked: false,
+        isUnlocked: false,
         auto: 0,
         multi: 0
       }
@@ -65,7 +65,7 @@ const defaultSave = {
       }
     }
   },
-  version: [0,1,2,1]
+  version: [0,1,2,2]
   // [major, minor, bugfix, internal]
 }
 var player = JSON.parse(JSON.stringify(defaultSave));
