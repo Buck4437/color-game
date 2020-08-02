@@ -2,11 +2,11 @@ Vue.component('photons-rgb',{
   template: `
     <div>
       <color-bar :bar="barParsed"></color-bar>
-      <button-custom :name="buttons.minus10"></button-custom>
-      <button-custom :name="buttons.minus1"></button-custom>
+      <button @click="buttons.minus10.onclick()" :style="buttons.minus10.style">\<\<</button>
+      <button @click="buttons.minus1.onclick()" :style="buttons.minus1.style">\<</button>
       <span style="display: inline-block; width: 40px; text-align: center; margin-right: 10px">{{text}}</span>
-      <button-custom :name="buttons.add1"></button-custom>
-      <button-custom :name="buttons.add10"></button-custom>
+      <button @click="buttons.add1.onclick()" :style="buttons.add1.style">\></button>
+      <button @click="buttons.add10.onclick()" :style="buttons.add10.style">\>\></button>
       <span style="display: inline-block; margin-right: 10px" v-html="effect"></span>
     </div>
   `,
@@ -16,7 +16,7 @@ Vue.component('photons-rgb',{
   computed:{
     barParsed: function(){
       return{
-        text: capitalizeFirstLetter(this.colorName) + "&nbspPhotons:&nbsp" + Math.floor(player.lights.photons.percentage[this.colorName]/100*player.lights.photons.amount),
+        text: capitalizeFirstLetter(this.colorName) + "&nbspPhotons:&nbsp" + numToSci(player.lights.photons.percentage[this.colorName]/100*player.lights.photons.amount, 0, 2),
         width: player.lights.photons.percentage[this.colorName],
         color: this.colorName
       }
@@ -60,7 +60,7 @@ Vue.component('photons-rgb',{
         }
         return false
       }
-      function tryAdd(num){
+      function add(num){
         if (canAdd(num)){
           player.lights.photons.percentage[name] += num
         }
@@ -69,10 +69,9 @@ Vue.component('photons-rgb',{
         return{
           text: text,
           onclick: function(){
-            tryAdd(num)
+            add(num)
           },
-          style: canAdd(num) ? addSubButtonStyles.enabled : addSubButtonStyles.disabled ,
-          disabled: !canAdd(num)
+          style: canAdd(num) ? addSubButtonStyles.enabled : addSubButtonStyles.disabled
         }
       }
       return {
@@ -83,7 +82,7 @@ Vue.component('photons-rgb',{
       }
     },
     effect: function(){
-      return "=> x<span style='font-size: 25px; color: " + this.colorName +  "'> " + photonEffect()[this.colorName] + "</span> multiplier to "  + capitalizeFirstLetter(this.colorName) + "</span> gain"
+      return "=> x<span style='font-size: 25px; color: " + this.colorName +  "'> " + numToSci(photonEffect()[this.colorName], 2, 2) + "</span> multiplier to "  + capitalizeFirstLetter(this.colorName) + "</span> gain"
     }
   }
 })

@@ -1,3 +1,31 @@
+new Vue ({
+  el: "#playerMain",
+  data: {
+    player: player,
+  },
+  computed:{
+    colors: function(){
+      let styles = {
+        enabled:{
+          color: "white",
+          border: "4px solid white",
+          cursor: "pointer"
+        },
+        disabled:{
+          color: "grey",
+          border: "4px solid #888888",
+          cursor: "default"
+        }
+      }
+      return [
+        playerMainProperty(0, "red", false, "+" + numToSci(gainRateColor().red, 0, 2) +" Red", styles),
+        playerMainProperty(1, "green", false, "Reset to gain " + numToSci(gainRateColor().green, 0, 2) + " Green (Requires 255 Red)", styles, firstTimeUnlockColor().green),
+        playerMainProperty(2, "blue", !player.colors.blue.isUnlocked, "Reset to gain " + numToSci(gainRateColor().blue, 0, 2) +" Blue (Requires 255 Green)", styles, firstTimeUnlockColor().blue)
+      ]
+    }
+  }
+})
+
 function playerMainProperty(id, name, isBarHidden, text, styles, unlockFunction){
   return {
     id: id,
@@ -19,34 +47,6 @@ function playerMainProperty(id, name, isBarHidden, text, styles, unlockFunction)
   }
 }
 
-new Vue ({
-  el: "#playerMain",
-  data: {
-    player: player,
-  },
-  computed:{
-    colors: function(){
-      let styles = {
-        enabled:{
-          color: "white",
-          border: "4px solid white",
-          cursor: "pointer"
-        },
-        disabled:{
-          color: "grey",
-          border: "4px solid #888888",
-          cursor: "default"
-        }
-      }
-      return [
-        playerMainProperty(0, "red", false, "+" + Math.floor(gainRateColor().red) +" Red", styles),
-        playerMainProperty(1, "green", false, "Reset to gain " + Math.floor(gainRateColor().green) + " Green (Requires 255 Red)", styles, firstTimeUnlockColor().green),
-        playerMainProperty(2, "blue", !player.colors.blue.isUnlocked, "Reset to gain " + Math.floor(gainRateColor().blue) +" Blue (Requires 255 Green)", styles, firstTimeUnlockColor().blue)
-      ]
-    }
-  }
-})
-
 function firstTimeUnlockColor(){
   return{
     green: function(){
@@ -61,9 +61,9 @@ function firstTimeUnlockColor(){
 
 function canGainColor(){
   return {
-    red: player.colors.red.amount != 255,
-    green: player.colors.red.amount >= 255 && player.colors.green.amount != 255,
-    blue: player.colors.green.amount >= 255 && player.colors.blue.amount != 255
+    red: player.colors.red.amount < 255,
+    green: player.colors.red.amount >= 255 && player.colors.green.amount < 255,
+    blue: player.colors.green.amount >= 255 && player.colors.blue.amount < 255
   }
 }
 
@@ -88,22 +88,5 @@ function prestigeColor(color){
     resetColor("red")
   }else if(color == "blue"){
     resetColor("red", "green")
-  }
-}
-
-
-function setAutoBuyColor(color, boolean, interval){
-  player.colors[color].auto = boolean
-  clearInterval(game.autobuyersInterval[color])
-  if(player.colors[color].auto){
-    gainColor(color)
-    game.autobuyersInterval[color] = setInterval(function(){gainColor(color)}, interval)
-  }
-}
-
-function updateAutobuyers(){
-  let colors = Object.keys(game.autobuyersInterval)
-  for (let color of colors){
-    setAutoBuyColor(color, player.colors[color].auto, 1000/Math.max(1,player.colors[color].upgrades.auto||1))
   }
 }

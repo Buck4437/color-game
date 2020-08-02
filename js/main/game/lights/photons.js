@@ -15,15 +15,39 @@ new Vue({
           color: "grey",
           border: "4px solid #888888",
           cursor: "default"
+        },
+        color: function(color){
+          return {
+            color: color,
+            border: "4px solid " + color,
+            cursor: "pointer"
+          }
+        }
+      }
+      let inputStyles = {
+        color: function(color){
+          return {
+            borderBottom: "1px solid " + color,
+            borderTop: "none",
+            borderLeft: "none",
+            borderRight: "none",
+            backgroundColor: "black",
+            color: color,
+            height: "15px",
+            cursor: "text",
+            textAlign: "center",
+            width: "75px",
+            marginLeft: "10px",
+            marginRight: "10px"
+          }
         }
       }
       let unassignedPhotonsAmount = function(){
         let init = player.lights.photons.amount
-        let colors = ["red", "green", "blue"]
-        for (color of colors){
+        for (color of ["red", "green", "blue"]){
           init -= Math.floor(player.lights.photons.percentage[color] * player.lights.photons.amount/100)
         }
-        return Math.floor(init)
+        return init
       }
       let unassignedPhotonsWidth = function(){
         let init = 100
@@ -35,58 +59,56 @@ new Vue({
       }
       return {
         bar:{
-          text: "Lights: " + Math.floor(player.lights.amount),
+          text: "Lights: " + numToSci(player.lights.amount, 0, 2),
           width: 100,
           color: "#4c4"
         },
-        gainLights:{
-          elementID: "buttonPrestigeLights",
-          text: "Reset to gain " + gainRateLights().lights + " Light" + (gainRateLights().lights != 1 ? "s." : "."),
-          onclick: function(){
-            if(player.options.confirmation.lights){
-              if(confirm("This will reset all colors, upgrades, AND photons in exchanging for lights. Proceed? (You can't turn this off in Settings yet because i have not implemented it yet bear with me)")){
-                prestigeLights()
-              }
-              return
-            }
-            prestigeLights()
-          },
-          style: canPrestigeLights() ? buttonStyles.enabled : buttonStyles.disabled,
-          disabled: !canPrestigeLights()
+        auto:{
+          display: containBit(player.lights.upgradesBit, 4096) ? "inline-block" : "none"
         },
-        initiate:{
-          text: "Initiate Photon Emission. Cost: 1 Light",
-          isHidden: player.lights.photons.isInitiated,
-          onclick: function(){
-            player.lights.amount --
-            player.lights.photons.isInitiated = true
-            player.lights.upgrades.isUnlocked = true
+        toggleAuto:{
+          text: player.lights.auto.isEnabled ? "Auto: On" : "Auto: Off",
+          click: function(){
+            player.lights.auto.isEnabled = !player.lights.auto.isEnabled
+            updateAutobuyersLights()
           },
-          style: player.lights.amount >= 1 ? buttonStyles.enabled : buttonStyles.disabled,
-          disabled: player.lights.amount < 1
+          style: player.lights.auto.isEnabled ? buttonStyles.color("#0f0") : buttonStyles.color("#c00")
         },
-        double:{
-          text: "x2 Photon gain speed. Cost: " + 2**(player.lights.photons.multi) + " Light" + (player.lights.photons.multi == 0 ? "" : "s"),
-          onclick: function(){
-            if(player.lights.amount >= 2**(player.lights.photons.multi)){
-              player.lights.amount -= 2**(player.lights.photons.multi)
-              player.lights.photons.multi ++
+        toggleMode:{
+          text: player.lights.auto.mode == 0 ? "Mode: Amount" : "Mode: Time",
+          click: function(){
+            player.lights.auto.mode = (player.lights.auto.mode + 1) % 2
+            if(isNaN(player.lights.auto.mode)){
+              player.lights.auto.mode = 0
             }
           },
-          style: (player.lights.amount >= 2**(player.lights.photons.multi)) ? buttonStyles.enabled : buttonStyles.disabled,
-          disabled: player.lights.amount < 2**(player.lights.photons.multi)
+          style: buttonStyles.enabled,
+          protext: player.lights.auto.mode == 0 ? (player.lights.auto.value == 1 ? "Light" : "Lights" ) : (player.lights.auto.value == 1 ? "second" : "seconds" )
+        },
+        input:{
+          style: isNaN(parseFloat($("#lightsAutoInput").val())) ? inputStyles.color("red") : inputStyles.color("white")
         },
         normalPhotons:{
-          text: "Photons: " + Math.floor(player.lights.photons.amount) + " (+" + gainRateLights().photons + "/s)",
+          text: "Photons: " + numToSci(player.lights.photons.amount, 0, 2) + " (+" + numToSci(gainRateLights().photons, 0, 2) + "/s)",
           width: 100,
           color: "#ccc",
           textStyle:{
             color: "#333"
           }
         },
+        double:{
+          text: "x2 Photon gain speed. Cost: " + numToSci(2**(player.lights.photons.multi), 0, 2) + " Light" + (player.lights.photons.multi == 0 ? "" : "s"),
+          click: function(){
+            if(player.lights.amount >= 2**(player.lights.photons.multi)){
+              player.lights.amount -= 2**(player.lights.photons.multi)
+              player.lights.photons.multi ++
+            }
+          },
+          style: (player.lights.amount >= 2**(player.lights.photons.multi)) ? buttonStyles.enabled : buttonStyles.disabled,
+        },
         colorPhotons:["red", "green", "blue"],
         unassignedPhotons:{
-          text: "Unassigned&nbspPhotons:&nbsp" + unassignedPhotonsAmount(),
+          text: "Unassigned&nbspPhotons:&nbsp" + numToSci(unassignedPhotonsAmount()),
           width: unassignedPhotonsWidth(),
           color: "#888",
         }
@@ -94,3 +116,12 @@ new Vue({
     }
   }
 })
+
+$(function() {
+  $("#lightsAutoInput").on("input", function(){
+    let parsedNum = parseFloat($("#lightsAutoInput").val())
+    if (!isNaN(parsedNum)){
+      player.lights.auto.value = parsedNum
+    }
+  })
+});
