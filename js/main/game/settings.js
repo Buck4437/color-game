@@ -128,7 +128,6 @@ function importSave(string){
     for (let prop in fixedSave){
       player[prop] = JSON.parse(JSON.stringify(fixedSave[prop]))
     }
-    // updateSave()
     updateAutobuyers()
     for (let prop in defaultGame){
       game.selectedTab[prop] = defaultGame.selectedTab[prop]
@@ -137,16 +136,6 @@ function importSave(string){
     updateInputBlanks()
   }
 }
-
-// function importProperty(property, save){
-//   if(save[property] === undefined){
-//     player[property] = JSON.parse(JSON.stringify(defaultSave[property]))
-//     return
-//   }
-//   player[property] = save[property]
-//   return
-// }
-
 
 function isValidSaveVersion(save){
   if(save.version == "0.0.0"){
