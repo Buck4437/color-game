@@ -6,10 +6,10 @@ new Vue({
   computed:{
     gainLights: function (){
       return{
-        text: "Reset all progress to unlock new prestige layer.",
+        text: "Reset all progress to unlock a new prestige layer.",
         isHidden: !((player.colors.red.amount >= 255 && player.colors.green.amount >= 255) && (player.colors.blue.amount >= 255 && !player.lights.isUnlocked)),
         click: function(){
-          if(confirm("This will reset all colors and upgrades, in exchange for new currencies. Proceed?")){
+          if(confirm("This will reset all colors and upgrades. You will gain new currencies and unlock new upgrades in exchange. Proceed?")){
             player.lights.isUnlocked = true
             prestigeLights()
             switchMainTab("tabLights")
