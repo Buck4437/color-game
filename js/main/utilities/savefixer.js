@@ -3,6 +3,7 @@ function saveFixer(save){
   if (save === undefined){
     return newSave
   }
+  
   // migrate data to new save if the data is not undefined
   if (save.colors !== undefined){
     let colors = ["red", "green", "blue"]
@@ -80,25 +81,21 @@ function saveFixer(save){
     }
   }
 
-  //Placeholder for save updating (to convert old outdated save data into new one)
-
+  // changing older version of save into new version
+  if (save.versionNo !== undefined){
+    for (let i = 0; i <= 3; i++){
+      if (save.versionNo === undefined){
+        // cannot be updated as the versionNo format is wrong
+        return newSave
+      }
+    }
+    let versionDelta = 0 // easier to handle
+    for (let i = 0; i <= 3; i++){
+      versionDelta += versionNo[i]*100**(3-i)
+    }
+    if(versionDelta <= 10201){
+      // placeholder, no change required
+    }
+  }
   return newSave
-}
-
-function updateSave(){
-  let versionNo = player.version
-  let deltaVal = 0
-  for (let i = 0; i <= 3; i++){
-    deltaVal += versionNo[i]*100**(3-i)
-  }
-  if(deltaVal <= 10201){
-
-  }
-  if(deltaVal == 10201){
-    //placeholder
-  }
-  if(versionNo != 10202){
-    player.version = [0,1,2,2]
-  }
-  return
 }
