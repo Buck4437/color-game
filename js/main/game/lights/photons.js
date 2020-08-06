@@ -43,9 +43,15 @@ new Vue({
         }
       }
       let unassignedPhotonsAmount = function(){
-        let init = player.lights.photons.amount
+        let photonAmount = Math.floor(player.lights.photons.amount)
+        let init = Math.floor(player.lights.photons.amount)
+        let per = 0
         for (color of ["red", "green", "blue"]){
-          init -= Math.floor(player.lights.photons.percentage[color] * player.lights.photons.amount/100)
+          per += player.lights.photons.percentage[color]
+          init -= Math.floor(player.lights.photons.percentage[color] * photonAmount/100)
+        }
+        if (init/(photonAmount+1) < 0.001 || Math.round(per) >= 100){
+          return 0
         }
         return init
       }
@@ -108,7 +114,7 @@ new Vue({
         },
         colorPhotons:["red", "green", "blue"],
         unassignedPhotons:{
-          text: "Unassigned&nbspPhotons:&nbsp" + numToSci(unassignedPhotonsAmount()),
+          text: "Unassigned&nbspPhotons:&nbsp" + numToSci(unassignedPhotonsAmount(), 0, 2),
           width: unassignedPhotonsWidth(),
           color: "#888",
         }

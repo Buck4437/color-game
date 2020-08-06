@@ -123,7 +123,7 @@ function isValidSave(str){
 
 function importSave(string){
   let save = JSON.parse(string)
-  if(isValidSaveVersion(save)){
+  if(isBannedSaveVersion(save)){
     let fixedSave = saveFixer(save)
     for (let prop in fixedSave){
       player[prop] = JSON.parse(JSON.stringify(fixedSave[prop]))
@@ -137,7 +137,7 @@ function importSave(string){
   }
 }
 
-function isValidSaveVersion(save){
+function isBannedSaveVersion(save){
   if(save.version == "0.0.0"){
     resetGame()
     alert("Your save is incompatible with this version of game and therefore has been reset.")
