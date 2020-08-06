@@ -65,7 +65,7 @@ const defaultSave = {
       }
     }
   },
-  version: [0,1,2,2]
+  version: [1,0,0,0]
   // [major, minor, bugfix, internal]
 }
 var player = JSON.parse(JSON.stringify(defaultSave));
