@@ -3,7 +3,7 @@ function saveFixer(save){
   if (save === undefined){
     return newSave
   }
-  
+
   // migrate data to new save if the data is not undefined
   if (save.colors !== undefined){
     let colors = ["red", "green", "blue"]
@@ -93,7 +93,7 @@ function saveFixer(save){
     for (let i = 0; i <= 3; i++){
       versionDelta += versionNo[i]*100**(3-i)
     }
-    if(versionDelta <= 10201){
+    if(versionDelta <= 1000000){
       // placeholder, no change required
     }
   }

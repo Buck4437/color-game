@@ -143,10 +143,10 @@ function isBannedSaveVersion(save){
     alert("Your save is incompatible with this version of game and therefore has been reset.")
     return false
   }
-  // else if(save.version[3] != 0){
-  //   alert("You cannot use test saves in live version.")
-  //   return false
-  // }
+  else if(save.version[3] != 0){
+    alert("You cannot use test saves in live version.")
+    return false
+  }
   return true
 }
 
