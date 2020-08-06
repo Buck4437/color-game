@@ -1,18 +1,15 @@
 new Vue ({
-  el: "#tab2",
+  el: "#tabUpgrades",
   data: {
     player: player
   },
   computed: {
-    topText: function(){
-      return "Red: " + player.colors.red.amount + (player.colors.green.upgrades.isUnlocked ? ", Green: " + player.colors.green.amount : "" ) + (player.colors.blue.upgrades.isUnlocked ? ", Blue: " + player.colors.blue.amount: "" )
-    },
     upgrades: function(){
       let costParse = this.costParse
       let styles = {
         max: {
-          color: "#00FF00",
-          border: "4px solid #00FF00",
+          color: "#0a0",
+          border: "4px solid #0f0",
           cursor: "default"
         },
         canBuy: {
@@ -22,7 +19,7 @@ new Vue ({
         },
         cannotBuy: {
           color: "grey",
-          border: "4px solid #888888",
+          border: "4px solid #888",
           cursor: "default"
         }
       }
@@ -90,7 +87,7 @@ function costStringify(object){
     if(string != ""){
       string += ", "
     }
-    string += (object[property] + " " + capitalizeFirstLetter(property))
+    string += (numToSci(object[property]) + " " + capitalizeFirstLetter(property))
   }
   return string
 }

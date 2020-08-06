@@ -1,5 +1,5 @@
 Vue.component('button-color-upgrades-multi',{
-  template: '<button @click="onclick()" v-if="seen" :style="style" :disabled="name.disabled" v-html="displayedText"></button>',
+  template: '<button @click="onclick()" v-if="seen" :style="style" v-html="displayedText"></button>',
   props:{
     name:{
       color: String,
@@ -9,13 +9,14 @@ Vue.component('button-color-upgrades-multi',{
         max: Object,
         canBuy: Object,
         cannotBuy: Object
-      },
-      disabled: Boolean
+      }
     }
   },
   methods:{
     onclick: function(){
-      this.name.onclick()
+      if(!this.name.disabled){
+        this.name.onclick()
+      }
     }
   },
   computed:{

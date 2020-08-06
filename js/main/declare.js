@@ -15,7 +15,7 @@ const defaultSave = {
       amount: 0,
       auto: false,
       upgrades:{
-        unlocked: false,
+        isUnlocked: false,
         auto: 0,
         multi: 0
       }
@@ -25,39 +25,78 @@ const defaultSave = {
       amount: 0,
       auto: false,
       upgrades:{
-        unlocked: false,
+        isUnlocked: false,
         auto: 0,
         multi: 0
       }
     }
   },
-  version: [0,1,2,0]
+  lights:{
+    isUnlocked: false,
+    amount: 0,
+    auto:{
+      isEnabled: false,
+      mode: 0,
+      value: 1e10
+    },
+    photons:{
+      amount: 0,
+      auto: false,
+      multi: 0,
+      percentage:{
+        red: 0,
+        green: 0,
+        blue: 0
+      }
+    },
+    upgradesBit: 0
+  },
+  settings:{
+    confirmation:{
+      lights: true
+    }
+  },
+  stats:{
+    playTime: 0,
+    prestigeTime:{
+      lights:{
+        current: 0,
+        fastest: 1e10
+      }
+    }
+  },
+  version: [1,0,0,0]
   // [major, minor, bugfix, internal]
 }
 var player = JSON.parse(JSON.stringify(defaultSave));
 
-var game = {
+const defaultGame = {
   autobuyersInterval:{
     red: null,
     green: null,
-    blue: null
+    blue: null,
+    lights: null
   },
   upgradesCost:{
     red:{
-      auto: [null, {red: 10}, {red: 100}, {green: 3}, {green: 5}, {green: 15}],
-      multi: [null, {red: 10}, {red: 40}, {green: 25}],
+      auto: [null, {red: 5}, {red: 50}, {green: 3}, {green: 5}, {green: 15}],
+      multi: [null, {red: 10}, {red: 50}, {green: 25}],
     },
     green:{
-      auto: [null, {green: 10}, {green: 100}, {blue: 20}, {blue: 50}],
+      auto: [null, {green: 5}, {green: 100}, {blue: 5}, {blue: 20}, {blue: 50}],
       multi:[null, {green: 50}, {blue: 5}, {blue: 50}],
     },
     blue:{
-      auto: [null, {blue: 10}, {blue: 100}],
+      auto: [null, {blue: 5}, {blue: 100}],
       multi:[null, {blue: 50}],
     }
   },
+  lightsUpgrades:{},
   selectedTab:{
-    tab: "tab1"
+    mainTab: "tabMain",
+    lights: "lightsTabPhotons"
   },
   saveTimer: 10
 }
+
+var game = JSON.parse(JSON.stringify(defaultGame));
