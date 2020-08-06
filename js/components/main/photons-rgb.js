@@ -15,6 +15,7 @@ Vue.component('photons-rgb',{
   },
   computed:{
     barParsed: function(){
+      let photonAmount = player.lights.photons.percentage[this.colorName]/100*Math.floor(player.lights.photons.amount)
       return{
         text: capitalizeFirstLetter(this.colorName) + "&nbspPhotons:&nbsp" + numToSci(player.lights.photons.percentage[this.colorName]/100*Math.floor(player.lights.photons.amount), 0, 2),
         width: player.lights.photons.percentage[this.colorName],
