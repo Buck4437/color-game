@@ -1,3 +1,3 @@
-# Trichromacy / Color game
+# Color game
  
  An incremental based on gaining colors.
