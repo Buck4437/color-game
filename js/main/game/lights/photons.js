@@ -45,10 +45,12 @@ new Vue({
       let unassignedPhotonsAmount = function(){
         let photonAmount = Math.floor(player.lights.photons.amount)
         let init = Math.floor(player.lights.photons.amount)
+        let per = 0
         for (color of ["red", "green", "blue"]){
+          per += player.lights.photons.percentage[color]
           init -= Math.floor(player.lights.photons.percentage[color] * photonAmount/100)
         }
-        if (init/(photonAmount+1) < 0.001){
+        if (init/(photonAmount+1) < 0.001 || Math.round(per) >= 100){
           return 0
         }
         return init
