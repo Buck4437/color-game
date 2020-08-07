@@ -138,6 +138,9 @@ function importSave(string){
 }
 
 function isBannedSaveVersion(save){
+  if (save === null){
+    return true
+  }
   if(save.version == "0.0.0"){
     resetGame()
     alert("Your save is incompatible with this version of game and therefore has been reset.")

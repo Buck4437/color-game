@@ -1,6 +1,6 @@
 function saveFixer(save){
   let newSave = JSON.parse(JSON.stringify(defaultSave))
-  if (save === undefined){
+  if (save === undefined || save === null){
     return newSave
   }
 
@@ -93,7 +93,7 @@ function saveFixer(save){
     for (let i = 0; i <= 3; i++){
       versionDelta += versionNo[i]*100**(3-i)
     }
-    if(versionDelta <= 1000000){
+    if(versionDelta <= 1000001){
       // placeholder, no change required
     }
   }
