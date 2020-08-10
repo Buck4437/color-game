@@ -1,0 +1,40 @@
+.{
+  font-size: 20px;
+}
+
+#app{
+  margin: 15px;
+}
+
+.currency-container {
+  display: flex;
+}
+
+.red-currency, .green-currency, .blue-currency{
+  min-width: 200px;
+  border: 1px solid black;
+  padding: 10px;
+  text-align: left;
+}
+
+.color-producer {
+  width: 400px;
+  border: 1px solid black
+}
+
+.color-adder-container{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.color-progress{
+  width: 250px;
+  border: 1px solid black
+}
+
+.color-upgrades-container{
+  padding: 10px;
+  border: 1px solid black
+}

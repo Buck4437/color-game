@@ -3,139 +3,41 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/maingame.css">
-    <link rel="stylesheet" type="text/css" href="css/buttons.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link rel="icon" href="icon.png">
     <title>Color game</title>
   </head>
-  <body style="background-color:black">
-    <div id="currency-bar" style="margin-bottom: 10px">
-      <div class="currencyBarCurrencies" style="color:red">Red:&nbsp{{red}}</div>
-      <div class="currencyBarCurrencies" style="color:green">Green:&nbsp{{green}}</div>
-      <div class="currencyBarCurrencies" style="color:blue;" v-if="player.colors.blue.isUnlocked">Blue:&nbsp{{blue}}</div>
-      <div class="currencyBarCurrencies"  style="color:#0f0;" v-if="player.lights.isUnlocked">
-        Lights:&nbsp{{lights}}<br>
-        <button @click="lightsPrestige.click" :style="lightsPrestige.style" style="padding: 5px 15px; margin-top: 10px; background-color: black;" v-html="lightsPrestige.text"></button>
-      </div>
-    </div>
-    <br>
-    <div id="top-bar">
-      <button-tab-bar :tabs="tabs" :selected-tab="selectedTab" @select-tab="selectTab"></button-tab-bar>
-    </div>
-    <br>
-    <div id="tabs">
-      <div id="tabMain" class="tabs">
-        <div id="playerMain">
-          <player-rgb v-for="color in colors" :global="color.global" :bar="color.bar" :addsub="color.addsub" :auto="color.auto" :key="color.id"></player-rgb>
+  <body>
+    <div id="app">
+      <div class="currency-container">
+        <div class="red-currency">
+          Red: {{player.color[0].amount}}
         </div>
-        <div id="unlockLights">
-          <button v-if="!gainLights.isHidden" @click="gainLights.click" :style="gainLights.style">{{gainLights.text}}</button>
+        <div class="green-currency">
+          Green: {{player.color[1].amount}}
+        </div>
+        <div class="blue-currency">
+          Blue: {{player.color[2].amount}}
         </div>
       </div>
-      <div id="tabUpgrades" class="tabs" style="display: none">
-        <div v-for="upgrade in upgrades" :name="upgrade" :key="upgrade.id" style="width: 450px">
-          <button-color-upgrades-auto :name="upgrade.auto"></button-color-upgrades-auto>
-          <button-color-upgrades-multi :name="upgrade.multi"></button-color-upgrades-multi>
-        </div>
-      </div>
-      <div id="tabLights" class="tabs" style="display: none">
-        <div id="lights-top-bar" style="margin-bottom: 20px">
-          <button-tab-bar :tabs="tabs" :selected-tab="selectedTab" @select-tab="selectTab"></button-tab-bar>
-        </div>
-        <div id="lightsTabPhotons">
-          <div>
-            <color-bar :bar="lights.bar" style="display: inline-block;"></color-bar>
-            <div :style="{display: lights.auto.display}">
-              <button @click="lights.toggleAuto.click" :style="lights.toggleAuto.style">{{lights.toggleAuto.text}}</button>
-              <button @click="lights.toggleMode.click" :style="lights.toggleMode.style" style="width: 130px">{{lights.toggleMode.text}}</button>
-              Prestige&nbspat
-              <input id="lightsAutoInput":style="lights.input.style"></input>{{lights.toggleMode.protext}}&nbspor&nbspmore
+      <div class="colors-container">
+        <div class="color-producer" v-for="(color, index) in player.color">
+          <div class="color-adder-container">
+            <div class="color-progress">
+              {{constant.colorsNoun[index]}}: {{color.amount}}
             </div>
+            <button class="color-adder" @click="generateColor(index)">Placeholder</button>
           </div>
-          <div>
-            <color-bar :bar="lights.normalPhotons"></color-bar>
-            <button @click="lights.double.click" :style="lights.double.style">{{lights.double.text}}</button>
-          </div>
-          <div>
-            <photons-rgb v-for="bar in lights.colorPhotons" :color-name="bar" :key="bar"></photons-rgb>
-            <color-bar :bar="lights.unassignedPhotons"></color-bar>
-          </div>
-        </div>
-        <div id="lightsTabUpgrades" style="display: none">
-          <div>
-            <div v-for="row in rows" :key="row.id" style="width: 890px">
-              <button-light-upgrades-one-time v-for="upgrade in row.items" :name="upgrade" :key="upgrade.key" style="margin-right: 8px"></button-light-upgrades-one-time>
-            </div>
+          <div class="color-upgrades-container">
+            Placeholder
           </div>
         </div>
       </div>
-      <div id="tabSettings" class="tabs" style="display: none">
-        <div style="width: 350px; display: inline-block; margin-right: 150px; margin-bottom: 50px">
-          <div style="width: 310px; padding-bottom: 30px; text-align: center; color: #f00">
-            Save file management
-          </div>
-          <button v-for="option in options" @click="option.click" :style="option.style">{{option.text}}</button>
-        </div>
-        <div style="width: 160px; display: inline-block; margin-right: 150px; vertical-align:top; margin-bottom: 50px"  v-if="player.lights.isUnlocked">
-          <div style="width: 160px; padding-bottom: 30px; text-align: center; color: #0f0">
-            Confirmations
-          </div>
-          <button v-for="button of confirmations" @click="button.click" :style="button.style">{{button.text}}</button>
-        </div>
-        <div style="width: 350px; display: inline-block; margin-right: 150px; vertical-align:top; margin-bottom: 50px">
-          <div style="width: 350px; padding-bottom: 30px; text-align: center; color: #00f">
-            Stats
-          </div>
-          <div style="text-align: center">
-            <span>Total play time: {{time.total}}</span><br><br>
-            <span v-if="player.lights.isUnlocked">Current Light Prestige time: {{time.currentLight}}</span><br><br>
-            <span v-if="player.lights.isUnlocked">Fastest Light Prestige time: {{time.fastestLight}}</span>
-          </div>
-        </div>
-        <br>
-        <br>
-        <div style="width: 150px; display: inline-block;">
-          <span id="gameSavedLoadedPopup"></span>
-        </div>
-        <br>
-        <br>
-        Game autosaves every 10 seconds
-        <div id="exportedSave" style="display: none;">
-            Save: <input type="text" id="exportedSaveField">
-        </div>
-        <br>
-        <br>
-        <a href="https://discord.com/invite/N8MuKMz" style="color: blue" target="_blank">Discord server</a> |
-        <a href="changelog.html" style="color: blue" target="_blank">Changelog</a>
     </div>
   </body>
   <script src="js/libraries/jquery-3.4.1.js"></script>
   <script src="js/libraries/vue.js"></script>
-  <script src="js/libraries/custom-functions.js"></script>
-  <script src="js/components/others/buttons/button-tab-bar.js"></script>
-  <script src="js/components/others/buttons/colorUpgrades/button-color-upgrades-auto.js"></script>
-  <script src="js/components/others/buttons/colorUpgrades/button-color-upgrades-multi.js"></script>
-  <script src="js/components/others/buttons/lightUpgrades/button-light-upgrades-oneTime.js"></script>
-  <script src="js/components/others/color-bar/color-bar.js"></script>
-  <script src="js/components/main/player-rgb.js"></script>
-  <script src="js/components/main/photons-rgb.js"></script>
-  <script src="js/main/declare.js"></script>
-  <script src="js/main/gainRates.js"></script>
-  <script src="js/main/gameData/lightUpgrades.js"></script>
-  <script src="js/main/gameData/gameDataUpdate.js"></script>
-  <script src="js/main/game/playerMain.js"></script>
-  <script src="js/main/game/upgrades.js"></script>
-  <script src="js/main/game/settings.js"></script>
-  <script src="js/main/game/lights/prestige.js"></script>
-  <script src="js/main/game/lights/sub-tabs.js"></script>
-  <script src="js/main/game/lights/photons.js"></script>
-  <script src="js/main/game/lights/lightUpgrades.js"></script>
-  <script src="js/main/game/generateThings.js"></script>
-  <script src="js/main/game/automation.js"></script>
-  <script src="js/main/game/hotkeys.js"></script>
-  <script src="js/main/top/currencybar.js"></script>
-  <script src="js/main/top/topbar.js"></script>
-  <script src="js/main/utilities/savefixer.js"></script>
-  <script src="js/main/utilities/testing-tools.js"></script>
-  <script src="js/main/initiate.js"></script>
+  <script src="js/main/constant.js"></script>
+  <script src="js/main/player.js"></script>
+  <script src="js/main/index.js"></script>
 </html>
