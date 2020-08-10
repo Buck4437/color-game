@@ -11,25 +11,30 @@
     <div id="app">
       <div class="currency-container">
         <div class="red-currency">
-          Red: {{player.color[0].amount}}
+          Red: {{format(player.color[0].amount)}}
         </div>
         <div class="green-currency">
-          Green: {{player.color[1].amount}}
+          Green: {{format(player.color[1].amount)}}
         </div>
         <div class="blue-currency">
-          Blue: {{player.color[2].amount}}
+          Blue: {{format(player.color[2].amount)}}
         </div>
       </div>
       <div class="colors-container">
         <div class="color-producer" v-for="(color, index) in player.color">
           <div class="color-adder-container">
             <div class="color-progress">
-              {{constant.colorsNoun[index]}}: {{color.amount}}
+              {{constant.colorsNoun[index]}}: {{format(color.amount)}}
             </div>
             <button class="color-adder" @click="generateColor(index)">Placeholder</button>
           </div>
-          <div class="color-upgrades-container">
-            Placeholder
+          <div class="color-upgrade-collapsible" @click="collapse('color-upgrade-coll-container'+index)">
+            Idk
+          </div>
+          <div class="color-upgrade-coll-container" :class="'color-upgrade-coll-container'+index">
+            <div class="color-upgrades-container">
+              stuff
+            </div>
           </div>
         </div>
       </div>
@@ -37,7 +42,9 @@
   </body>
   <script src="js/libraries/jquery-3.4.1.js"></script>
   <script src="js/libraries/vue.js"></script>
+  <script src="js/main/format.js"></script>
   <script src="js/main/constant.js"></script>
   <script src="js/main/player.js"></script>
+  <script src="js/main/game-loop.js"></script>
   <script src="js/main/index.js"></script>
 </html>
