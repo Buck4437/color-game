@@ -3,46 +3,47 @@ const constant = {
   colorsNoun: ["Red", "Green", "Blue"],
   colorUpgInfo:{
     11:{
-      text: "You gain Red passively based on current production rate", //20% of rate
-      cap: 1
-    },
-    12:{
       text: "Reduce production time to x0.8",
       cap: 10
     },
-    13:{
+    12:{
       text: "You gain x1.5 more Red",
       cap: 4
+    },
+    13:{
+      text: "Subjected to change",
+      cap: 1
     },
 
 
 
     21:{
-      text: "You gain Green passively based on current production rate", //20% of rate
-      cap: 1
-    },
-    22:{
       text: "Reduce production time to x0.8",
       cap: 10
     },
-    23:{
+    22:{
       text: "You gain x1.5 more Green",
       cap: 4
     },
+    23:{
+      text: "Placeholder",
+      cap: 1
+    },
+
 
 
 
     31:{
-      text: "You gain Blue passively based on current production rate", //20% of rate
-      cap: 1
-    },
-    32:{
       text: "Reduce production time to x0.8",
       cap: 10
     },
-    33:{
+    32:{
       text: "You gain x1.5 more Blue",
       cap: 4
+    },
+    33:{
+      text: "Placeholder",
+      cap: 1
     },
   }
 }

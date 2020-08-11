@@ -6,7 +6,6 @@ var app = new Vue({
   },
   methods:{
     buyUpg(u){
-
     },
 
     //change this reeeeeee
@@ -20,7 +19,7 @@ var app = new Vue({
         }
       }
     },
-    
+
     generateColor(i){
       let c = this.player.color[i]
       if (c.timer > 0) return

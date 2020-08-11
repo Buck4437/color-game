@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="css/about.css">
     <link rel="icon" href="icon.png">
     <title>Color game</title>
   </head>
@@ -20,7 +21,7 @@
           Blue: {{format(player.color[2].amount)}}
         </div>
       </div>
-      <div class="colors-container">
+      <div class="color-container">
         <div class="color-producer" v-for="(color, index) in player.color">
           <div class="color-adder-container">
             <div class="color-adder-currency-container">
@@ -42,14 +43,38 @@
           </div>
           <div class="color-upgrade-coll-container" :class="'color-upgrade-coll-container'+index">
             <div class="color-upgrade-container">
-              <div class="color-upgrade color-upgrade-1" @click="buyUpgrade(index+'1')">
-                {{constant.colorUpgInfo[(index+1) + "1"].text}}
+              <div class="color-upgrade color-upgrade-1" @click="buyUpg((index + 1) + '1')">
+                <div class="color-upgrade-text">
+                  {{constant.colorUpgInfo[(index+1) + "1"].text}}
+                </div>
+                <div class="color-upgrade-text">
+                  Cost: placeholder
+                </div>
+                <div class="color-upgrade-text">
+                  Current effect: placeholder
+                </div>
               </div>
-              <div class="color-upgrade color-upgrade-2" @click="buyUpgrade(index+'2')">
-                {{constant.colorUpgInfo[(index+1) + "2"].text}}
+              <div class="color-upgrade color-upgrade-2" @click="buyUpg((index + 1) + '2')">
+                <div class="color-upgrade-text">
+                  {{constant.colorUpgInfo[(index+1) + "2"].text}}
+                </div>
+                <div class="color-upgrade-text">
+                  Cost: placeholder
+                </div>
+                <div class="color-upgrade-text">
+                  Current effect: placeholder
+                </div>
               </div>
-              <div class="color-upgrade color-upgrade-3" @click="buyUpgrade(index+'3')">
-                {{constant.colorUpgInfo[(index+1) + "3"].text}}
+              <div class="color-upgrade color-upgrade-3" @click="buyUpg((index + 1) + '3')">
+                <div class="color-upgrade-text">
+                  {{constant.colorUpgInfo[(index+1) + "3"].text}}
+                </div>
+                <div class="color-upgrade-text">
+                  Cost: placeholder
+                </div>
+                <div class="color-upgrade-text">
+                  Current effect: placeholder
+                </div>
               </div>
             </div>
           </div>

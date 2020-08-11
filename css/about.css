@@ -1,0 +1,9 @@
+@font-face {
+    font-family: monoid;
+    src: url("../css/fonts/Monoid-Regular.ttf")
+}
+
+body{
+  font-family: monoid;
+  font-size: 20px;
+}
