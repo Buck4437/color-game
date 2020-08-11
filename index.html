@@ -23,17 +23,34 @@
       <div class="colors-container">
         <div class="color-producer" v-for="(color, index) in player.color">
           <div class="color-adder-container">
-            <div class="color-progress">
-              {{constant.colorsNoun[index]}}: {{format(color.amount)}}
+            <div class="color-adder-currency-container">
+              <div class="color-adder-currency">
+                {{constant.colorsNoun[index]}}: {{format(color.amount)}}
+              </div>
             </div>
-            <button class="color-adder" @click="generateColor(index)">Placeholder</button>
+            <div class="color-progress-container">
+              <div class="color-progress" :class="'color-progress'+index" :style="{width: (1-color.timer)*100 + '%'}"></div>
+            </div>
+            <div class="color-adder-button-container" @click="generateColor(index)">
+              <div class="color-adder-button">
+                Placeholder
+              </div>
+            </div>
           </div>
           <div class="color-upgrade-collapsible" @click="collapse('color-upgrade-coll-container'+index)">
-            Idk
+            PLaceholde3r
           </div>
           <div class="color-upgrade-coll-container" :class="'color-upgrade-coll-container'+index">
-            <div class="color-upgrades-container">
-              stuff
+            <div class="color-upgrade-container">
+              <div class="color-upgrade color-upgrade-1" @click="buyUpgrade(index+'1')">
+                {{constant.colorUpgInfo[(index+1) + "1"].text}}
+              </div>
+              <div class="color-upgrade color-upgrade-2" @click="buyUpgrade(index+'2')">
+                {{constant.colorUpgInfo[(index+1) + "2"].text}}
+              </div>
+              <div class="color-upgrade color-upgrade-3" @click="buyUpgrade(index+'3')">
+                {{constant.colorUpgInfo[(index+1) + "3"].text}}
+              </div>
             </div>
           </div>
         </div>
@@ -43,6 +60,7 @@
   <script src="js/libraries/jquery-3.4.1.js"></script>
   <script src="js/libraries/vue.js"></script>
   <script src="js/main/format.js"></script>
+  <script src="js/main/formula.js"></script>
   <script src="js/main/constant.js"></script>
   <script src="js/main/player.js"></script>
   <script src="js/main/game-loop.js"></script>

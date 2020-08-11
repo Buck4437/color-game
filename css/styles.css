@@ -19,8 +19,9 @@
 }
 
 .color-producer {
-  width: 700px;
-  border: 1px solid black
+  width: 900px;
+  border: 1px solid black;
+  margin-bottom: 20px;
 }
 
 .color-adder-container{
@@ -30,10 +31,32 @@
   border: 1px solid black;
 }
 
-.color-progress{
+.color-adder-currency-container{
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  width: 150px;
+  border: 1px solid black;
+}
+
+.color-progress-container{
   width: 500px;
   height: 50px;
+  border: 1px solid black;
+}
+
+.color-progress{
+  display: inline-block;
+  height: 100%;
   border: 1px solid black
+}
+
+.color-adder-button-container{
+  padding: 10px;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
 }
 
 .color-upgrade-collapsible{
@@ -48,7 +71,14 @@
   transition: max-height 0.2s ease-out;
 }
 
-.color-upgrades-container{
+.color-upgrade-container{
+  display: flex;
   padding: 10px;
+  justify-content: space-between;
+}
+
+.color-upgrade{
+  padding: 10px;
+  width: 25%;
   border: 1px solid black;
 }
