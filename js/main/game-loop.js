@@ -7,7 +7,7 @@ function gameLoop(that){
     if (color.timer > 0){
       that.player.color[i].timer -= s
       if (color.timer <= 0){
-        that.player.color[i].amount += gainAmount.color[i]()
+        that.player.color[i].amount += formula.gain.color[i]().amount
         that.player.color[i].timer = 0
       }
     }

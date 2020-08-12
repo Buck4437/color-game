@@ -2,6 +2,17 @@
   margin: 15px;
 }
 
+button{
+  font-family: monoid;
+  font-size: 15px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.button-disabled{
+  cursor: default;
+}
+
 .currency-container {
   display: flex;
 }
@@ -14,7 +25,7 @@
 }
 
 .color-producer {
-  width: 900px;
+  width: 1000px;
   border: 1px solid black;
   margin-bottom: 20px;
 }
@@ -30,7 +41,7 @@
   display: flex;
   align-items: center;
   padding: 10px;
-  width: 150px;
+  width: 200px;
   border: 1px solid black;
 }
 
@@ -46,7 +57,7 @@
   border: 1px solid black
 }
 
-.color-adder-button-container{
+.color-adder-button{
   padding: 10px;
   width: 150px;
   display: flex;
@@ -54,8 +65,19 @@
   border: 1px solid black;
 }
 
-.color-upgrade-collapsible{
+.color-upgrade-coll-button{
+  cursor: pointer;
   padding: 0 10px;
+}
+
+.color-upgrade-coll-button:after{
+  float: right;
+  content: "\25bc"; /* unicode char for down arrow */
+}
+
+.coll-active:after{
+  float: right;
+  content: "\25b2"; /* unicode char for up arrow */
 }
 
 .color-upgrade-coll-container{
@@ -72,13 +94,13 @@
   justify-content: space-between;
 }
 
-.color-upgrade{
+.color-upgrade-button{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 10px;
   width: 25%;
-  height: 100px;
+  height: 120px;
   font-size: 10px;
   text-align: center;
   border: 1px solid black;

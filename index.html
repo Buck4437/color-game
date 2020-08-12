@@ -2,7 +2,6 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link rel="stylesheet" type="text/css" href="css/about.css">
     <link rel="icon" href="icon.png">
@@ -22,30 +21,52 @@
         </div>
       </div>
       <div class="color-container">
-        <div class="color-producer" v-for="(color, index) in player.color">
+        <div class="color-producer" v-for="(c, index) in player.color">
           <div class="color-adder-container">
             <div class="color-adder-currency-container">
               <div class="color-adder-currency">
-                {{constant.colorsNoun[index]}}: {{format(color.amount)}}
+                {{color.noun[index]}}: {{format(c.amount)}}
               </div>
             </div>
             <div class="color-progress-container">
-              <div class="color-progress" :class="'color-progress'+index" :style="{width: (1-color.timer)*100 + '%'}"></div>
+              <div class="color-progress" :class="'color-progress'+index" :style="{width: (1-c.timer)*100 + '%'}"></div>
             </div>
-            <div class="color-adder-button-container" @click="generateColor(index)">
-              <div class="color-adder-button">
-                Placeholder
+            <button class="color-adder-button" @click="generateColor(index)">
+              <div class="color-adder-text">
+                + {{format(formula.gain.color[index]().amount, 1)}} {{color.noun[index]}}
               </div>
-            </div>
+            </button>
           </div>
-          <div class="color-upgrade-collapsible" @click="collapse('color-upgrade-coll-container'+index)">
-            PLaceholde3r
+          <div class="color-upgrade-coll-button" :class="'color-upgrade-coll-button'+index" @click="collapse('color-upgrade-coll-button'+index, 'color-upgrade-coll-container'+index)">
+            Upgrades:
           </div>
           <div class="color-upgrade-coll-container" :class="'color-upgrade-coll-container'+index">
             <div class="color-upgrade-container">
-              <div class="color-upgrade color-upgrade-1" @click="buyUpg((index + 1) + '1')">
+              <button class="color-upgrade-button color-upgrade-button-1" @click="buyUpg((index + 1) + '1')">
                 <div class="color-upgrade-text">
-                  {{constant.colorUpgInfo[(index+1) + "1"].text}}
+                  {{colorUpgInfo[(index+1) + "1"].text}}
+                </div>
+                <div v-if="(player.colorUpg[(index+1) + '1']||0) < colorUpgInfo[(index+1) + '1'].cap" class="color-upgrade-text">
+                  Cost: {{format(formula.cUpg[(index+1) + "1"](player.colorUpg[(index+1) + "1"]).cost)}} Red
+                </div>
+                <div class="color-upgrade-text">
+                  Production Time: {{format(formula.cUpg[(index+1) + "1"](player.colorUpg[(index+1) + "1"]).effect, 2)}}s
+                </div>
+              </button>
+              <button class="color-upgrade-button color-upgrade-button-2" @click="buyUpg((index + 1) + '2')">
+                <div class="color-upgrade-text">
+                  {{colorUpgInfo[(index+1) + "2"].text}}
+                </div>
+                <div v-if="(player.colorUpg[(index+1) + '1']||0) < colorUpgInfo[(index+1) + '1'].cap" class="color-upgrade-text">
+                  Cost: {{format(formula.cUpg[(index+1) + "2"](player.colorUpg[(index+1) + "2"]).cost)}} Red
+                </div>
+                <div class="color-upgrade-text">
+                  Current Effect: x{{format(formula.cUpg[(index+1) + "2"](player.colorUpg[(index+1) + "2"]).effect, 2)}}
+                </div>
+              </button>
+              <button class="color-upgrade-button color-upgrade-button-3" @click="buyUpg((index + 1) + '3')">
+                <div class="color-upgrade-text">
+                  {{colorUpgInfo[(index+1) + "3"].text}}
                 </div>
                 <div class="color-upgrade-text">
                   Cost: placeholder
@@ -53,29 +74,7 @@
                 <div class="color-upgrade-text">
                   Current effect: placeholder
                 </div>
-              </div>
-              <div class="color-upgrade color-upgrade-2" @click="buyUpg((index + 1) + '2')">
-                <div class="color-upgrade-text">
-                  {{constant.colorUpgInfo[(index+1) + "2"].text}}
-                </div>
-                <div class="color-upgrade-text">
-                  Cost: placeholder
-                </div>
-                <div class="color-upgrade-text">
-                  Current effect: placeholder
-                </div>
-              </div>
-              <div class="color-upgrade color-upgrade-3" @click="buyUpg((index + 1) + '3')">
-                <div class="color-upgrade-text">
-                  {{constant.colorUpgInfo[(index+1) + "3"].text}}
-                </div>
-                <div class="color-upgrade-text">
-                  Cost: placeholder
-                </div>
-                <div class="color-upgrade-text">
-                  Current effect: placeholder
-                </div>
-              </div>
+              </button>
             </div>
           </div>
         </div>
