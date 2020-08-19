@@ -65,7 +65,7 @@ new Vue ({
 })
 
 function save(){
-  localStorage.setItem('player', JSON.stringify(player))
+  localStorage.setItem('colorGameSave', JSON.stringify(player))
   game.saveTimer = 10
 }
 
@@ -85,7 +85,10 @@ function saveTimerCountdown(){
 setInterval(saveTimerCountdown, 50)
 
 function load(){
-  let localSave = localStorage.getItem("player")
+  let localSave = localStorage.getItem("colorGameSave")
+  if (localSave = null){
+    localSave = localStorage.getItem("player")
+  }
   if(isValidSave(localSave)){
     importSave(localSave)
     save()
